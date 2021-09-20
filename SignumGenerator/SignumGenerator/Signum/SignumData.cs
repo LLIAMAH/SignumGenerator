@@ -42,13 +42,13 @@ namespace SignumGenerator.Signum
             this._centerX = (x + x + (_unitX * _unitStep)) / 2;
             this._centerY = y + y + (_unitY * _unitStep) / 2;
 
-            this._pointLeftTop = new Point(this._left, this._top); // LeftTop, //new(150, 100),
-            this._pointLeftBottom = new Point(this._left, this._bottom); //LeftBottom, //new(150, 400),
-            this._pointCenterBottom = new Point(this._centerX, this._bottomExt); //CenterBottom,//new(300, 450),
-            this._pointRightBottom = new Point(this._right, this._bottom); // RightBottom,//new(450, 400),
-            this._pointRightTop = new Point(this._right, this._top); // RightTop,//new(450, 100),
+            this._pointLeftTop = new Point(this._left, this._top);
+            this._pointLeftBottom = new Point(this._left, this._bottom);
+            this._pointCenterBottom = new Point(this._centerX, this._bottomExt);
+            this._pointRightBottom = new Point(this._right, this._bottom);
+            this._pointRightTop = new Point(this._right, this._top);
 
-            this._pointCenter = new Point(this._centerX, this._centerY); //CenterBottom,//new(300, 450),
+            this._pointCenter = new Point(this._centerX, this._centerY);
 
             this._pointLeftBottomHead = new Point(this._left, y + 2 * _unitY * _unitStep - _unitStep / 2);
             this._pointRightBottomHead = new Point(this._right, y + 2 * _unitY * _unitStep - _unitStep / 2);
