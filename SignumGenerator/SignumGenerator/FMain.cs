@@ -27,9 +27,14 @@ namespace SignumGenerator
             using var penShield =  SignumPen.CreatePen(Electrum.Sable);
 
             g.FillRectangle(brushBg, 0, 0, 600, 600);
-            var p = SignumFigure.CreateMainShield(100, 100, 10, 12, 20);
-            //g.DrawPolygon(penShield, p);
-            g.FillPolygon(brushBg1, p);
+
+            var shield = new Shield(penShield, brushBg1, brushBg, 100, 100, 10, 12, 20);
+            shield.Draw(g, 200, 200);
+
+
+            //var p = SignumFigure.CreateMainShield(100, 100, 10, 12, 20);
+            ////g.DrawPolygon(penShield, p);
+            //g.FillPolygon(brushBg1, p);
 
             //DrawImage(g);
 

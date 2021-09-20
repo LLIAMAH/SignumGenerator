@@ -19,5 +19,20 @@ namespace SignumGenerator.Signum
 
             return points.ToArray();
         }
+
+        //public static Point[] CreateHead()
+        //{
+
+        //}
+
+        //public static Point[] CreateBelt()
+        //{
+
+        //}
+
+        //public static Point[] CreateBottom()
+        //{
+
+        //}
     }
 }
