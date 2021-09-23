@@ -105,6 +105,15 @@ namespace SignumGenerator
             using var brushBg1 = new SolidBrush(Color.Black);
             using var penShield = SignumPen.CreatePen(Electrum.Sable);
 
+            /*
+             * MemoryStream PCDStream = new MemoryStream(Data, 0, Data.Length);
+             * var ResourceStream = ConvertPCD9ToDDSv22 (PCDStream,VersionDRM);
+             * ResourceStream.Position = 0;
+             * var DDSImage = new DDSImage (ResourceStream);
+             * var Bitmap = DDSImage.BitmapImage;
+             * previewPictureBox.Image = Bitmap;
+             */
+
             using (var fs = new FileStream("C:\\Users\\User\\Source\\Repos\\SignumGenerator\\SignumGenerator\\SignumGenerator\\Images\\ImageFile.dds",
                 FileMode.Open, FileAccess.Read))
             {
