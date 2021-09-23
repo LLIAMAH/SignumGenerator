@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace SignumGenerator.Signum
 {
-    public class SignumShield: SignumBase
+    public class SignumShield: SignumAbstract
     {
         private readonly Pen _penMain;
         private readonly Brush _brushMain;

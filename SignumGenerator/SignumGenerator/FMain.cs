@@ -126,6 +126,38 @@ namespace SignumGenerator
             pbResult.Image = this._bmp;
         }
 
+        private void bnCreateMain_Click(object sender, EventArgs e)
+        {
+            pbResult.Image?.Dispose();
+            this._bmp = new Bitmap(800, 1000);
+            var shieldBitmap = new Bitmap(600, 800);
+            
+            using var brushBg = new SolidBrush(Color.White);
+            using var brushMain = new SolidBrush(Color.Black);
+            using var penShield = SignumPen.CreatePen(Electrum.Sable);
+            var bmpReady = CreateBitmap(shieldBitmap, penShield, brushMain, brushBg);
+
+            var g = Graphics.FromImage(this._bmp);
+            g.DrawImage(bmpReady, 100, 100);
+
+            pbResult.Image = this._bmp;
+        }
+
+        private static Image CreateBitmap(Image bmp, Pen pen, Brush main, Brush bg)
+        {
+            using var g = Graphics.FromImage(bmp);
+            g.FillRectangle(bg, 0, 0, 600, 800);
+            var signum = new SignumData(0, 0, 12, 12, 20);
+            var shield = new SignumShield(pen, main, bg, signum);
+            shield.Draw(g);
+            return bmp;
+        }
+
+        private void bnCreateShield_Click(object sender, EventArgs e)
+        {
+
+        }
+
         ~FMain()
         {
             this._bmp.Dispose();

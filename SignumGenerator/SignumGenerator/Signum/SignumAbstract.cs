@@ -2,7 +2,7 @@
 
 namespace SignumGenerator.Signum
 {
-    public abstract class SignumBase
+    public abstract class SignumAbstract
     {
         public abstract void Draw(Graphics g);
     }
