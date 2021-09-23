@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using SignumGenerator.Helpers;
 using SignumGenerator.Signum;
 using Color = System.Drawing.Color;
 
@@ -18,7 +21,6 @@ namespace SignumGenerator
         private void bnInitNew_Click(object sender, EventArgs e)
         {
             pbResult.Image?.Dispose();
-
             this._bmp = new Bitmap(600, 600);
 
             using var g = Graphics.FromImage(this._bmp);
@@ -27,10 +29,14 @@ namespace SignumGenerator
             using var penShield =  SignumPen.CreatePen(Electrum.Sable);
 
             g.FillRectangle(brushBg, 0, 0, 600, 600);
+            g.FillRectangle(brushBg1, 300, 300, 60, 60);
 
-            var shield = new Shield(penShield, brushBg1, brushBg, 100, 100, 10, 12, 20);
-            shield.Draw(g, 200, 200);
+            var signum = new SignumData(100, 100, 10, 12, 20);
+            var shield = new SignumShield(penShield, brushBg1, brushBg, signum);
+            shield.Draw(g);
 
+            var line = new SignumLine(SignumBrush.CreateBrush(Electrum.Purpure), signum);
+            line.Draw(g);
 
             //var p = SignumFigure.CreateMainShield(100, 100, 10, 12, 20);
             ////g.DrawPolygon(penShield, p);
@@ -85,6 +91,28 @@ namespace SignumGenerator
                 g.DrawImage(bmpHigh, new Point(40, 60));
             }
 
+
+            pbResult.Image = this._bmp;
+        }
+
+        private void bnNok_Click(object sender, EventArgs e)
+        {
+            pbResult.Image?.Dispose();
+            this._bmp = new Bitmap(600, 600);
+
+            using var g = Graphics.FromImage(this._bmp);
+            using var brushBg = new SolidBrush(Color.White);
+            using var brushBg1 = new SolidBrush(Color.Black);
+            using var penShield = SignumPen.CreatePen(Electrum.Sable);
+
+            using (var fs = new FileStream("C:\\Users\\User\\Source\\Repos\\SignumGenerator\\SignumGenerator\\SignumGenerator\\Images\\ImageFile.dds",
+                FileMode.Open, FileAccess.Read))
+            {
+                var img = new DDSImage(fs);
+                var bmp = img.BitmapImage;
+
+                g.DrawImage(bmp, 0, 0, 600, 600);
+            }
 
             pbResult.Image = this._bmp;
         }

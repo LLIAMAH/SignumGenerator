@@ -32,8 +32,9 @@ namespace SignumGenerator
             this.gbSignum = new System.Windows.Forms.GroupBox();
             this.pbResult = new System.Windows.Forms.PictureBox();
             this.gbControls = new System.Windows.Forms.GroupBox();
-            this.bnInitNew = new System.Windows.Forms.Button();
             this.bnBrushTest = new System.Windows.Forms.Button();
+            this.bnInitNew = new System.Windows.Forms.Button();
+            this.bnNok = new System.Windows.Forms.Button();
             this.gbSignum.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbResult)).BeginInit();
             this.gbControls.SuspendLayout();
@@ -62,6 +63,7 @@ namespace SignumGenerator
             // 
             // gbControls
             // 
+            this.gbControls.Controls.Add(this.bnNok);
             this.gbControls.Controls.Add(this.bnBrushTest);
             this.gbControls.Controls.Add(this.bnInitNew);
             this.gbControls.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -71,6 +73,16 @@ namespace SignumGenerator
             this.gbControls.TabIndex = 1;
             this.gbControls.TabStop = false;
             this.gbControls.Text = "Controls";
+            // 
+            // bnBrushTest
+            // 
+            this.bnBrushTest.Location = new System.Drawing.Point(43, 92);
+            this.bnBrushTest.Name = "bnBrushTest";
+            this.bnBrushTest.Size = new System.Drawing.Size(112, 34);
+            this.bnBrushTest.TabIndex = 1;
+            this.bnBrushTest.Text = "Brush test";
+            this.bnBrushTest.UseVisualStyleBackColor = true;
+            this.bnBrushTest.Click += new System.EventHandler(this.bnBrushTest_Click);
             // 
             // bnInitNew
             // 
@@ -82,15 +94,15 @@ namespace SignumGenerator
             this.bnInitNew.UseVisualStyleBackColor = true;
             this.bnInitNew.Click += new System.EventHandler(this.bnInitNew_Click);
             // 
-            // bnBrushTest
+            // bnNok
             // 
-            this.bnBrushTest.Location = new System.Drawing.Point(43, 92);
-            this.bnBrushTest.Name = "bnBrushTest";
-            this.bnBrushTest.Size = new System.Drawing.Size(112, 34);
-            this.bnBrushTest.TabIndex = 1;
-            this.bnBrushTest.Text = "Brush test";
-            this.bnBrushTest.UseVisualStyleBackColor = true;
-            this.bnBrushTest.Click += new System.EventHandler(this.bnBrushTest_Click);
+            this.bnNok.Location = new System.Drawing.Point(43, 132);
+            this.bnNok.Name = "bnNok";
+            this.bnNok.Size = new System.Drawing.Size(112, 34);
+            this.bnNok.TabIndex = 2;
+            this.bnNok.Text = "button1";
+            this.bnNok.UseVisualStyleBackColor = true;
+            this.bnNok.Click += new System.EventHandler(this.bnNok_Click);
             // 
             // FMain
             // 
@@ -118,6 +130,7 @@ namespace SignumGenerator
         private System.Windows.Forms.PictureBox pbResult;
         private System.Windows.Forms.Button bnInitNew;
         private System.Windows.Forms.Button bnBrushTest;
+        private System.Windows.Forms.Button bnNok;
     }
 }
 

@@ -4,29 +4,33 @@ namespace SignumGenerator.Signum
 {
     public class SignumData
     {
-        protected readonly int _unitX;
-        protected readonly int _unitY;
-        protected readonly int _unitStep;
-        protected readonly int _left;
-        protected readonly int _right;
-        protected readonly int _top;
-        protected readonly int _bottom;
-        protected readonly int _bottomExt;
-        protected readonly int _centerX;
-        protected readonly int _centerY;
+        public readonly int _unitX;
+        public readonly int _unitY;
+        public readonly int _unitStep;
+        public readonly int _left;
+        public readonly int _right;
+        public readonly int _top;
+        public readonly int _bottom;
+        public readonly int _bottomExt;
+        public readonly int _centerX;
+        public readonly int _centerY;
 
-        protected readonly Point _pointLeftTop;
-        protected readonly Point _pointLeftBottom;
-        protected readonly Point _pointCenterBottom;
-        protected readonly Point _pointRightBottom;
-        protected readonly Point _pointRightTop;
-        protected readonly Point _pointCenter;
-        protected readonly Point _pointLeftBottomHead;
-        protected readonly Point _pointRightBottomHead;
-        protected readonly Point _pointLeftTopBelt;
-        protected readonly Point _pointLeftBottomBelt;
-        protected readonly Point _pointRightTopBelt;
-        protected readonly Point _pointRightBottomBelt;
+        public readonly Point PointLeftTop;
+        public readonly Point PointLeftBottom;
+        public readonly Point PointCenterBottom;
+        public readonly Point PointRightBottom;
+        public readonly Point PointRightTop;
+        public readonly Point PointCenter;
+        public readonly Point PointLeftBottomHead;
+        public readonly Point PointRightBottomHead;
+        public readonly Point PointLeftTopBelt;
+        public readonly Point PointLeftBottomBelt;
+        public readonly Point PointRightTopBelt;
+        public readonly Point PointRightBottomBelt;
+        public readonly Point PointLeftTopExtremity;
+        public readonly Point PointRightTopExtremity;
+        public readonly int Third1;
+        public readonly int Third2;
 
         public SignumData(int x, int y, int unitX, int unitY, int unitStep)
         {
@@ -40,23 +44,28 @@ namespace SignumGenerator.Signum
             this._bottom = y + (_unitY * _unitStep);
             this._bottomExt = this._bottom + _unitStep;
             this._centerX = (x + x + (_unitX * _unitStep)) / 2;
-            this._centerY = y + y + (_unitY * _unitStep) / 2;
+            this._centerY = (y + y + (_unitY * _unitStep)) / 2;
+            this.Third1 = this._top + this._unitY / 3;
+            this.Third2 = this._top + this._unitY * 2 / 3;
 
-            this._pointLeftTop = new Point(this._left, this._top);
-            this._pointLeftBottom = new Point(this._left, this._bottom);
-            this._pointCenterBottom = new Point(this._centerX, this._bottomExt);
-            this._pointRightBottom = new Point(this._right, this._bottom);
-            this._pointRightTop = new Point(this._right, this._top);
+            this.PointLeftTop = new Point(this._left, this._top);
+            this.PointLeftBottom = new Point(this._left, this._bottom);
+            this.PointCenterBottom = new Point(this._centerX, this._bottomExt);
+            this.PointRightBottom = new Point(this._right, this._bottom);
+            this.PointRightTop = new Point(this._right, this._top);
 
-            this._pointCenter = new Point(this._centerX, this._centerY);
+            this.PointCenter = new Point(this._centerX, this._centerY);
 
-            this._pointLeftBottomHead = new Point(this._left, y + 2 * _unitY * _unitStep - _unitStep / 2);
-            this._pointRightBottomHead = new Point(this._right, y + 2 * _unitY * _unitStep - _unitStep / 2);
+            this.PointLeftBottomHead = new Point(this._left, this._top + this.Third1 - _unitStep / 2);
+            this.PointRightBottomHead = new Point(this._right, this._top + this.Third1 - _unitStep / 2);
 
-            this._pointLeftTopBelt = new Point(this._left, this._pointLeftTop.Y - _unitStep);
-            this._pointLeftBottomBelt = new Point(this._left, this._pointLeftTop.Y + _unitStep);
-            this._pointRightTopBelt = new Point(this._right, this._pointLeftTop.Y - _unitStep);
-            this._pointRightBottomBelt = new Point(this._right, this._pointLeftTop.Y + _unitStep);
+            this.PointLeftTopBelt = new Point(this._left,  this._centerY - this._unitY - this._unitY / 2);
+            this.PointLeftBottomBelt = new Point(this._left, this._centerY + this._unitY + this._unitY / 2);
+            this.PointRightTopBelt = new Point(this._right, this._centerY - this._unitY - this._unitY / 2);
+            this.PointRightBottomBelt = new Point(this._right, this._centerY + this._unitY + this._unitY / 2);
+
+            this.PointLeftTopExtremity = new Point(this._left, this._top + this.Third2 + _unitStep / 2);
+            this.PointRightTopExtremity = new Point(this._right, this._top + this.Third2 + _unitStep / 2);
         }
     }
 }

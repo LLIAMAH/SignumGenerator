@@ -3,21 +3,22 @@ using System.Drawing;
 
 namespace SignumGenerator.Signum
 {
-    public class Shield: SignumData
+    public class SignumShield: SignumBase
     {
         private readonly Pen _penMain;
         private readonly Brush _brushMain;
         private readonly Brush _brushBackGround;
+        private readonly SignumData _data;
 
-        public Shield(Pen penMain, Brush brushMain, Brush brushBackGround, int x, int y, int unitX, int unitY,
-            int unitStep) : base(x, y, unitX, unitY, unitStep)
+        public SignumShield(Pen penMain, Brush brushMain, Brush brushBackGround, SignumData data)
         {
             this._penMain = penMain;
             this._brushMain = brushMain;
             this._brushBackGround = brushBackGround;
+            this._data = data;
         }
 
-        public void Draw(Graphics g, int x, int y)
+        public override void Draw(Graphics g)
         {
             var p = CreateMainShield();
             g.DrawPolygon(this._penMain, p);
@@ -27,12 +28,12 @@ namespace SignumGenerator.Signum
         {
             var points = new List<Point>
             {
-                this._pointLeftTop,
-                this._pointLeftBottom,
-                this._pointCenterBottom,
-                this._pointRightBottom,
-                this._pointRightTop,
-                this._pointLeftTop
+                this._data.PointLeftTop,
+                this._data.PointLeftBottom,
+                this._data.PointCenterBottom,
+                this._data.PointRightBottom,
+                this._data.PointRightTop,
+                this._data.PointLeftTop
             };
 
             return points.ToArray();
