@@ -4,68 +4,53 @@ namespace SignumGenerator.Signum
 {
     public class SignumData
     {
-        public readonly int _unitX;
-        public readonly int _unitY;
-        public readonly int _unitStep;
-        public readonly int _left;
-        public readonly int _right;
-        public readonly int _top;
-        public readonly int _bottom;
-        public readonly int _bottomExt;
-        public readonly int _centerX;
-        public readonly int _centerY;
+        private readonly int _width;
+        private readonly int _height;
 
-        public readonly Point PointLeftTop;
-        public readonly Point PointLeftBottom;
-        public readonly Point PointCenterBottom;
-        public readonly Point PointRightBottom;
-        public readonly Point PointRightTop;
-        public readonly Point PointCenter;
-        public readonly Point PointLeftBottomHead;
-        public readonly Point PointRightBottomHead;
-        public readonly Point PointLeftTopBelt;
-        public readonly Point PointLeftBottomBelt;
-        public readonly Point PointRightTopBelt;
-        public readonly Point PointRightBottomBelt;
-        public readonly Point PointLeftTopExtremity;
-        public readonly Point PointRightTopExtremity;
-        public readonly int Third1;
-        public readonly int Third2;
+        public int Width => _width;
+        public int Height  => _height;
 
-        public SignumData(int x, int y, int unitX, int unitY, int unitStep)
+        public int Top => 0;
+        public int Left => 0;
+        public int Bottom => _height;
+        public int Right => _width;
+
+        public int CenterX => _width / 2;
+        public int CenterY => _height / 2;
+
+        public int Horizontal2 => _width / 2;
+        public int Horizontal3 => _width / 3;
+        public int Horizontal4 => _width / 4;
+        public int Horizontal5 => _width / 5;
+        public int Horizontal6 => _width / 6;
+        public int Horizontal8 => _width / 8;
+        public int Horizontal10 => _width / 10;
+        public int Horizontal12 => _width / 12;
+
+        public int Vertical2 => _height / 2;
+        public int Vertical3 => _height / 3;
+        public int Vertical4 => _height / 4;
+        public int Vertical5 => _height / 5;
+        public int Vertical6 => _height / 6;
+        public int Vertical8 => _height / 8;
+        public int Vertical10 => _height / 10;
+        public int Vertical12 => _height / 12;
+
+        public Point PointCenter => new(CenterX, CenterY);
+        public Point PointTopCenter => new(CenterX, Top);
+        public Point PointBottomCenter=> new(CenterX, Bottom);
+        public Point PointCenterLeft => new(Left, CenterY);
+        public Point PointCenterRight => new(Right, CenterY);
+
+        public Point PointTopLeft => new(Top, Left);
+        public Point PointTopRight => new(Top, Right);
+        public Point PointBottomLeft => new(Bottom, Left);
+        public Point PointBottomRight => new(Bottom, Right);
+
+        public SignumData(int width, int height)
         {
-            this._unitX = unitX;
-            this._unitY = unitY;
-            this._unitStep = unitStep;
-
-            this._left = x;
-            this._right = x + (_unitX * _unitStep);
-            this._top = y;
-            this._bottom = y + (_unitY * _unitStep);
-            this._bottomExt = this._bottom + _unitStep;
-            this._centerX = (x + x + (_unitX * _unitStep)) / 2;
-            this._centerY = (y + y + (_unitY * _unitStep)) / 2;
-            this.Third1 = this._top + this._unitY / 3;
-            this.Third2 = this._top + this._unitY * 2 / 3;
-
-            this.PointLeftTop = new Point(this._left, this._top);
-            this.PointLeftBottom = new Point(this._left, this._bottom);
-            this.PointCenterBottom = new Point(this._centerX, this._bottomExt);
-            this.PointRightBottom = new Point(this._right, this._bottom);
-            this.PointRightTop = new Point(this._right, this._top);
-
-            this.PointCenter = new Point(this._centerX, this._centerY);
-
-            this.PointLeftBottomHead = new Point(this._left, this._top + this.Third1 - _unitStep / 2);
-            this.PointRightBottomHead = new Point(this._right, this._top + this.Third1 - _unitStep / 2);
-
-            this.PointLeftTopBelt = new Point(this._left,  this._centerY - this._unitY - this._unitY / 2);
-            this.PointLeftBottomBelt = new Point(this._left, this._centerY + this._unitY + this._unitY / 2);
-            this.PointRightTopBelt = new Point(this._right, this._centerY - this._unitY - this._unitY / 2);
-            this.PointRightBottomBelt = new Point(this._right, this._centerY + this._unitY + this._unitY / 2);
-
-            this.PointLeftTopExtremity = new Point(this._left, this._top + this.Third2 + _unitStep / 2);
-            this.PointRightTopExtremity = new Point(this._right, this._top + this.Third2 + _unitStep / 2);
+            this._width = width;
+            this._height = height;
         }
     }
 }

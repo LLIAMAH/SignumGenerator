@@ -31,12 +31,12 @@ namespace SignumGenerator
             g.FillRectangle(brushBg, 0, 0, 600, 600);
             g.FillRectangle(brushBg1, 300, 300, 60, 60);
 
-            var signum = new SignumData(100, 100, 10, 12, 20);
-            var shield = new SignumShield(penShield, brushBg1, brushBg, signum);
-            shield.Draw(g);
+            //var signum = new SignumData(100, 100, 10, 12, 20);
+            //var shield = new SignumShield(penShield, brushBg1, brushBg, signum);
+            //shield.Draw(g);
 
-            var line = new SignumLine(SignumBrush.CreateBrush(Electrum.Purpure), signum);
-            line.Draw(g);
+            //var line = new SignumLine(SignumBrush.CreateBrush(Electrum.Purpure), signum);
+            //line.Draw(g);
 
             //var p = SignumFigure.CreateMainShield(100, 100, 10, 12, 20);
             ////g.DrawPolygon(penShield, p);
@@ -130,15 +130,22 @@ namespace SignumGenerator
         {
             pbResult.Image?.Dispose();
             this._bmp = new Bitmap(800, 1000);
-            var shieldBitmap = new Bitmap(600, 800);
-            
-            using var brushBg = new SolidBrush(Color.White);
-            using var brushMain = new SolidBrush(Color.Black);
-            using var penShield = SignumPen.CreatePen(Electrum.Sable);
-            var bmpReady = CreateBitmap(shieldBitmap, penShield, brushMain, brushBg);
-
             var g = Graphics.FromImage(this._bmp);
-            g.DrawImage(bmpReady, 100, 100);
+            //var shieldBitmap = new Bitmap(600, 800);
+
+            var signumBase = new SignumBase();
+            signumBase.ApplyPattern(SignumBasePattern.StripesHorizontal, SignumColor.GetColor(Electrum.Azure), SignumColor.GetColor(Electrum.Vert));
+
+            signumBase.Draw(g);
+
+
+            //using var brushBg = new SolidBrush(Color.White);
+            //using var brushMain = new SolidBrush(Color.Black);
+            //using var penShield = SignumPen.CreatePen(Electrum.Sable);
+            //var bmpReady = CreateBitmap(shieldBitmap, penShield, brushMain, brushBg);
+
+            //var g = Graphics.FromImage(this._bmp);
+            //g.DrawImage(bmpReady, 100, 100);
 
             pbResult.Image = this._bmp;
         }
@@ -146,10 +153,10 @@ namespace SignumGenerator
         private static Image CreateBitmap(Image bmp, Pen pen, Brush main, Brush bg)
         {
             using var g = Graphics.FromImage(bmp);
-            g.FillRectangle(bg, 0, 0, 600, 800);
-            var signum = new SignumData(0, 0, 12, 12, 20);
-            var shield = new SignumShield(pen, main, bg, signum);
-            shield.Draw(g);
+            //g.FillRectangle(bg, 0, 0, 600, 800);
+            //var signum = new SignumData(0, 0, 12, 12, 20);
+            //var shield = new SignumShield(pen, main, bg, signum);
+            //shield.Draw(g);
             return bmp;
         }
 

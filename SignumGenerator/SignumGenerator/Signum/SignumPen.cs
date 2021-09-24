@@ -15,5 +15,10 @@ namespace SignumGenerator.Signum
         {
             return new Pen(SignumColor.GetColor(metal));
         }
+
+        public static Pen CreatePen(Color color, int width = 1)
+        {
+            return new Pen(color, width);
+        }
     }
 }

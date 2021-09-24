@@ -13,5 +13,10 @@ namespace SignumGenerator.Signum
         {
             return new SolidBrush(SignumColor.GetColor(metal));
         }
+
+        public static Brush CreateBrush(Color color)
+        {
+            return new SolidBrush(color);
+        }
     }
 }
