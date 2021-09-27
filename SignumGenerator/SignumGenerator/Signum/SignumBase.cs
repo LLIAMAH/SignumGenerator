@@ -6,8 +6,9 @@ namespace SignumGenerator.Signum
     {
         StripesHorizontal,
         StripesVertical,
-        Quarters_1_3,
-        Quarters_2_4,
+        Quarter,
+        Quarters_1_4,
+        Quarters_2_3,
         SlingLeft,
         SlingRight,
         CheckersNormal,
@@ -62,7 +63,7 @@ namespace SignumGenerator.Signum
                     }
                     break;
                 }
-                case SignumBasePattern.Quarters_1_3:
+                case SignumBasePattern.Quarters_1_4:
                 {
                     using (var brush = SignumBrush.CreateBrush(primary))
                     {
@@ -75,7 +76,7 @@ namespace SignumGenerator.Signum
                     }
                     break;
                 }
-                case SignumBasePattern.Quarters_2_4:
+                case SignumBasePattern.Quarters_2_3:
                 {
                     using (var brush = SignumBrush.CreateBrush(primary))
                     {
@@ -107,6 +108,14 @@ namespace SignumGenerator.Signum
                     using (var brush = SignumBrush.CreateBrush(primary))
                     {
                         DrawCheckersInverse(_g, brush, _data, size);
+                    }
+                    break;
+                }
+                case SignumBasePattern.Quarter:
+                {
+                    using (var brush = SignumBrush.CreateBrush(primary))
+                    {
+                        
                     }
                     break;
                 }
