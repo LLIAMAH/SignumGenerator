@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using SignumGenerator.Helpers;
 using SignumGenerator.Signum;
@@ -18,32 +21,48 @@ namespace SignumGenerator
             InitializeComponent();
         }
 
-        private void bnInitNew_Click(object sender, EventArgs e)
+        private void FMain_Load(object sender, EventArgs e)
+        {
+            var enumColors = Enum.GetNames<EColor>().ToList();
+            var list = new List<string>();
+            list.AddRange(enumColors);
+
+            var enumFigures = Enum.GetNames<SignumBasePattern>().ToList();
+            cbLayer1Color.Items.AddRange(list.ToArray());
+            cbLayer2Color.Items.AddRange(list.ToArray());
+            cbLayer3Color.Items.AddRange(list.ToArray());
+            cbLayer1Color.SelectedIndex = 0;
+            cbLayer2Color.SelectedIndex = 0;
+            cbLayer3Color.SelectedIndex = 0;
+
+            cbLayer1Figure.Items.AddRange(enumFigures.ToArray());
+            cbLayer2Figure.Items.AddRange(enumFigures.ToArray());
+            cbLayer3Figure.Items.AddRange(enumFigures.ToArray());
+
+            list.Remove("Default");
+            cbColorBase.Items.AddRange(list.ToArray());
+            cbColorBase.SelectedIndex = 0;
+        }
+
+        private void bnCreateMain_Click(object sender, EventArgs e)
         {
             pbResult.Image?.Dispose();
-            this._bmp = new Bitmap(600, 600);
+            this._bmp = new Bitmap(800, 1000);
+            var g = Graphics.FromImage(this._bmp);
 
-            using var g = Graphics.FromImage(this._bmp);
-            using var brushBg = new SolidBrush(Color.White);
-            using var brushBg1 = new SolidBrush(Color.Black);
-            using var penShield =  SignumPen.CreatePen(Electrum.Sable);
+            var layer1Color = Enum.Parse<EColor>(cbLayer1Color.SelectedItem as string ?? string.Empty);
+            var layer1Figure = Enum.Parse<SignumBasePattern>(cbLayer1Figure.SelectedItem as string ?? string.Empty);
 
-            g.FillRectangle(brushBg, 0, 0, 600, 600);
-            g.FillRectangle(brushBg1, 300, 300, 60, 60);
+            var layer2Color = Enum.Parse<EColor>(cbLayer2Color.SelectedItem as string ?? string.Empty);
+            var layer2Figure = Enum.Parse<SignumBasePattern>(cbLayer2Figure.SelectedItem as string ?? string.Empty);
 
-            //var signum = new SignumData(100, 100, 10, 12, 20);
-            //var shield = new SignumShield(penShield, brushBg1, brushBg, signum);
-            //shield.Draw(g);
+            var layer3Color = Enum.Parse<EColor>(cbLayer3Color.SelectedItem as string ?? string.Empty);
+            var layer3Figure = Enum.Parse<SignumBasePattern>(cbLayer3Figure.SelectedItem as string ?? string.Empty);
 
-            //var line = new SignumLine(SignumBrush.CreateBrush(Electrum.Purpure), signum);
-            //line.Draw(g);
-
-            //var p = SignumFigure.CreateMainShield(100, 100, 10, 12, 20);
-            ////g.DrawPolygon(penShield, p);
-            //g.FillPolygon(brushBg1, p);
-
-            //DrawImage(g);
-
+            var signumBase = new SignumBase();
+            signumBase.ApplyBase(SignumColor.GetColor(layer1Color));
+            signumBase.ApplyPattern(SignumBasePattern.QuartersDiagonalTopBottom, SignumColor.GetColor(EColor.Argent), 200);
+            signumBase.Draw(g);
             pbResult.Image = this._bmp;
         }
 
@@ -61,97 +80,35 @@ namespace SignumGenerator
         //    }
         //}
 
-        private void bnBrushTest_Click(object sender, EventArgs e)
-        {
-            pbResult.Image?.Dispose();
-            this._bmp = new Bitmap(600, 600);
-            using var g = Graphics.FromImage(this._bmp);
-            using var brushBg = new SolidBrush(Color.White);
-            g.FillRectangle(brushBg, 0, 0, 600, 600);
+        //private void bnNok_Click(object sender, EventArgs e)
+        //{
+        //    pbResult.Image?.Dispose();
+        //    this._bmp = new Bitmap(600, 600);
 
-            if (Image.FromFile(
-                    "C:\\Users\\User\\source\\repos\\SignumGenerator\\SignumGenerator\\SignumGenerator\\Brushes\\BrushTest.png")
-                is Bitmap bmpHigh)
-            {
-                //var list = new List<Color>();
-                var clrWhite = new Color();
-                for (var y = 0; y < bmpHigh.Height; y++)
-                {
-                    for (var x = 0; x < bmpHigh.Width; x++)
-                    {
-                        var clr = bmpHigh.GetPixel(x, y);
-                        //list.Add(clr);
-                        if (bmpHigh.GetPixel(x, y).Name == "ff000000")
-                            bmpHigh.SetPixel(x, y, Color.Red);
-                    }
-                }
+        //    using var g = Graphics.FromImage(this._bmp);
+        //    using var brushBg = new SolidBrush(Color.White);
+        //    using var brushBg1 = new SolidBrush(Color.Black);
+        //    using var penShield = SignumPen.CreatePen(EColor.Sable);
 
-                //var t = list.Distinct();
+        //    /*
+        //     * MemoryStream PCDStream = new MemoryStream(Data, 0, Data.Length);
+        //     * var ResourceStream = ConvertPCD9ToDDSv22 (PCDStream,VersionDRM);
+        //     * ResourceStream.Position = 0;
+        //     * var DDSImage = new DDSImage (ResourceStream);
+        //     * var Bitmap = DDSImage.BitmapImage;
+        //     * previewPictureBox.Image = Bitmap;
+        //     */
 
-                g.DrawImage(bmpHigh, new Point(40, 60));
-            }
+        //    using (var fs = new FileStream("C:\\Users\\User\\Source\\Repos\\SignumGenerator\\SignumGenerator\\SignumGenerator\\Images\\ImageFile.dds",
+        //        FileMode.Open, FileAccess.Read))
+        //    {
+        //        var img = new DDSImage(fs);
+        //        var bmp = img.BitmapImage;
+        //        g.DrawImage(bmp, 0, 0, 600, 600);
+        //    }
 
-
-            pbResult.Image = this._bmp;
-        }
-
-        private void bnNok_Click(object sender, EventArgs e)
-        {
-            pbResult.Image?.Dispose();
-            this._bmp = new Bitmap(600, 600);
-
-            using var g = Graphics.FromImage(this._bmp);
-            using var brushBg = new SolidBrush(Color.White);
-            using var brushBg1 = new SolidBrush(Color.Black);
-            using var penShield = SignumPen.CreatePen(Electrum.Sable);
-
-            /*
-             * MemoryStream PCDStream = new MemoryStream(Data, 0, Data.Length);
-             * var ResourceStream = ConvertPCD9ToDDSv22 (PCDStream,VersionDRM);
-             * ResourceStream.Position = 0;
-             * var DDSImage = new DDSImage (ResourceStream);
-             * var Bitmap = DDSImage.BitmapImage;
-             * previewPictureBox.Image = Bitmap;
-             */
-
-            using (var fs = new FileStream("C:\\Users\\User\\Source\\Repos\\SignumGenerator\\SignumGenerator\\SignumGenerator\\Images\\ImageFile.dds",
-                FileMode.Open, FileAccess.Read))
-            {
-                var img = new DDSImage(fs);
-                var bmp = img.BitmapImage;
-                g.DrawImage(bmp, 0, 0, 600, 600);
-            }
-
-            pbResult.Image = this._bmp;
-        }
-
-        private void bnCreateMain_Click(object sender, EventArgs e)
-        {
-            pbResult.Image?.Dispose();
-            this._bmp = new Bitmap(800, 1000);
-            var g = Graphics.FromImage(this._bmp);
-
-            var signumBase = new SignumBase();
-            signumBase.ApplyBase(SignumColor.GetColor(Electrum.Vert));
-            signumBase.ApplyPattern(SignumBasePattern.QuartersDiagonalTopBottom, SignumColor.GetColor(Metal.Or), 200);
-            signumBase.Draw(g);
-            pbResult.Image = this._bmp;
-        }
-
-        private static Image CreateBitmap(Image bmp, Pen pen, Brush main, Brush bg)
-        {
-            using var g = Graphics.FromImage(bmp);
-            //g.FillRectangle(bg, 0, 0, 600, 800);
-            //var signum = new SignumData(0, 0, 12, 12, 20);
-            //var shield = new SignumShield(pen, main, bg, signum);
-            //shield.Draw(g);
-            return bmp;
-        }
-
-        private void bnCreateShield_Click(object sender, EventArgs e)
-        {
-
-        }
+        //    pbResult.Image = this._bmp;
+        //}
 
         ~FMain()
         {

@@ -4,14 +4,9 @@ namespace SignumGenerator.Signum
 {
     public static class SignumBrush
     {
-        public static Brush CreateBrush(Electrum electrum)
+        public static Brush CreateBrush(EColor eColor)
         {
-            return new SolidBrush(SignumColor.GetColor(electrum));
-        }
-
-        public static Brush CreateBrush(Metal metal)
-        {
-            return new SolidBrush(SignumColor.GetColor(metal));
+            return new SolidBrush(SignumColor.GetColor(eColor));
         }
 
         public static Brush CreateBrush(Color color)
