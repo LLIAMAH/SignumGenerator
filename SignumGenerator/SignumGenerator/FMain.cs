@@ -119,7 +119,6 @@ namespace SignumGenerator
             {
                 var img = new DDSImage(fs);
                 var bmp = img.BitmapImage;
-
                 g.DrawImage(bmp, 0, 0, 600, 600);
             }
 

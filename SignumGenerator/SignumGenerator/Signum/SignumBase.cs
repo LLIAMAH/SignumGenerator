@@ -6,7 +6,6 @@ namespace SignumGenerator.Signum
     {
         StripesHorizontal,
         StripesVertical,
-        Quarter,
         Quarters_1_3,
         Quarters_2_4,
         SlingLeft,
@@ -102,7 +101,7 @@ namespace SignumGenerator.Signum
             }
         }
 
-        private void DrawStripesVertical(Graphics g, Color primary, SignumData data, int count)
+        private static void DrawStripesVertical(Graphics g, Color primary, SignumData data, int count)
         {
             if (count == 0)
                 return;
