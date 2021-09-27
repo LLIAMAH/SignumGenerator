@@ -135,12 +135,12 @@ namespace SignumGenerator
             signumBase.ApplyBase(SignumColor.GetColor(Electrum.Vert));
             //signumBase.ApplyPattern(SignumBasePattern.SlingLeft, SignumColor.GetColor(Electrum.Azure), _lineWidth);
             //signumBase.ApplyPattern(SignumBasePattern.SlingRight, SignumColor.GetColor(Electrum.Azure), _lineWidth);
-            signumBase.ApplyPattern(SignumBasePattern.Quarters_2_4, SignumColor.GetColor(Electrum.Azure));
+            //signumBase.ApplyPattern(SignumBasePattern.CheckersNormal, SignumColor.GetColor(Electrum.Azure));
+            signumBase.ApplyPattern(SignumBasePattern.CheckersInverse, SignumColor.GetColor(Electrum.Azure), 20);
             //signumBase.ApplyPattern(SignumBasePattern.StripesHorizontal, SignumColor.GetColor(Electrum.Azure), 5);
             //signumBase.ApplyPattern(SignumBasePattern.StripesVertical, SignumColor.GetColor(Electrum.Azure), 5);
 
             signumBase.Draw(g);
-
             pbResult.Image = this._bmp;
         }
 
