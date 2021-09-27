@@ -42,10 +42,10 @@ namespace SignumGenerator.Signum
         public Point PointCenterLeft => new(Left, CenterY);
         public Point PointCenterRight => new(Right, CenterY);
 
-        public Point PointTopLeft => new(Top, Left);
-        public Point PointTopRight => new(Top, Right);
-        public Point PointBottomLeft => new(Bottom, Left);
-        public Point PointBottomRight => new(Bottom, Right);
+        public Point PointTopLeft => new(Left, Top);
+        public Point PointTopRight => new(Right, Top);
+        public Point PointBottomLeft => new(Left, Bottom);
+        public Point PointBottomRight => new(Right, Bottom);
 
         public SignumData(int width, int height)
         {

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 using SignumGenerator.Helpers;
 using SignumGenerator.Signum;
@@ -12,6 +11,7 @@ namespace SignumGenerator
     public partial class FMain : Form
     {
         private Bitmap _bmp;
+        private const int _lineWidth = 100;
 
         public FMain()
         {
@@ -131,21 +131,16 @@ namespace SignumGenerator
             pbResult.Image?.Dispose();
             this._bmp = new Bitmap(800, 1000);
             var g = Graphics.FromImage(this._bmp);
-            //var shieldBitmap = new Bitmap(600, 800);
 
             var signumBase = new SignumBase();
-            signumBase.ApplyPattern(SignumBasePattern.StripesHorizontal, SignumColor.GetColor(Electrum.Azure), SignumColor.GetColor(Electrum.Vert));
+            signumBase.ApplyBase(SignumColor.GetColor(Electrum.Vert));
+            //signumBase.ApplyPattern(SignumBasePattern.SlingLeft, SignumColor.GetColor(Electrum.Azure), _lineWidth);
+            //signumBase.ApplyPattern(SignumBasePattern.SlingRight, SignumColor.GetColor(Electrum.Azure), _lineWidth);
+            signumBase.ApplyPattern(SignumBasePattern.Quarters_2_4, SignumColor.GetColor(Electrum.Azure));
+            //signumBase.ApplyPattern(SignumBasePattern.StripesHorizontal, SignumColor.GetColor(Electrum.Azure), 5);
+            //signumBase.ApplyPattern(SignumBasePattern.StripesVertical, SignumColor.GetColor(Electrum.Azure), 5);
 
             signumBase.Draw(g);
-
-
-            //using var brushBg = new SolidBrush(Color.White);
-            //using var brushMain = new SolidBrush(Color.Black);
-            //using var penShield = SignumPen.CreatePen(Electrum.Sable);
-            //var bmpReady = CreateBitmap(shieldBitmap, penShield, brushMain, brushBg);
-
-            //var g = Graphics.FromImage(this._bmp);
-            //g.DrawImage(bmpReady, 100, 100);
 
             pbResult.Image = this._bmp;
         }
