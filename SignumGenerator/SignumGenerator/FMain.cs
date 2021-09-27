@@ -133,14 +133,7 @@ namespace SignumGenerator
 
             var signumBase = new SignumBase();
             signumBase.ApplyBase(SignumColor.GetColor(Electrum.Vert));
-            //signumBase.ApplyPattern(SignumBasePattern.SlingLeft, SignumColor.GetColor(Electrum.Azure), _lineWidth);
-            //signumBase.ApplyPattern(SignumBasePattern.SlingRight, SignumColor.GetColor(Electrum.Azure), _lineWidth);
-            //signumBase.ApplyPattern(SignumBasePattern.CheckersNormal, SignumColor.GetColor(Electrum.Azure));
-            signumBase.ApplyPattern(SignumBasePattern.CheckersDiagonal, SignumColor.GetColor(Electrum.Azure), 100);
-            signumBase.ApplyPattern(SignumBasePattern.Quarter, SignumColor.GetColor(Metal.Argent));
-            //signumBase.ApplyPattern(SignumBasePattern.StripesHorizontal, SignumColor.GetColor(Electrum.Azure), 5);
-            //signumBase.ApplyPattern(SignumBasePattern.StripesVertical, SignumColor.GetColor(Electrum.Azure), 5);
-
+            signumBase.ApplyPattern(SignumBasePattern.QuartersDiagonalTopBottom, SignumColor.GetColor(Metal.Or), 200);
             signumBase.Draw(g);
             pbResult.Image = this._bmp;
         }
