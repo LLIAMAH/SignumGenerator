@@ -12,7 +12,8 @@ namespace SignumGenerator.Signum
         SlingLeft,
         SlingRight,
         CheckersNormal,
-        CheckersInverse
+        CheckersInverse,
+        CheckersDiagonal
     }
 
     public class SignumBase : SignumAbstract
@@ -111,11 +112,23 @@ namespace SignumGenerator.Signum
                     }
                     break;
                 }
+                case SignumBasePattern.CheckersDiagonal:
+                {
+                    if (size == 0)
+                        size = 100;
+
+                    using (var brush = SignumBrush.CreateBrush(primary))
+                    {
+                        DrawCheckersDiagonal(_g, brush, _data, size);
+                    }
+                    break;
+                }
                 case SignumBasePattern.Quarter:
                 {
                     using (var brush = SignumBrush.CreateBrush(primary))
                     {
-                        
+                        _g.FillRectangle(brush,
+                            new Rectangle(_data.Left, _data.Top, _data.Width / 2, _data.Height / 2));
                     }
                     break;
                 }
@@ -159,6 +172,26 @@ namespace SignumGenerator.Signum
                         if ((i / size) % 2 == 0)
                             FillRect(g, brush, i, j, size, size);
                     }
+                }
+            }
+        }
+
+        private static void DrawCheckersDiagonal(Graphics g, Brush brush, SignumData data, int size)
+        {
+            for (var j = 0; j < data.Height; j += size)
+            {
+                for (var i = 0; i < data.Width; i += size)
+                {
+                    var points = new Point[]
+                    {
+                        new Point(i + size / 2, j),
+                        new Point(i + size, j + size / 2),
+                        new Point(i + size / 2, j + size),
+                        new Point(i, j + size / 2),
+                        new Point(i + size / 2, j)
+                    };
+
+                    g.FillPolygon(brush, points);
                 }
             }
         }
