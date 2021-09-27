@@ -23,8 +23,8 @@ namespace SignumGenerator.Signum
         ChevronFullInvert,
         SplitHorizontalNormal,
         SplitHorizontalInvert,
-        SplitVerticalNormal,
-        SplitVerticalInvert,
+        SplitVerticalLeft,
+        SplitVerticalRight,
         SliceLeftNormal,
         SliceLeftInvert,
         SliceRightNormal,
@@ -144,14 +144,98 @@ namespace SignumGenerator.Signum
                     break;
                 }
 
-                case SignumBasePattern.SplitVerticalNormal:{ break;}
-                case SignumBasePattern.SplitVerticalInvert:{ break;}
-                case SignumBasePattern.SliceLeftNormal:{ break;}
-                case SignumBasePattern.SliceLeftInvert:{ break;}
-                case SignumBasePattern.SliceRightNormal:{ break;}
-                case SignumBasePattern.SliceRightInvert:{ break;}
+                case SignumBasePattern.SplitVerticalLeft:
+                {
+                    DrawSplitVerticalLeft(_g, primary, _data);
+                    break;
+                }
+                case SignumBasePattern.SplitVerticalRight:
+                {
+                    DrawSplitVerticalRight(_g, primary, _data);
+                    break;
+                }
+                case SignumBasePattern.SliceLeftNormal:
+                {
+                    DrawSliceLeftNormal(_g, primary, _data);
+                    break;
+                }
+                case SignumBasePattern.SliceLeftInvert:
+                {
+                    DrawSliceLeftInvert(_g, primary, _data);
+                    break;
+                }
+                case SignumBasePattern.SliceRightNormal:
+                {
+                    DrawSliceRightNormal(_g, primary, _data);
+                    break;
+                }
+                case SignumBasePattern.SliceRightInvert:
+                {
+                    DrawSliceRightInvert(_g, primary, _data);
+                    break;
+                }
                 default: {break;}
             }
+        }
+
+        private static void DrawSliceLeftNormal(Graphics g, Color color, SignumData data)
+        {
+            using var brush = SignumBrush.CreateBrush(color);
+            g.FillPolygon(brush, new Point[]
+            {
+                new Point(data.Left, data.Top),
+                new Point(data.Right, data.Top),
+                new Point(data.Left, data.Bottom),
+                new Point(data.Left, data.Top)
+            });
+        }
+
+        private static void DrawSliceLeftInvert(Graphics g, Color color, SignumData data)
+        {
+            using var brush = SignumBrush.CreateBrush(color);
+            g.FillPolygon(brush, new Point[]
+            {
+                new Point(data.Left, data.Bottom),
+                new Point(data.Right, data.Top),
+                new Point(data.Right, data.Bottom),
+                new Point(data.Left, data.Bottom)
+            });
+        }
+
+        private static void DrawSliceRightNormal(Graphics g, Color color, SignumData data)
+        {
+            using var brush = SignumBrush.CreateBrush(color);
+            g.FillPolygon(brush, new Point[]
+            {
+                new Point(data.Left, data.Top),
+                new Point(data.Right, data.Top),
+                new Point(data.Right, data.Bottom),
+                new Point(data.Left, data.Top)
+            });
+        }
+
+        private static void DrawSliceRightInvert(Graphics g, Color color, SignumData data)
+        {
+            using var brush = SignumBrush.CreateBrush(color);
+            g.FillPolygon(brush, new Point[]
+            {
+                new Point(data.Left, data.Top),
+                new Point(data.Right, data.Bottom),
+                new Point(data.Left, data.Bottom),
+                new Point(data.Left, data.Top)
+            });
+        }
+
+        private static void DrawSplitVerticalRight(Graphics g, Color color, SignumData data)
+        {
+            using var brush = SignumBrush.CreateBrush(color);
+            g.FillRectangle(brush, new Rectangle(data.Width / 2, data.Top, data.Width / 2, data.Height));
+        }
+
+        private static void DrawSplitVerticalLeft(Graphics g, Color color, SignumData data)
+        {
+            using var brush = SignumBrush.CreateBrush(color);
+            g.FillRectangle(brush, new Rectangle(data.Left, data.Top, data.Width / 2, data.Height));
         }
 
         private static void DrawSplitHorizontalNormal(Graphics g, Color color, SignumData data)
