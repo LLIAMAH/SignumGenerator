@@ -24,15 +24,21 @@ namespace SignumGenerator
             list.AddRange(enumColors);
 
             var enumFigures = Enum.GetNames<SignumBasePattern>().ToList();
+            // ReSharper disable once CoVariantArrayConversion
             cbLayer1Color.Items.AddRange(list.ToArray());
+            // ReSharper disable once CoVariantArrayConversion
             cbLayer2Color.Items.AddRange(list.ToArray());
+            // ReSharper disable once CoVariantArrayConversion
             cbLayer3Color.Items.AddRange(list.ToArray());
             cbLayer1Color.SelectedIndex = 0;
             cbLayer2Color.SelectedIndex = 0;
             cbLayer3Color.SelectedIndex = 0;
 
+            // ReSharper disable once CoVariantArrayConversion
             cbLayer1Figure.Items.AddRange(enumFigures.ToArray());
+            // ReSharper disable once CoVariantArrayConversion
             cbLayer2Figure.Items.AddRange(enumFigures.ToArray());
+            // ReSharper disable once CoVariantArrayConversion
             cbLayer3Figure.Items.AddRange(enumFigures.ToArray());
             cbLayer1Figure.SelectedIndex = 0;
             cbLayer2Figure.SelectedIndex = 0;
