@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using SignumGenerator.Helpers;
 using SignumGenerator.Signum;
-using Color = System.Drawing.Color;
 
 namespace SignumGenerator
 {
     public partial class FMain : Form
     {
         private Bitmap _bmp;
-        private const int _lineWidth = 100;
 
         public FMain()
         {
@@ -38,6 +34,9 @@ namespace SignumGenerator
             cbLayer1Figure.Items.AddRange(enumFigures.ToArray());
             cbLayer2Figure.Items.AddRange(enumFigures.ToArray());
             cbLayer3Figure.Items.AddRange(enumFigures.ToArray());
+            cbLayer1Figure.SelectedIndex = 0;
+            cbLayer2Figure.SelectedIndex = 0;
+            cbLayer3Figure.SelectedIndex = 0;
 
             list.Remove("Default");
             cbColorBase.Items.AddRange(list.ToArray());
@@ -50,18 +49,34 @@ namespace SignumGenerator
             this._bmp = new Bitmap(800, 1000);
             var g = Graphics.FromImage(this._bmp);
 
-            var layer1Color = Enum.Parse<EColor>(cbLayer1Color.SelectedItem as string ?? string.Empty);
-            var layer1Figure = Enum.Parse<SignumBasePattern>(cbLayer1Figure.SelectedItem as string ?? string.Empty);
+            var baseColor = Enum.Parse<EColor>(cbColorBase.SelectedItem as string ?? string.Empty);
 
-            var layer2Color = Enum.Parse<EColor>(cbLayer2Color.SelectedItem as string ?? string.Empty);
-            var layer2Figure = Enum.Parse<SignumBasePattern>(cbLayer2Figure.SelectedItem as string ?? string.Empty);
+            var input1 = new InputData(
+                Enum.Parse<EColor>(cbLayer1Color.SelectedItem as string ?? string.Empty),
+                Enum.Parse<SignumBasePattern>(cbLayer1Figure.SelectedItem as string ?? string.Empty),
+                Convert.ToInt32(tbLayer1Param.Text));
 
-            var layer3Color = Enum.Parse<EColor>(cbLayer3Color.SelectedItem as string ?? string.Empty);
-            var layer3Figure = Enum.Parse<SignumBasePattern>(cbLayer3Figure.SelectedItem as string ?? string.Empty);
+            var input2 = new InputData(
+                Enum.Parse<EColor>(cbLayer2Color.SelectedItem as string ?? string.Empty),
+                Enum.Parse<SignumBasePattern>(cbLayer2Figure.SelectedItem as string ?? string.Empty),
+                Convert.ToInt32(tbLayer2Param.Text));
+
+            var input3 = new InputData(
+                Enum.Parse<EColor>(cbLayer3Color.SelectedItem as string ?? string.Empty),
+                Enum.Parse<SignumBasePattern>(cbLayer3Figure.SelectedItem as string ?? string.Empty),
+                Convert.ToInt32(tbLayer3Param.Text));
 
             var signumBase = new SignumBase();
-            signumBase.ApplyBase(SignumColor.GetColor(layer1Color));
-            signumBase.ApplyPattern(SignumBasePattern.QuartersDiagonalTopBottom, SignumColor.GetColor(EColor.Argent), 200);
+            signumBase.ApplyBase(SignumColor.GetColor(baseColor));
+            if (!input1.IsEmpty) //signumBase.ApplyPattern(SignumBasePattern.QuartersDiagonalTopBottom, SignumColor.GetColor(EColor.Argent), 200);
+                signumBase.ApplyPattern(input1.Pattern, SignumColor.GetColor(input1.Color), input1.Param);
+
+            if (!input2.IsEmpty)
+                signumBase.ApplyPattern(input2.Pattern, SignumColor.GetColor(input2.Color), input2.Param);
+
+            if (!input3.IsEmpty)
+                signumBase.ApplyPattern(input3.Pattern, SignumColor.GetColor(input3.Color), input3.Param);
+
             signumBase.Draw(g);
             pbResult.Image = this._bmp;
         }

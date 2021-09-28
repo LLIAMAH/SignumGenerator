@@ -32,6 +32,9 @@ namespace SignumGenerator
             this.gbSignum = new System.Windows.Forms.GroupBox();
             this.pbResult = new System.Windows.Forms.PictureBox();
             this.gbControls = new System.Windows.Forms.GroupBox();
+            this.tbLayer3Param = new System.Windows.Forms.TextBox();
+            this.tbLayer2Param = new System.Windows.Forms.TextBox();
+            this.tbLayer1Param = new System.Windows.Forms.TextBox();
             this.cbLayer3Figure = new System.Windows.Forms.ComboBox();
             this.cbLayer3Color = new System.Windows.Forms.ComboBox();
             this.lLayer3 = new System.Windows.Forms.Label();
@@ -55,7 +58,7 @@ namespace SignumGenerator
             this.gbSignum.Dock = System.Windows.Forms.DockStyle.Left;
             this.gbSignum.Location = new System.Drawing.Point(0, 0);
             this.gbSignum.Name = "gbSignum";
-            this.gbSignum.Size = new System.Drawing.Size(2046, 1260);
+            this.gbSignum.Size = new System.Drawing.Size(1999, 1260);
             this.gbSignum.TabIndex = 0;
             this.gbSignum.TabStop = false;
             this.gbSignum.Text = "Signum";
@@ -65,13 +68,16 @@ namespace SignumGenerator
             this.pbResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbResult.Location = new System.Drawing.Point(3, 27);
             this.pbResult.Name = "pbResult";
-            this.pbResult.Size = new System.Drawing.Size(2040, 1230);
+            this.pbResult.Size = new System.Drawing.Size(1993, 1230);
             this.pbResult.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbResult.TabIndex = 0;
             this.pbResult.TabStop = false;
             // 
             // gbControls
             // 
+            this.gbControls.Controls.Add(this.tbLayer3Param);
+            this.gbControls.Controls.Add(this.tbLayer2Param);
+            this.gbControls.Controls.Add(this.tbLayer1Param);
             this.gbControls.Controls.Add(this.cbLayer3Figure);
             this.gbControls.Controls.Add(this.cbLayer3Color);
             this.gbControls.Controls.Add(this.lLayer3);
@@ -85,12 +91,39 @@ namespace SignumGenerator
             this.gbControls.Controls.Add(this.cbColorBase);
             this.gbControls.Controls.Add(this.bnCreateMain);
             this.gbControls.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbControls.Location = new System.Drawing.Point(2046, 0);
+            this.gbControls.Location = new System.Drawing.Point(1999, 0);
             this.gbControls.Name = "gbControls";
-            this.gbControls.Size = new System.Drawing.Size(668, 1260);
+            this.gbControls.Size = new System.Drawing.Size(715, 1260);
             this.gbControls.TabIndex = 1;
             this.gbControls.TabStop = false;
             this.gbControls.Text = "Controls";
+            // 
+            // tbLayer3Param
+            // 
+            this.tbLayer3Param.Location = new System.Drawing.Point(548, 152);
+            this.tbLayer3Param.Name = "tbLayer3Param";
+            this.tbLayer3Param.Size = new System.Drawing.Size(150, 31);
+            this.tbLayer3Param.TabIndex = 17;
+            this.tbLayer3Param.Text = "0";
+            this.tbLayer3Param.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // tbLayer2Param
+            // 
+            this.tbLayer2Param.Location = new System.Drawing.Point(548, 113);
+            this.tbLayer2Param.Name = "tbLayer2Param";
+            this.tbLayer2Param.Size = new System.Drawing.Size(150, 31);
+            this.tbLayer2Param.TabIndex = 16;
+            this.tbLayer2Param.Text = "0";
+            this.tbLayer2Param.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // tbLayer1Param
+            // 
+            this.tbLayer1Param.Location = new System.Drawing.Point(548, 74);
+            this.tbLayer1Param.Name = "tbLayer1Param";
+            this.tbLayer1Param.Size = new System.Drawing.Size(150, 31);
+            this.tbLayer1Param.TabIndex = 15;
+            this.tbLayer1Param.Text = "0";
+            this.tbLayer1Param.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // cbLayer3Figure
             // 
@@ -98,7 +131,7 @@ namespace SignumGenerator
             this.cbLayer3Figure.FormattingEnabled = true;
             this.cbLayer3Figure.Location = new System.Drawing.Point(316, 152);
             this.cbLayer3Figure.Name = "cbLayer3Figure";
-            this.cbLayer3Figure.Size = new System.Drawing.Size(329, 33);
+            this.cbLayer3Figure.Size = new System.Drawing.Size(226, 33);
             this.cbLayer3Figure.TabIndex = 14;
             // 
             // cbLayer3Color
@@ -125,7 +158,7 @@ namespace SignumGenerator
             this.cbLayer2Figure.FormattingEnabled = true;
             this.cbLayer2Figure.Location = new System.Drawing.Point(316, 113);
             this.cbLayer2Figure.Name = "cbLayer2Figure";
-            this.cbLayer2Figure.Size = new System.Drawing.Size(329, 33);
+            this.cbLayer2Figure.Size = new System.Drawing.Size(226, 33);
             this.cbLayer2Figure.TabIndex = 11;
             // 
             // cbLayer2Color
@@ -152,7 +185,7 @@ namespace SignumGenerator
             this.cbLayer1Figure.FormattingEnabled = true;
             this.cbLayer1Figure.Location = new System.Drawing.Point(316, 74);
             this.cbLayer1Figure.Name = "cbLayer1Figure";
-            this.cbLayer1Figure.Size = new System.Drawing.Size(329, 33);
+            this.cbLayer1Figure.Size = new System.Drawing.Size(226, 33);
             this.cbLayer1Figure.TabIndex = 8;
             // 
             // cbLayer1Color
@@ -197,7 +230,7 @@ namespace SignumGenerator
             this.bnCreateMain.Name = "bnCreateMain";
             this.bnCreateMain.Size = new System.Drawing.Size(112, 34);
             this.bnCreateMain.TabIndex = 3;
-            this.bnCreateMain.Text = "Main";
+            this.bnCreateMain.Text = "Draw";
             this.bnCreateMain.UseVisualStyleBackColor = true;
             this.bnCreateMain.Click += new System.EventHandler(this.bnCreateMain_Click);
             // 
@@ -239,6 +272,9 @@ namespace SignumGenerator
         private System.Windows.Forms.ComboBox cbLayer2Figure;
         private System.Windows.Forms.ComboBox cbLayer2Color;
         private System.Windows.Forms.Label lLayer2;
+        private System.Windows.Forms.TextBox tbLayer3Param;
+        private System.Windows.Forms.TextBox tbLayer2Param;
+        private System.Windows.Forms.TextBox tbLayer1Param;
     }
 }
 

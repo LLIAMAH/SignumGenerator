@@ -5,6 +5,7 @@ namespace SignumGenerator.Signum
 {
     public enum SignumBasePattern
     {
+        Default,
         StripesHorizontal,
         StripesVertical,
         Quarter,
