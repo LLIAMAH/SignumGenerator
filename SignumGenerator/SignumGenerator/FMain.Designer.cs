@@ -138,9 +138,9 @@ namespace SignumGenerator
             // 
             this.cbLayer3Color.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLayer3Color.FormattingEnabled = true;
-            this.cbLayer3Color.Location = new System.Drawing.Point(128, 152);
+            this.cbLayer3Color.Location = new System.Drawing.Point(164, 152);
             this.cbLayer3Color.Name = "cbLayer3Color";
-            this.cbLayer3Color.Size = new System.Drawing.Size(182, 33);
+            this.cbLayer3Color.Size = new System.Drawing.Size(146, 33);
             this.cbLayer3Color.TabIndex = 13;
             // 
             // lLayer3
@@ -165,9 +165,9 @@ namespace SignumGenerator
             // 
             this.cbLayer2Color.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLayer2Color.FormattingEnabled = true;
-            this.cbLayer2Color.Location = new System.Drawing.Point(128, 113);
+            this.cbLayer2Color.Location = new System.Drawing.Point(164, 113);
             this.cbLayer2Color.Name = "cbLayer2Color";
-            this.cbLayer2Color.Size = new System.Drawing.Size(182, 33);
+            this.cbLayer2Color.Size = new System.Drawing.Size(146, 33);
             this.cbLayer2Color.TabIndex = 10;
             // 
             // lLayer2
@@ -192,9 +192,9 @@ namespace SignumGenerator
             // 
             this.cbLayer1Color.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLayer1Color.FormattingEnabled = true;
-            this.cbLayer1Color.Location = new System.Drawing.Point(128, 74);
+            this.cbLayer1Color.Location = new System.Drawing.Point(164, 74);
             this.cbLayer1Color.Name = "cbLayer1Color";
-            this.cbLayer1Color.Size = new System.Drawing.Size(182, 33);
+            this.cbLayer1Color.Size = new System.Drawing.Size(146, 33);
             this.cbLayer1Color.TabIndex = 7;
             // 
             // lLayer1
@@ -211,17 +211,17 @@ namespace SignumGenerator
             this.lBaseColor.AutoSize = true;
             this.lBaseColor.Location = new System.Drawing.Point(22, 38);
             this.lBaseColor.Name = "lBaseColor";
-            this.lBaseColor.Size = new System.Drawing.Size(93, 25);
+            this.lBaseColor.Size = new System.Drawing.Size(112, 25);
             this.lBaseColor.TabIndex = 5;
-            this.lBaseColor.Text = "Base color";
+            this.lBaseColor.Text = "Base tincture";
             // 
             // cbColorBase
             // 
             this.cbColorBase.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbColorBase.FormattingEnabled = true;
-            this.cbColorBase.Location = new System.Drawing.Point(128, 35);
+            this.cbColorBase.Location = new System.Drawing.Point(164, 35);
             this.cbColorBase.Name = "cbColorBase";
-            this.cbColorBase.Size = new System.Drawing.Size(182, 33);
+            this.cbColorBase.Size = new System.Drawing.Size(146, 33);
             this.cbColorBase.TabIndex = 4;
             // 
             // bnCreateMain

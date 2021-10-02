@@ -19,20 +19,26 @@ namespace SignumGenerator
 
         private void FMain_Load(object sender, EventArgs e)
         {
-            var enumColors = Enum.GetNames<EColor>().ToList();
+            var enumColors = Enum.GetNames<ETincture>().ToList();
             var list = new List<string>();
             list.AddRange(enumColors);
 
             var enumFigures = Enum.GetNames<SignumBasePattern>().ToList();
+            // ReSharper disable once CoVariantArrayConversion
             cbLayer1Color.Items.AddRange(list.ToArray());
+            // ReSharper disable once CoVariantArrayConversion
             cbLayer2Color.Items.AddRange(list.ToArray());
+            // ReSharper disable once CoVariantArrayConversion
             cbLayer3Color.Items.AddRange(list.ToArray());
             cbLayer1Color.SelectedIndex = 0;
             cbLayer2Color.SelectedIndex = 0;
             cbLayer3Color.SelectedIndex = 0;
 
+            // ReSharper disable once CoVariantArrayConversion
             cbLayer1Figure.Items.AddRange(enumFigures.ToArray());
+            // ReSharper disable once CoVariantArrayConversion
             cbLayer2Figure.Items.AddRange(enumFigures.ToArray());
+            // ReSharper disable once CoVariantArrayConversion
             cbLayer3Figure.Items.AddRange(enumFigures.ToArray());
             cbLayer1Figure.SelectedIndex = 0;
             cbLayer2Figure.SelectedIndex = 0;
@@ -49,33 +55,33 @@ namespace SignumGenerator
             this._bmp = new Bitmap(800, 1000);
             var g = Graphics.FromImage(this._bmp);
 
-            var baseColor = Enum.Parse<EColor>(cbColorBase.SelectedItem as string ?? string.Empty);
+            var baseColor = Enum.Parse<ETincture>(cbColorBase.SelectedItem as string ?? string.Empty);
 
             var input1 = new InputData(
-                Enum.Parse<EColor>(cbLayer1Color.SelectedItem as string ?? string.Empty),
+                Enum.Parse<ETincture>(cbLayer1Color.SelectedItem as string ?? string.Empty),
                 Enum.Parse<SignumBasePattern>(cbLayer1Figure.SelectedItem as string ?? string.Empty),
                 Convert.ToInt32(tbLayer1Param.Text));
 
             var input2 = new InputData(
-                Enum.Parse<EColor>(cbLayer2Color.SelectedItem as string ?? string.Empty),
+                Enum.Parse<ETincture>(cbLayer2Color.SelectedItem as string ?? string.Empty),
                 Enum.Parse<SignumBasePattern>(cbLayer2Figure.SelectedItem as string ?? string.Empty),
                 Convert.ToInt32(tbLayer2Param.Text));
 
             var input3 = new InputData(
-                Enum.Parse<EColor>(cbLayer3Color.SelectedItem as string ?? string.Empty),
+                Enum.Parse<ETincture>(cbLayer3Color.SelectedItem as string ?? string.Empty),
                 Enum.Parse<SignumBasePattern>(cbLayer3Figure.SelectedItem as string ?? string.Empty),
                 Convert.ToInt32(tbLayer3Param.Text));
 
             var signumBase = new SignumBase();
             signumBase.ApplyBase(SignumColor.GetColor(baseColor));
-            if (!input1.IsEmpty) //signumBase.ApplyPattern(SignumBasePattern.QuartersDiagonalTopBottom, SignumColor.GetColor(EColor.Argent), 200);
-                signumBase.ApplyPattern(input1.Pattern, SignumColor.GetColor(input1.Color), input1.Param);
+            if (!input1.IsEmpty) //signumBase.ApplyPattern(SignumBasePattern.QuartersDiagonalTopBottom, SignumColor.GetColor(ETincture.Argent), 200);
+                signumBase.ApplyPattern(input1.Pattern, SignumColor.GetColor(input1.Tincture), input1.Param);
 
             if (!input2.IsEmpty)
-                signumBase.ApplyPattern(input2.Pattern, SignumColor.GetColor(input2.Color), input2.Param);
+                signumBase.ApplyPattern(input2.Pattern, SignumColor.GetColor(input2.Tincture), input2.Param);
 
             if (!input3.IsEmpty)
-                signumBase.ApplyPattern(input3.Pattern, SignumColor.GetColor(input3.Color), input3.Param);
+                signumBase.ApplyPattern(input3.Pattern, SignumColor.GetColor(input3.Tincture), input3.Param);
 
             signumBase.Draw(g);
             pbResult.Image = this._bmp;
@@ -101,9 +107,9 @@ namespace SignumGenerator
         //    this._bmp = new Bitmap(600, 600);
 
         //    using var g = Graphics.FromImage(this._bmp);
-        //    using var brushBg = new SolidBrush(Color.White);
-        //    using var brushBg1 = new SolidBrush(Color.Black);
-        //    using var penShield = SignumPen.CreatePen(EColor.Sable);
+        //    using var brushBg = new SolidBrush(Tincture.White);
+        //    using var brushBg1 = new SolidBrush(Tincture.Black);
+        //    using var penShield = SignumPen.CreatePen(ETincture.Sable);
 
         //    /*
         //     * MemoryStream PCDStream = new MemoryStream(Data, 0, Data.Length);
