@@ -2,6 +2,7 @@
 using System.IO;
 using SignumGenerator.Helpers;
 using Color = System.Drawing.Color;
+// ReSharper disable ConvertToUsingDeclaration
 
 namespace SignumGenerator.Signum
 {
