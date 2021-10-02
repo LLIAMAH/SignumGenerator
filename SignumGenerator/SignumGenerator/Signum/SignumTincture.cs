@@ -25,8 +25,8 @@ namespace SignumGenerator.Signum
     public class SignumTincture
     {
         private readonly ETincture _tincture;
-        private static string _imagesPath =
-            Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "Images");
+        private static readonly string _imagesPath =
+            Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)!, "Images");
 
         public ETincture Tincture => _tincture;
         public Color Color => GetColor(_tincture);
