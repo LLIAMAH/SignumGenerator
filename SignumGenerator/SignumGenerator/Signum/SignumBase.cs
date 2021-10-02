@@ -1,7 +1,6 @@
 ﻿using System.Drawing;
 using System.Drawing.Drawing2D;
 using SignumGenerator.Helpers;
-using Color = System.Drawing.Color;
 
 // ReSharper disable All
 
@@ -19,20 +18,22 @@ namespace SignumGenerator.Signum
             _g = Graphics.FromImage(_bmp);
         }
 
-        public void ApplyBase(Color color)
+        public void ApplyBase(ETincture tincture)
         {
-            var brushSecondary = SignumBrush.CreateBrush(color);
+            var color = new SignumColor(tincture);
+            var brushSecondary = color.CreateBrush();
             _g.FillRectangle(brushSecondary, 0, 0, Width, Height);
         }
 
         public void ApplyPattern(InputData input)
         {
+            var tincture = new SignumColor(input.Tincture);
             switch (input.Pattern)
             {
                 case SignumBasePattern.StripesHorizontal:
                 {
                     var lineWidth = _data.Height / (input.Param * 2);
-                    using (var pen = SignumPen.CreatePen(SignumColor.GetColor(input.Tincture), lineWidth))
+                    using (var pen = tincture.CreatePen(lineWidth))
                     {
                         DrawStripesHorizontal(_g, pen, _data, lineWidth, input.Param);
                     }
@@ -42,7 +43,7 @@ namespace SignumGenerator.Signum
                 case SignumBasePattern.StripesVertical:
                 {
                     var lineWidth = _data.Width / (input.Param * 2);
-                    using (var pen = SignumPen.CreatePen(SignumColor.GetColor(input.Tincture), lineWidth))
+                    using (var pen = tincture.CreatePen(lineWidth))
                     {
                         DrawStripesVertical(_g, pen, _data, lineWidth, input.Param);
                     }
@@ -51,7 +52,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.SlingRight:
                 {
-                    using (var pen = SignumPen.CreatePen(SignumColor.GetColor(input.Tincture), input.Param == 0 ? 1 : input.Param))
+                    using (var pen = tincture.CreatePen(input.Param == 0 ? 1 : input.Param))
                     {
                         DrawSlingRight(_g, pen, _data);
                     }
@@ -60,7 +61,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.SlingLeft:
                 {
-                    using (var pen = SignumPen.CreatePen(SignumColor.GetColor(input.Tincture), input.Param == 0 ? 1 : input.Param))
+                    using (var pen = tincture.CreatePen(input.Param == 0 ? 1 : input.Param))
                     {
                         DrawSlingLeft(_g, pen, _data);
                     }
@@ -69,16 +70,16 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.Quarters_1_4:
                 {
-                    if (input.IsTinctureColor || input.IsTinctureMetal)
+                    if (tincture.IsTinctureColor || tincture.IsTinctureMetal)
                     {
-                        using (var brush = SignumBrush.CreateBrush(SignumColor.GetColor(input.Tincture)))
+                        using (var brush = tincture.CreateBrush())
                         {
                             DrawQuarters14(_g, brush, _data);
                         }
                     }
                     else
                     {
-                        using (var image = SignumColor.GetColorFur(input.Tincture))
+                        using (var image = tincture.CreateFur())
                         {
                             DrawQuarters14(_g, image, _data);
                         }
@@ -88,16 +89,16 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.Quarters_2_3:
                 {
-                    if (input.IsTinctureColor || input.IsTinctureMetal)
+                    if (tincture.IsTinctureColor || tincture.IsTinctureMetal)
                     {
-                        using (var brush = SignumBrush.CreateBrush(SignumColor.GetColor(input.Tincture)))
+                        using (var brush = tincture.CreateBrush())
                         {
                             DrawQuarters23(_g, brush, _data);
                         }
                     }
                     else
                     {
-                        using (var image = SignumColor.GetColorFur(input.Tincture))
+                        using (var image = tincture.CreateFur())
                         {
                             DrawQuarters23(_g, image, _data);
                         }
@@ -107,7 +108,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.QuartersDiagonalTopBottom:
                 {
-                    using (var brush = SignumBrush.CreateBrush(SignumColor.GetColor(input.Tincture)))
+                    using (var brush = tincture.CreateBrush())
                     {
                         DrawQuartersDiagonalTopBottom(_g, brush, _data);
                     }
@@ -116,7 +117,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.QuartersDiagonalLeftRight:
                 {
-                    using (var brush = SignumBrush.CreateBrush(SignumColor.GetColor(input.Tincture)))
+                    using (var brush = tincture.CreateBrush())
                     {
                         DrawQuartersDiagonalLeftRight(_g, brush, _data);
                     }
@@ -125,7 +126,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.CheckersNormal:
                 {
-                    using (var brush = SignumBrush.CreateBrush(SignumColor.GetColor(input.Tincture)))
+                    using (var brush = tincture.CreateBrush())
                     {
                         DrawCheckersNormal(_g, brush, _data, input.Param);
                     }
@@ -134,7 +135,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.CheckersInverse:
                 {
-                    using (var brush = SignumBrush.CreateBrush(SignumColor.GetColor(input.Tincture)))
+                    using (var brush = tincture.CreateBrush())
                     {
                         DrawCheckersInverse(_g, brush, _data, input.Param);
                     }
@@ -143,7 +144,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.CheckersDiagonal:
                 {
-                    using (var brush = SignumBrush.CreateBrush(SignumColor.GetColor(input.Tincture)))
+                    using (var brush = tincture.CreateBrush())
                     {
                         DrawCheckersDiagonal(_g, brush, _data, input.Param);
                     }
@@ -152,7 +153,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.Quarter:
                 {
-                    using (var brush = SignumBrush.CreateBrush(SignumColor.GetColor(input.Tincture)))
+                    using (var brush = tincture.CreateBrush())
                     {
                         DrawQuarter(_g, brush, _data);
                     }
@@ -161,7 +162,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.ChevronMiddleNormal:
                 {
-                    using (var brush = SignumBrush.CreateBrush(SignumColor.GetColor(input.Tincture)))
+                    using (var brush = tincture.CreateBrush())
                     {
                         DrawChevronMiddleNormal(_g, brush, _data, input.Param);
                     }
@@ -170,7 +171,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.ChevronMiddleInvert:
                 {
-                    using (var brush = SignumBrush.CreateBrush(SignumColor.GetColor(input.Tincture)))
+                    using (var brush = tincture.CreateBrush())
                     {
                         DrawChevronMiddleInvert(_g, brush, _data, input.Param);
                     }
@@ -179,7 +180,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.ChevronFullNormal:
                 {
-                    using (var brush = SignumBrush.CreateBrush(SignumColor.GetColor(input.Tincture)))
+                    using (var brush = tincture.CreateBrush())
                     {
                         DrawChevronFullNormal(_g, brush, _data, input.Param);
                     }
@@ -188,7 +189,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.ChevronFullInvert:
                 {
-                    using (var brush = SignumBrush.CreateBrush(SignumColor.GetColor(input.Tincture)))
+                    using (var brush = tincture.CreateBrush())
                     {
                         DrawChevronFullInvert(_g, brush, _data, input.Param);
                     }
@@ -199,7 +200,7 @@ namespace SignumGenerator.Signum
                 {
                     var point = 100;
                     var offset = 200;
-                    using (var brush = SignumBrush.CreateBrush(SignumColor.GetColor(input.Tincture)))
+                    using (var brush = tincture.CreateBrush())
                     {
                         DrawChevronPointOffsetSizeNormal(_g, brush, _data, point, offset, input.Param);
                     }
@@ -210,7 +211,7 @@ namespace SignumGenerator.Signum
                 {
                     var point = 400;
                     var offset = 200;
-                    using (var brush = SignumBrush.CreateBrush(SignumColor.GetColor(input.Tincture)))
+                    using (var brush = tincture.CreateBrush())
                     {
                         DrawChevronPointOffsetSizeInvert(_g, brush, _data, point, offset, input.Param);
                     }
@@ -219,7 +220,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.SplitHorizontalNormal:
                 {
-                    using (var brush = SignumBrush.CreateBrush(SignumColor.GetColor(input.Tincture)))
+                    using (var brush = tincture.CreateBrush())
                     {
                         DrawSplitHorizontalNormal(_g, brush, _data);
                     }
@@ -228,7 +229,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.SplitHorizontalInvert:
                 {
-                    using (var brush = SignumBrush.CreateBrush(SignumColor.GetColor(input.Tincture)))
+                    using (var brush = tincture.CreateBrush())
                     {
                         DrawSplitHorizontalInvert(_g, brush, _data);
                     }
@@ -237,7 +238,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.SplitVerticalLeft:
                 {
-                    using (var brush = SignumBrush.CreateBrush(SignumColor.GetColor(input.Tincture)))
+                    using (var brush = tincture.CreateBrush())
                     {
                         DrawSplitVerticalLeft(_g, brush, _data);
                     }
@@ -246,7 +247,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.SplitVerticalRight:
                 {
-                    using (var brush = SignumBrush.CreateBrush(SignumColor.GetColor(input.Tincture)))
+                    using (var brush = tincture.CreateBrush())
                     {
                         DrawSplitVerticalRight(_g, brush, _data);
                     }
@@ -255,7 +256,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.SliceLeftNormal:
                 {
-                    using (var brush = SignumBrush.CreateBrush(SignumColor.GetColor(input.Tincture)))
+                    using (var brush = tincture.CreateBrush())
                     {
                         DrawSliceLeftNormal(_g, brush, _data);
                     }
@@ -264,7 +265,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.SliceLeftInvert:
                 {
-                    using (var brush = SignumBrush.CreateBrush(SignumColor.GetColor(input.Tincture)))
+                    using (var brush = tincture.CreateBrush())
                     {
                         DrawSliceLeftInvert(_g, brush, _data);
                     }
@@ -273,7 +274,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.SliceRightNormal:
                 {
-                    using (var brush = SignumBrush.CreateBrush(SignumColor.GetColor(input.Tincture)))
+                    using (var brush = tincture.CreateBrush())
                     {
                         DrawSliceRightNormal(_g, brush, _data);
                     }
@@ -282,7 +283,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.SliceRightInvert:
                 {
-                    using (var brush = SignumBrush.CreateBrush(SignumColor.GetColor(input.Tincture)))
+                    using (var brush = tincture.CreateBrush())
                     {
                         DrawSliceRightInvert(_g, brush, _data);
                     }

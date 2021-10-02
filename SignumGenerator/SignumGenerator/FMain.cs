@@ -73,7 +73,7 @@ namespace SignumGenerator
                 Convert.ToInt32(tbLayer3Param.Text));
 
             var signumBase = new SignumBase();
-            signumBase.ApplyBase(SignumColor.GetColor(baseColor));
+            signumBase.ApplyBase(baseColor);
             if (!input1.IsEmpty)
                 signumBase.ApplyPattern(input1);
 

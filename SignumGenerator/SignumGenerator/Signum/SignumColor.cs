@@ -1,11 +1,5 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.IO;
-using System.Runtime.InteropServices;
-using System.Windows;
-using System.Windows.Interop;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using SignumGenerator.Helpers;
 using Color = System.Drawing.Color;
 
@@ -28,9 +22,42 @@ namespace SignumGenerator.Signum
         Tenne
     }
 
-    public static class SignumColor
+    public class SignumColor
     {
-        public static Color GetColor(ETincture eTincture)
+        private readonly ETincture _tincture;
+
+        public ETincture Tincture => _tincture;
+        public Color Color => GetColor(_tincture);
+        public bool IsTinctureFur => _tincture is ETincture.Ermine or ETincture.Vair;
+        public bool IsTinctureMetal => _tincture is ETincture.Or or ETincture.Argent;
+        public bool IsTinctureColor => !(IsTinctureFur || IsTinctureMetal);
+
+        public SignumColor(ETincture eTincture)
+        {
+            this._tincture = eTincture;
+        }
+
+        public Brush CreateBrush()
+        {
+            return new SolidBrush(this.Color);
+        }
+
+        public Image CreateFur()
+        {
+            return GetColorFur(this._tincture);
+        }
+
+        public Pen CreatePen(int size = 1)
+        {
+            return new Pen(this.Color, size);
+        }
+
+        public static Pen CreatePen(Color color, int width = 1)
+        {
+            return new Pen(color, width);
+        }
+
+        private static Color GetColor(ETincture eTincture)
         {
             return eTincture switch
             {
@@ -48,7 +75,7 @@ namespace SignumGenerator.Signum
             };
         }
 
-        public static Image GetColorFur(ETincture eTincture)
+        private static Image GetColorFur(ETincture eTincture)
         {
             return eTincture switch
             {
@@ -89,25 +116,23 @@ namespace SignumGenerator.Signum
             //return ImageSourceFromBitmap(bmp);
         }
 
-        #region Conversionblock
+        //#region Conversionblock
 
-        //If you get 'dllimport unknown'-, then add 'using System.Runtime.InteropServices;'
-        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DeleteObject([In] IntPtr hObject);
+        ////If you get 'dllimport unknown'-, then add 'using System.Runtime.InteropServices;'
+        //[DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
+        //[return: MarshalAs(UnmanagedType.Bool)]
+        //public static extern bool DeleteObject([In] IntPtr hObject);
 
-        public static ImageSource ImageSourceFromBitmap(Bitmap bmp)
-        {
-            var handle = bmp.GetHbitmap();
-            try
-            {
-                return Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-            }
-            finally { DeleteObject(handle); }
-        }
+        //public static ImageSource ImageSourceFromBitmap(Bitmap bmp)
+        //{
+        //    var handle = bmp.GetHbitmap();
+        //    try
+        //    {
+        //        return Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+        //    }
+        //    finally { DeleteObject(handle); }
+        //}
 
-        #endregion
-
-        
+        //#endregion
     }
 }
