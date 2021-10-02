@@ -6,9 +6,9 @@ namespace SignumGenerator.Signum
     {
         private const int _width = 4;
 
-        public static Pen CreatePen(EColor eColor)
+        public static Pen CreatePen(ETincture eTincture)
         {
-            return new Pen(SignumColor.GetColor(eColor));
+            return new Pen(SignumColor.GetColor(eTincture));
         }
 
         public static Pen CreatePen(Color color, int width = 1)

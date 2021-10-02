@@ -22,6 +22,8 @@ namespace SignumGenerator.Signum
         ChevronMiddleInvert,
         ChevronFullNormal,
         ChevronFullInvert,
+        ChevronPointOffsetSizeNormal,
+        ChevronPointOffsetSizeInvert,
         SplitHorizontalNormal,
         SplitHorizontalInvert,
         SplitVerticalLeft,
@@ -134,6 +136,20 @@ namespace SignumGenerator.Signum
                     DrawChevronFullInvert(_g, primary, _data, size);
                     break;
                 }
+                case SignumBasePattern.ChevronPointOffsetSizeNormal:
+                {
+                    var point = 100;
+                    var offset = 200;
+                    DrawChevronPointOffsetSizeNormal(_g, primary, _data, point, offset, size);
+                    break;
+                }
+                case SignumBasePattern.ChevronPointOffsetSizeInvert:
+                {
+                    var point = 100;
+                    var offset = 200;
+                    DrawChevronPointOffsetSizeInvert(_g, primary, _data, point, offset, size);
+                    break;
+                }
                 case SignumBasePattern.SplitHorizontalNormal:
                 {
                     DrawSplitHorizontalNormal(_g, primary, _data);
@@ -144,7 +160,6 @@ namespace SignumGenerator.Signum
                     DrawSplitHorizontalInvert(_g, primary, _data);
                     break;
                 }
-
                 case SignumBasePattern.SplitVerticalLeft:
                 {
                     DrawSplitVerticalLeft(_g, primary, _data);
@@ -179,6 +194,45 @@ namespace SignumGenerator.Signum
             }
         }
 
+        private static void DrawChevronPointOffsetSizeNormal(Graphics g, Color color, SignumData data, int point,
+            int offset, int size)
+        {
+            if (size == 0)
+                size = 100;
+            using var brush = SignumBrush.CreateBrush(color);
+
+            var halfSize = size / 2;
+            var points = new Point[]
+            {
+                new Point(data.Left, point + offset - halfSize),
+                new Point(data.CenterX, point - halfSize),
+                new Point(data.Right, point + offset - halfSize),
+                new Point(data.Right, point + offset + halfSize),
+                new Point(data.CenterX, point + halfSize),
+                new Point(data.Left, point + offset + halfSize)
+            };
+            g.FillPolygon(brush, points);
+        }
+
+        private static void DrawChevronPointOffsetSizeInvert(Graphics g, Color color, SignumData data, int point, int offset, int size)
+        {
+            if (size == 0)
+                size = 100;
+            using var brush = SignumBrush.CreateBrush(color);
+
+            var halfSize = size / 2;
+            var points = new Point[]
+            {
+                new Point(data.Left, point + offset - halfSize),
+                new Point(data.CenterX, point - halfSize),
+                new Point(data.Right, point + offset - halfSize),
+                new Point(data.Right, point + offset + halfSize),
+                new Point(data.CenterX, point + halfSize),
+                new Point(data.Left, point + offset + halfSize)
+            };
+            g.FillPolygon(brush, points);
+        }
+
         private static void DrawSliceLeftNormal(Graphics g, Color color, SignumData data)
         {
             using var brush = SignumBrush.CreateBrush(color);
@@ -186,8 +240,7 @@ namespace SignumGenerator.Signum
             {
                 new Point(data.Left, data.Top),
                 new Point(data.Right, data.Top),
-                new Point(data.Left, data.Bottom),
-                new Point(data.Left, data.Top)
+                new Point(data.Left, data.Bottom)
             });
         }
 
@@ -198,8 +251,7 @@ namespace SignumGenerator.Signum
             {
                 new Point(data.Left, data.Bottom),
                 new Point(data.Right, data.Top),
-                new Point(data.Right, data.Bottom),
-                new Point(data.Left, data.Bottom)
+                new Point(data.Right, data.Bottom)
             });
         }
 
@@ -210,8 +262,7 @@ namespace SignumGenerator.Signum
             {
                 new Point(data.Left, data.Top),
                 new Point(data.Right, data.Top),
-                new Point(data.Right, data.Bottom),
-                new Point(data.Left, data.Top)
+                new Point(data.Right, data.Bottom)
             });
         }
 
@@ -222,8 +273,7 @@ namespace SignumGenerator.Signum
             {
                 new Point(data.Left, data.Top),
                 new Point(data.Right, data.Bottom),
-                new Point(data.Left, data.Bottom),
-                new Point(data.Left, data.Top)
+                new Point(data.Left, data.Bottom)
             });
         }
 
@@ -259,13 +309,12 @@ namespace SignumGenerator.Signum
             using var brush = SignumBrush.CreateBrush(color);
             var points = new Point[]
             {
-                new Point(data.Left, data.Top),
+                new Point(data.Left, data.Top), 
                 new Point(data.CenterX, data.Bottom - size),
                 new Point(data.Right, data.Top),
                 new Point(data.Right, data.Top + size),
                 new Point(data.CenterX, data.Bottom),
-                new Point(data.Left, data.Top + size),
-                new Point(data.Left, data.Top),
+                new Point(data.Left, data.Top + size)
             };
             g.FillPolygon(brush, points);
         }
@@ -283,8 +332,7 @@ namespace SignumGenerator.Signum
                 new Point(data.Right, data.Bottom - size),
                 new Point(data.Right, data.Bottom),
                 new Point(data.CenterX, data.Top + size),
-                new Point(data.Left, data.Bottom),
-                new Point(data.Left, data.Bottom - size)
+                new Point(data.Left, data.Bottom)
             };
             g.FillPolygon(brush, points);
         }
@@ -302,8 +350,7 @@ namespace SignumGenerator.Signum
                 new Point(data.Right, data.CenterY - size / 2 - data.Width / 2),
                 new Point(data.Right, data.CenterY + size / 2 - data.Width / 2),
                 new Point(data.CenterX, data.CenterY + size / 2),
-                new Point(data.Left, data.CenterY + size / 2 - data.Width / 2),
-                new Point(data.Left, data.CenterY - size / 2 - data.Width / 2)
+                new Point(data.Left, data.CenterY + size / 2 - data.Width / 2)
             };
             g.FillPolygon(brush, points);
         }
@@ -321,8 +368,7 @@ namespace SignumGenerator.Signum
                 new Point(data.Right, data.CenterY - size / 2 + data.Width / 2),
                 new Point(data.Right, data.CenterY + size / 2 + data.Width / 2),
                 new Point(data.CenterX, data.CenterY + size / 2),
-                new Point(data.Left, data.CenterY + size / 2 + data.Width / 2),
-                new Point(data.Left, data.CenterY - size / 2 + data.Width / 2)
+                new Point(data.Left, data.CenterY + size / 2 + data.Width / 2)
             };
             g.FillPolygon(brush, points);
         }
@@ -342,16 +388,14 @@ namespace SignumGenerator.Signum
                 {
                     new Point(data.Left, data.Top),
                     new Point(data.CenterX, data.CenterY),
-                    new Point(data.Left, data.Bottom),
-                    new Point(data.Left, data.Top)
+                    new Point(data.Left, data.Bottom)
                 });
             g.FillPolygon(brush,
                 new Point[]
                 {
                     new Point(data.Right, data.Top),
                     new Point(data.CenterX, data.CenterY),
-                    new Point(data.Right, data.Bottom),
-                    new Point(data.Right, data.Top)
+                    new Point(data.Right, data.Bottom)
                 });
         }
 
@@ -363,16 +407,14 @@ namespace SignumGenerator.Signum
                 {
                     new Point(data.Left, data.Top),
                     new Point(data.Right, data.Top),
-                    new Point(data.CenterX, data.CenterY),
-                    new Point(data.Left, data.Top),
+                    new Point(data.CenterX, data.CenterY)
                 });
             g.FillPolygon(brush,
                 new Point[]
                 {
                     new Point(data.Left, data.Bottom),
                     new Point(data.CenterX, data.CenterY),
-                    new Point(data.Right, data.Bottom),
-                    new Point(data.Left, data.Bottom),
+                    new Point(data.Right, data.Bottom)
                 });
         }
 
@@ -473,8 +515,7 @@ namespace SignumGenerator.Signum
                         new Point(i + size / 2, j),
                         new Point(i + size, j + size / 2),
                         new Point(i + size / 2, j + size),
-                        new Point(i, j + size / 2),
-                        new Point(i + size / 2, j)
+                        new Point(i, j + size / 2)
                     };
 
                     g.FillPolygon(brush, points);
@@ -493,8 +534,8 @@ namespace SignumGenerator.Signum
             if(count == 0)
                 return;
 
-            //// Size iz count of 1 colored stripe of primary color
-            //// 1- means 1 primary stripe and 1 background color
+            //// Size iz count of 1 colored stripe of primary tincture
+            //// 1- means 1 primary stripe and 1 background tincture
             var i = 0;
             var lineWidth = data.Height / (count * 2);
             using var pen = SignumPen.CreatePen(primary, lineWidth);
@@ -512,8 +553,8 @@ namespace SignumGenerator.Signum
             if (count == 0)
                 return;
 
-            //// Size iz count of 1 colored stripe of primary color
-            //// 1- means 1 primary stripe and 1 background color
+            //// Size iz count of 1 colored stripe of primary tincture
+            //// 1- means 1 primary stripe and 1 background tincture
             var i = 0;
             var lineWidth = data.Width / (count * 2);
             using var pen = SignumPen.CreatePen(primary, lineWidth);
