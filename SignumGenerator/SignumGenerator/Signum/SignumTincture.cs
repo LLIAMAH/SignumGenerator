@@ -22,17 +22,17 @@ namespace SignumGenerator.Signum
         Tenne
     }
 
-    public class SignumColor
+    public class SignumTincture
     {
         private readonly ETincture _tincture;
 
         public ETincture Tincture => _tincture;
         public Color Color => GetColor(_tincture);
-        public bool IsTinctureFur => _tincture is ETincture.Ermine or ETincture.Vair;
-        public bool IsTinctureMetal => _tincture is ETincture.Or or ETincture.Argent;
-        public bool IsTinctureColor => !(IsTinctureFur || IsTinctureMetal);
+        public bool IsFur => _tincture is ETincture.Ermine or ETincture.Vair;
+        public bool IsMetal => _tincture is ETincture.Or or ETincture.Argent;
+        public bool IsColor => !(IsFur || IsMetal);
 
-        public SignumColor(ETincture eTincture)
+        public SignumTincture(ETincture eTincture)
         {
             this._tincture = eTincture;
         }
@@ -67,7 +67,7 @@ namespace SignumGenerator.Signum
                 ETincture.Sable => Color.FromArgb(255, 0, 0, 0),
                 ETincture.Vert => Color.FromArgb(255, 0, 75, 0),
                 ETincture.Or => Color.FromArgb(255, 255, 215, 0),
-                ETincture.Argent => Color.FromArgb(255, 192, 192, 192),
+                ETincture.Argent => Color.FromArgb(255, 255, 255, 255),
                 ETincture.Sanguine => Color.FromArgb(255, 188, 63, 74),
                 ETincture.Murrey => Color.FromArgb(255, 139, 0, 75),
                 ETincture.Tenne => Color.FromArgb(255, 205, 87, 00),

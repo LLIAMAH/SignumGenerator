@@ -20,14 +20,14 @@ namespace SignumGenerator.Signum
 
         public void ApplyBase(ETincture tincture)
         {
-            var color = new SignumColor(tincture);
+            var color = new SignumTincture(tincture);
             var brushSecondary = color.CreateBrush();
             _g.FillRectangle(brushSecondary, 0, 0, Width, Height);
         }
 
         public void ApplyPattern(InputData input)
         {
-            var tincture = new SignumColor(input.Tincture);
+            var tincture = input.Tincture;
             switch (input.Pattern)
             {
                 case SignumBasePattern.StripesHorizontal:
@@ -70,7 +70,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.Quarters_1_4:
                 {
-                    if (tincture.IsTinctureColor || tincture.IsTinctureMetal)
+                    if (tincture.IsColor || tincture.IsMetal)
                     {
                         using (var brush = tincture.CreateBrush())
                         {
@@ -89,7 +89,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.Quarters_2_3:
                 {
-                    if (tincture.IsTinctureColor || tincture.IsTinctureMetal)
+                    if (tincture.IsColor || tincture.IsMetal)
                     {
                         using (var brush = tincture.CreateBrush())
                         {
