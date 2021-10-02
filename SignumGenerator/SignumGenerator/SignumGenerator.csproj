@@ -37,4 +37,13 @@
     <Folder Include="Images\Furs\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Images\Furs\Fur_Ermine.dds">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\Furs\Fur_Vair.dds">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

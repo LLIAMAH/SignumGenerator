@@ -1,4 +1,6 @@
 ﻿using System.Drawing;
+using System.Globalization;
+using Svg;
 
 namespace SignumGenerator.Signum
 {
@@ -361,6 +363,27 @@ namespace SignumGenerator.Signum
                 if (i % 2 == 0)
                     g.DrawLine(pen, new Point(lineCenter, data.Top), new Point(lineCenter, data.Bottom));
                 i++;
+            }
+        }
+
+        private static void DrawFur(Graphics g, Image image, int step, Rectangle rect)
+        {
+            var i = rect.Left;
+            var j = rect.Top;
+            while (j - step < rect.Bottom)
+            {
+                while (i - step < rect.Right)
+                {
+                    var localRect = (j / step) % 2 == 0 
+                        ? new Rectangle(i, j, step, step) 
+                        : new Rectangle(i - step / 2, j, step, step);
+                    g.DrawImage(image, localRect);
+
+                    i += step;
+                }
+
+                i = 0;
+                j += step;
             }
         }
     }

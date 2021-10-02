@@ -21,16 +21,16 @@ namespace SignumGenerator.Signum
         public void ApplyBase(ETincture input)
         {
             var tincture = new SignumTincture(input);
-            var rectangle = new Rectangle(0, 0, Width, Height);
+            var rect = new Rectangle(0, 0, Width, Height);
             if (tincture.IsFur)
             {
                 var image = tincture.CreateFur();
-                _g.DrawImage(image, rectangle);
+                DrawFur(_g, image, 100, rect);
             }
             else
             {
                 var brushSecondary = tincture.CreateBrush();
-                _g.FillRectangle(brushSecondary, rectangle);
+                _g.FillRectangle(brushSecondary, rect);
             }
         }
 

@@ -72,17 +72,36 @@ namespace SignumGenerator.Signum
             };
         }
 
-        private static Image GetColorFur(ETincture eTincture)
+        private static System.Drawing.Image GetColorFur(ETincture fur, ETincture color = ETincture.Sable)
         {
-            return eTincture switch
+            var bmp = fur switch
             {
                 ETincture.Ermine => GetErmine(),
                 ETincture.Vair => GetVair(),
                 _ => GetErmine()
             };
+
+            return ImageChangeColor(bmp, color);
         }
 
-        private static Image GetErmine()
+        private static System.Drawing.Image ImageChangeColor(Bitmap bmp, ETincture color)
+        {
+            const int colorMark = 0;
+            var tincture = new SignumTincture(color);
+            for (var j = 0; j < bmp.Height; j++)
+            {
+                for (var i = 0; i < bmp.Width; i++)
+                {
+                    var bmpPix = bmp.GetPixel(i, j);
+                    if (bmpPix.A > colorMark)
+                        bmp.SetPixel(i, j, tincture.Color);
+                }
+            }
+
+            return bmp;
+        }
+
+        private static Bitmap GetErmine()
         {
             /*
              * MemoryStream PCDStream = new MemoryStream(Data, 0, Data.Length);
@@ -104,7 +123,7 @@ namespace SignumGenerator.Signum
             //return ImageSourceFromBitmap(bmp);
         }
 
-        private static Image GetVair()
+        private static Bitmap GetVair()
         {
             using (var fs = new FileStream(Path.Combine(_imagesPath, "Furs", "Fur_Vair.dds"), FileMode.Open,
                 FileAccess.Read))
