@@ -1,0 +1,33 @@
+﻿namespace SignumGenerator.Signum
+{
+    public enum SignumBasePattern
+    {
+        Default,
+        StripesHorizontal,
+        StripesVertical,
+        Quarter,
+        Quarters_1_4,
+        Quarters_2_3,
+        QuartersDiagonalTopBottom,
+        QuartersDiagonalLeftRight,
+        SlingLeft,
+        SlingRight,
+        CheckersNormal,
+        CheckersInverse,
+        CheckersDiagonal,
+        ChevronMiddleNormal,
+        ChevronMiddleInvert,
+        ChevronFullNormal,
+        ChevronFullInvert,
+        ChevronPointOffsetSizeNormal,
+        ChevronPointOffsetSizeInvert,
+        SplitHorizontalNormal,
+        SplitHorizontalInvert,
+        SplitVerticalLeft,
+        SplitVerticalRight,
+        SliceLeftNormal,
+        SliceLeftInvert,
+        SliceRightNormal,
+        SliceRightInvert
+    }
+}
