@@ -18,11 +18,20 @@ namespace SignumGenerator.Signum
             _g = Graphics.FromImage(_bmp);
         }
 
-        public void ApplyBase(ETincture tincture)
+        public void ApplyBase(ETincture input)
         {
-            var color = new SignumTincture(tincture);
-            var brushSecondary = color.CreateBrush();
-            _g.FillRectangle(brushSecondary, 0, 0, Width, Height);
+            var tincture = new SignumTincture(input);
+            var rectangle = new Rectangle(0, 0, Width, Height);
+            if (tincture.IsFur)
+            {
+                var image = tincture.CreateFur();
+                _g.DrawImage(image, rectangle);
+            }
+            else
+            {
+                var brushSecondary = tincture.CreateBrush();
+                _g.FillRectangle(brushSecondary, rectangle);
+            }
         }
 
         public void ApplyPattern(InputData input)

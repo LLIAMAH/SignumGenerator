@@ -25,6 +25,8 @@ namespace SignumGenerator.Signum
     public class SignumTincture
     {
         private readonly ETincture _tincture;
+        private static string _imagesPath =
+            Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "Images");
 
         public ETincture Tincture => _tincture;
         public Color Color => GetColor(_tincture);
@@ -50,11 +52,6 @@ namespace SignumGenerator.Signum
         public Pen CreatePen(int size = 1)
         {
             return new Pen(this.Color, size);
-        }
-
-        public static Pen CreatePen(Color color, int width = 1)
-        {
-            return new Pen(color, width);
         }
 
         private static Color GetColor(ETincture eTincture)
@@ -96,23 +93,26 @@ namespace SignumGenerator.Signum
              * previewPictureBox.Image = Bitmap;
              */
 
-            using var fs = new FileStream("Images\\Fur_Ermine.dds", FileMode.Open, FileAccess.Read);
-            var img = new DDSImage(fs);
-            var bmp = img.BitmapImage;
-
-            return bmp;
+            using (var fs = new FileStream(Path.Combine(_imagesPath, "Furs", "Fur_Ermine.dds"), FileMode.Open,
+                FileAccess.Read))
+            {
+                var img = new DDSImage(fs);
+                var bmp = img.BitmapImage;
+                return bmp;
+            }
 
             //return ImageSourceFromBitmap(bmp);
         }
 
         private static Image GetVair()
         {
-            using var fs = new FileStream("Images\\Fur_Vair.dds", FileMode.Open, FileAccess.Read);
-            var img = new DDSImage(fs);
-            var bmp = img.BitmapImage;
-
-            return bmp;
-
+            using (var fs = new FileStream(Path.Combine(_imagesPath, "Furs", "Fur_Vair.dds"), FileMode.Open,
+                FileAccess.Read))
+            {
+                var img = new DDSImage(fs);
+                var bmp = img.BitmapImage;
+                return bmp;
+            }
             //return ImageSourceFromBitmap(bmp);
         }
 
