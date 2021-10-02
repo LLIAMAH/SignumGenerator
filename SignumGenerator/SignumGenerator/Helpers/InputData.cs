@@ -4,19 +4,19 @@ namespace SignumGenerator.Helpers
 {
     public class InputData
     {
-        private readonly EColor _color;
+        private readonly ETincture _tincture;
         private readonly SignumBasePattern _pattern;
         private readonly int _param;
 
-        public EColor Color => this._color;
+        public ETincture Tincture => this._tincture;
         public SignumBasePattern Pattern => this._pattern;
         public int Param => this._param;
 
-        public bool IsEmpty => _color == EColor.Default || _pattern == SignumBasePattern.Default;
+        public bool IsEmpty => _tincture == ETincture.Default || _pattern == SignumBasePattern.Default;
 
-        public InputData(EColor color, SignumBasePattern pattern, int param)
+        public InputData(ETincture tincture, SignumBasePattern pattern, int param)
         {
-            this._color = color;
+            this._tincture = tincture;
             this._pattern = pattern;
             this._param = param;
         }

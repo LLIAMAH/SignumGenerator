@@ -213,7 +213,7 @@ namespace SignumGenerator
             this.lBaseColor.Name = "lBaseColor";
             this.lBaseColor.Size = new System.Drawing.Size(93, 25);
             this.lBaseColor.TabIndex = 5;
-            this.lBaseColor.Text = "Base color";
+            this.lBaseColor.Text = "Base tincture";
             // 
             // cbColorBase
             // 
