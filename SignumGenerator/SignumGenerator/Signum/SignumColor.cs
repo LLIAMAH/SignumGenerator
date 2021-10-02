@@ -1,4 +1,13 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Windows;
+using System.Windows.Interop;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using SignumGenerator.Helpers;
+using Color = System.Drawing.Color;
 
 namespace SignumGenerator.Signum
 {
@@ -38,5 +47,67 @@ namespace SignumGenerator.Signum
                 _ => Color.FromArgb(255, 0, 0, 0)
             };
         }
+
+        public static Image GetColorFur(ETincture eTincture)
+        {
+            return eTincture switch
+            {
+                ETincture.Ermine => GetErmine(),
+                ETincture.Vair => GetVair(),
+                _ => GetErmine()
+            };
+        }
+
+        private static Image GetErmine()
+        {
+            /*
+             * MemoryStream PCDStream = new MemoryStream(Data, 0, Data.Length);
+             * var ResourceStream = ConvertPCD9ToDDSv22 (PCDStream,VersionDRM);
+             * ResourceStream.Position = 0;
+             * var DDSImage = new DDSImage (ResourceStream);
+             * var Bitmap = DDSImage.BitmapImage;
+             * previewPictureBox.Image = Bitmap;
+             */
+
+            using var fs = new FileStream("Images\\Fur_Ermine.dds", FileMode.Open, FileAccess.Read);
+            var img = new DDSImage(fs);
+            var bmp = img.BitmapImage;
+
+            return bmp;
+
+            //return ImageSourceFromBitmap(bmp);
+        }
+
+        private static Image GetVair()
+        {
+            using var fs = new FileStream("Images\\Fur_Vair.dds", FileMode.Open, FileAccess.Read);
+            var img = new DDSImage(fs);
+            var bmp = img.BitmapImage;
+
+            return bmp;
+
+            //return ImageSourceFromBitmap(bmp);
+        }
+
+        #region Conversionblock
+
+        //If you get 'dllimport unknown'-, then add 'using System.Runtime.InteropServices;'
+        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool DeleteObject([In] IntPtr hObject);
+
+        public static ImageSource ImageSourceFromBitmap(Bitmap bmp)
+        {
+            var handle = bmp.GetHbitmap();
+            try
+            {
+                return Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            }
+            finally { DeleteObject(handle); }
+        }
+
+        #endregion
+
+        
     }
 }

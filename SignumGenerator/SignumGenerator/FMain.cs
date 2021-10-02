@@ -74,14 +74,14 @@ namespace SignumGenerator
 
             var signumBase = new SignumBase();
             signumBase.ApplyBase(SignumColor.GetColor(baseColor));
-            if (!input1.IsEmpty) //signumBase.ApplyPattern(SignumBasePattern.QuartersDiagonalTopBottom, SignumColor.GetColor(ETincture.Argent), 200);
-                signumBase.ApplyPattern(input1.Pattern, SignumColor.GetColor(input1.Tincture), input1.Param);
+            if (!input1.IsEmpty)
+                signumBase.ApplyPattern(input1);
 
             if (!input2.IsEmpty)
-                signumBase.ApplyPattern(input2.Pattern, SignumColor.GetColor(input2.Tincture), input2.Param);
+                signumBase.ApplyPattern(input2);
 
             if (!input3.IsEmpty)
-                signumBase.ApplyPattern(input3.Pattern, SignumColor.GetColor(input3.Tincture), input3.Param);
+                signumBase.ApplyPattern(input3);
 
             signumBase.Draw(g);
             pbResult.Image = this._bmp;

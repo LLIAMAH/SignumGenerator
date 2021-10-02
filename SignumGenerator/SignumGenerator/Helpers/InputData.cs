@@ -13,6 +13,9 @@ namespace SignumGenerator.Helpers
         public int Param => this._param;
 
         public bool IsEmpty => _tincture == ETincture.Default || _pattern == SignumBasePattern.Default;
+        public bool IsTinctureFur => _tincture == ETincture.Ermine || _tincture == ETincture.Vair;
+        public bool IsTinctureMetal => _tincture == ETincture.Or || _tincture == ETincture.Argent;
+        public bool IsTinctureColor => !(IsTinctureFur || IsTinctureMetal);
 
         public InputData(ETincture tincture, SignumBasePattern pattern, int param)
         {
