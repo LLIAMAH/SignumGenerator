@@ -33,9 +33,8 @@ namespace SignumGenerator.Signum
             }
         }
 
-        public void ApplyPattern(InputData input)
+        public void ApplyPattern(InputLayerData input)
         {
-            var tincture = input.Tincture;
             switch (input.Pattern)
             {
                 case SignumBasePattern.StripesHorizontal:

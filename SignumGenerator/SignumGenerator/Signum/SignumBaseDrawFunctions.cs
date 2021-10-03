@@ -226,8 +226,8 @@ namespace SignumGenerator.Signum
 
         private static void DrawQuarters14(Graphics g, Image image, SignumData data)
         {
-            g.DrawImage(image, new Rectangle(data.Left, data.Top, data.Width / 2, data.Height / 2));
-            g.DrawImage(image, new Rectangle(data.CenterX, data.CenterY, data.Width / 2, data.Height / 2));
+            DrawFur(g, image, 100, new Rectangle(data.Left, data.Top, data.Width / 2, data.Height / 2));
+            DrawFur(g, image, 100, new Rectangle(data.CenterX, data.CenterY, data.Width / 2, data.Height / 2));
         }
 
         private static void DrawQuarters23(Graphics g, Brush brush, SignumData data)
@@ -242,8 +242,8 @@ namespace SignumGenerator.Signum
 
         private static void DrawQuarters23(Graphics g, Image image, SignumData data)
         {
-            g.DrawImage(image, new Rectangle(data.CenterX, data.Top, data.Width / 2, data.Height / 2));
-            g.DrawImage(image, new Rectangle(data.Left, data.CenterY, data.Width / 2, data.Height / 2));
+            DrawFur(g, image, 100, new Rectangle(data.Left, data.Top, data.Width / 2, data.Height / 2));
+            DrawFur(g, image, 100, new Rectangle(data.CenterX, data.CenterY, data.Width / 2, data.Height / 2));
         }
 
         private static void DrawSlingLeft(Graphics g, Pen pen, SignumData data)
@@ -368,16 +368,20 @@ namespace SignumGenerator.Signum
 
         private static void DrawFur(Graphics g, Image image, int step, Rectangle rect)
         {
-            var i = rect.Left;
-            var j = rect.Top;
-            while (j - step < rect.Bottom)
+            var localBmp = new Bitmap(rect.Width, rect.Height);
+            var localG = Graphics.FromImage(localBmp);
+            var localRect = new Rectangle(0, 0, rect.Width, rect.Height);
+
+            var i = localRect.Left;
+            var j = localRect.Top;
+            while (j - step < localRect.Bottom)
             {
-                while (i - step < rect.Right)
+                while (i - step < localRect.Right)
                 {
-                    var localRect = (j / step) % 2 == 0 
+                    var tempRect = (j / step) % 2 == 0 
                         ? new Rectangle(i, j, step, step) 
                         : new Rectangle(i - step / 2, j, step, step);
-                    g.DrawImage(image, localRect);
+                    localG.DrawImage(image, tempRect);
 
                     i += step;
                 }
@@ -385,6 +389,8 @@ namespace SignumGenerator.Signum
                 i = 0;
                 j += step;
             }
+
+            g.DrawImage(localBmp, rect);
         }
     }
 }
