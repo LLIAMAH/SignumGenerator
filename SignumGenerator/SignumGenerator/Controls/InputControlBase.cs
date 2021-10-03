@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
+using SignumGenerator.Helpers;
 using SignumGenerator.Signum;
 
 namespace SignumGenerator.Controls
@@ -20,6 +21,12 @@ namespace SignumGenerator.Controls
             this.ColorBase.SelectedIndex = 0;
             this.ColorBase.DisplayMember = "TinctureName";
             this.ColorBase.ValueMember = "Tincture";
+        }
+
+        public InputBaseData GetInput()
+        {
+            var tincture = ColorBase.SelectedItem as SignumTincture;
+            return new InputBaseData(tincture);
         }
     }
 }

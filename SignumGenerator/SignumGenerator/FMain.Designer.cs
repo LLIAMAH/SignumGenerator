@@ -53,6 +53,7 @@ namespace SignumGenerator
             this.lBaseColor = new System.Windows.Forms.Label();
             this.cbColorBase = new System.Windows.Forms.ComboBox();
             this.bnCreateMain = new System.Windows.Forms.Button();
+            this.bnDraw = new System.Windows.Forms.Button();
             this.gbSignum.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbResult)).BeginInit();
             this.gbControls.SuspendLayout();
@@ -81,6 +82,7 @@ namespace SignumGenerator
             // 
             // gbControls
             // 
+            this.gbControls.Controls.Add(this.bnDraw);
             this.gbControls.Controls.Add(this.layerBase);
             this.gbControls.Controls.Add(this.layer5);
             this.gbControls.Controls.Add(this.layer4);
@@ -300,6 +302,16 @@ namespace SignumGenerator
             this.bnCreateMain.UseVisualStyleBackColor = true;
             this.bnCreateMain.Click += new System.EventHandler(this.bnCreateMain_Click);
             // 
+            // bnDraw
+            // 
+            this.bnDraw.Location = new System.Drawing.Point(688, 853);
+            this.bnDraw.Name = "bnDraw";
+            this.bnDraw.Size = new System.Drawing.Size(194, 78);
+            this.bnDraw.TabIndex = 24;
+            this.bnDraw.Text = "Draw";
+            this.bnDraw.UseVisualStyleBackColor = true;
+            this.bnDraw.Click += new System.EventHandler(this.bnDraw_Click);
+            // 
             // FMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -347,6 +359,7 @@ namespace SignumGenerator
         private Controls.InputControlLayer layer2;
         private Controls.InputControlLayer layer1;
         private Controls.InputControlBase layerBase;
+        private System.Windows.Forms.Button bnDraw;
     }
 }
 

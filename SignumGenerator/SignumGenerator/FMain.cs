@@ -100,7 +100,7 @@ namespace SignumGenerator
                 Convert.ToInt32(tbLayer3Param.Text));
 
             var signumBase = new SignumBase();
-            signumBase.ApplyBase(baseColor.Tincture);
+            signumBase.ApplyBase(baseColor);
             if (!input1.IsEmpty)
                 signumBase.ApplyPattern(input1);
 
@@ -162,6 +162,41 @@ namespace SignumGenerator
         ~FMain()
         {
             this._bmp.Dispose();
+        }
+
+        private void bnDraw_Click(object sender, EventArgs e)
+        {
+            pbResult.Image?.Dispose();
+            this._bmp = new Bitmap(800, 1000);
+            var g = Graphics.FromImage(this._bmp);
+
+            var inputBase = layerBase.GetInput();
+
+            var signumBase = new SignumBase();
+            signumBase.ApplyBase(inputBase.Tincture);
+
+            var input1 = layer1.GetInput();
+            if(!input1.IsEmpty)
+                signumBase.ApplyPattern(input1);
+
+            var input2 = layer2.GetInput();
+            if (!input2.IsEmpty)
+                signumBase.ApplyPattern(input2);
+
+            var input3 = layer3.GetInput();
+            if (!input3.IsEmpty)
+                signumBase.ApplyPattern(input3);
+
+            var input4 = layer4.GetInput();
+            if (!input4.IsEmpty)
+                signumBase.ApplyPattern(input4);
+
+            var input5 = layer5.GetInput();
+            if (!input5.IsEmpty)
+                signumBase.ApplyPattern(input5);
+
+            signumBase.Draw(g);
+            pbResult.Image = this._bmp;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using SignumGenerator.Helpers;
 using SignumGenerator.Signum;
 
 namespace SignumGenerator.Controls
@@ -120,6 +121,26 @@ namespace SignumGenerator.Controls
                 default:
                     break;
             }
+        }
+
+        public InputLayerData GetInput()
+        {
+            var pattern = Enum.Parse<SignumBasePattern>(Figure.SelectedItem?.ToString()!);
+            var colorMain = ColorMain.SelectedItem as SignumTincture;
+            var colorSub = ColorSub.SelectedItem as SignumTincture;
+
+            int? param1 = Param1.Enabled && !string.IsNullOrEmpty(Param1.Text)
+                ? Convert.ToInt32(Param1.Text)
+                : null;
+            int? param2 = Param2.Enabled && !string.IsNullOrEmpty(Param2.Text)
+                ? Convert.ToInt32(Param2.Text)
+                : null;
+            int? param3 = Param3.Enabled && !string.IsNullOrEmpty(Param3.Text)
+                ? Convert.ToInt32(Param3.Text)
+                : null;
+
+            return new InputLayerData(pattern, colorMain, colorSub,
+                param1, param2, param3);
         }
     }
 }
