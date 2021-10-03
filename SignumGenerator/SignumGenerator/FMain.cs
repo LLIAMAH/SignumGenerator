@@ -19,20 +19,30 @@ namespace SignumGenerator
 
         private void FMain_Load(object sender, EventArgs e)
         {
-            var enumColors = Enum.GetNames<ETincture>().ToList();
-            var list = new List<string>();
-            list.AddRange(enumColors);
+            var enumTinctures = Enum.GetNames<ETincture>().ToList();
+            var tincturesList = new List<SignumTincture>();
+            foreach (var tinctureStr in enumTinctures)
+            {
+                var tincture = (ETincture) Enum.Parse(typeof(ETincture), tinctureStr);
+                tincturesList.Add(new SignumTincture(tincture));
+            }
 
             var enumFigures = Enum.GetNames<SignumBasePattern>().ToList();
             // ReSharper disable once CoVariantArrayConversion
-            cbLayer1Color.Items.AddRange(list.ToArray());
+            cbLayer1Color.Items.AddRange(tincturesList.ToArray());
             // ReSharper disable once CoVariantArrayConversion
-            cbLayer2Color.Items.AddRange(list.ToArray());
+            cbLayer2Color.Items.AddRange(tincturesList.ToArray());
             // ReSharper disable once CoVariantArrayConversion
-            cbLayer3Color.Items.AddRange(list.ToArray());
+            cbLayer3Color.Items.AddRange(tincturesList.ToArray());
             cbLayer1Color.SelectedIndex = 0;
             cbLayer2Color.SelectedIndex = 0;
             cbLayer3Color.SelectedIndex = 0;
+            this.cbLayer1Color.DisplayMember = "TinctureName";
+            this.cbLayer1Color.ValueMember = "Tincture";
+            this.cbLayer2Color.DisplayMember = "TinctureName";
+            this.cbLayer2Color.ValueMember = "Tincture";
+            this.cbLayer3Color.DisplayMember = "TinctureName";
+            this.cbLayer3Color.ValueMember = "Tincture";
 
             // ReSharper disable once CoVariantArrayConversion
             cbLayer1Figure.Items.AddRange(enumFigures.ToArray());
@@ -44,9 +54,25 @@ namespace SignumGenerator
             cbLayer2Figure.SelectedIndex = 0;
             cbLayer3Figure.SelectedIndex = 0;
 
-            list.Remove("Default");
-            cbColorBase.Items.AddRange(list.ToArray());
+
+            layer1.SetParams("Layer 1", enumFigures, tincturesList);
+            layer2.SetParams("Layer 2", enumFigures, tincturesList);
+            layer3.SetParams("Layer 3", enumFigures, tincturesList);
+            layer4.SetParams("Layer 4", enumFigures, tincturesList);
+            layer5.SetParams("Layer 5", enumFigures, tincturesList);
+
+            // Remove furs - base tincture is always solid.
+            var def1 = tincturesList.SingleOrDefault(o => o.Tincture == ETincture.Ermine);
+            var def2 = tincturesList.SingleOrDefault(o => o.Tincture == ETincture.Vair);
+            tincturesList.Remove(def1);
+            tincturesList.Remove(def2);
+
+            layerBase.SetParams("Base", tincturesList);
+
+            cbColorBase.Items.AddRange(tincturesList.ToArray());
             cbColorBase.SelectedIndex = 0;
+            this.cbColorBase.DisplayMember = "TinctureName";
+            this.cbColorBase.ValueMember = "Tincture";
         }
 
         private void bnCreateMain_Click(object sender, EventArgs e)
@@ -55,20 +81,21 @@ namespace SignumGenerator
             this._bmp = new Bitmap(800, 1000);
             var g = Graphics.FromImage(this._bmp);
 
-            var baseColor = Enum.Parse<ETincture>(cbColorBase.SelectedItem as string ?? string.Empty);
+            #region OldCode
+            var baseColor = cbColorBase.SelectedItem as SignumTincture;
 
             var input1 = new InputData(
-                Enum.Parse<ETincture>(cbLayer1Color.SelectedItem as string ?? string.Empty),
+                cbLayer1Color.SelectedItem as SignumTincture,
                 Enum.Parse<SignumBasePattern>(cbLayer1Figure.SelectedItem as string ?? string.Empty),
                 Convert.ToInt32(tbLayer1Param.Text));
 
             var input2 = new InputData(
-                Enum.Parse<ETincture>(cbLayer2Color.SelectedItem as string ?? string.Empty),
+                cbLayer2Color.SelectedItem as SignumTincture,
                 Enum.Parse<SignumBasePattern>(cbLayer2Figure.SelectedItem as string ?? string.Empty),
                 Convert.ToInt32(tbLayer2Param.Text));
 
             var input3 = new InputData(
-                Enum.Parse<ETincture>(cbLayer3Color.SelectedItem as string ?? string.Empty),
+                cbLayer3Color.SelectedItem as SignumTincture,
                 Enum.Parse<SignumBasePattern>(cbLayer3Figure.SelectedItem as string ?? string.Empty),
                 Convert.ToInt32(tbLayer3Param.Text));
 
@@ -82,6 +109,7 @@ namespace SignumGenerator
 
             if (!input3.IsEmpty)
                 signumBase.ApplyPattern(input3);
+            #endregion
 
             signumBase.Draw(g);
             pbResult.Image = this._bmp;
@@ -134,6 +162,41 @@ namespace SignumGenerator
         ~FMain()
         {
             this._bmp.Dispose();
+        }
+
+        private void bnDraw_Click(object sender, EventArgs e)
+        {
+            pbResult.Image?.Dispose();
+            this._bmp = new Bitmap(800, 1000);
+            var g = Graphics.FromImage(this._bmp);
+
+            var inputBase = layerBase.GetInput();
+
+            var signumBase = new SignumBase();
+            signumBase.ApplyBase(inputBase.Tincture);
+
+            var input1 = layer1.GetInput();
+            if(!input1.IsEmpty)
+                signumBase.ApplyPattern(input1);
+
+            var input2 = layer2.GetInput();
+            if (!input2.IsEmpty)
+                signumBase.ApplyPattern(input2);
+
+            var input3 = layer3.GetInput();
+            if (!input3.IsEmpty)
+                signumBase.ApplyPattern(input3);
+
+            var input4 = layer4.GetInput();
+            if (!input4.IsEmpty)
+                signumBase.ApplyPattern(input4);
+
+            var input5 = layer5.GetInput();
+            if (!input5.IsEmpty)
+                signumBase.ApplyPattern(input5);
+
+            signumBase.Draw(g);
+            pbResult.Image = this._bmp;
         }
     }
 }

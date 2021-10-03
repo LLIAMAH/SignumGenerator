@@ -2,6 +2,7 @@
 using System.IO;
 using SignumGenerator.Helpers;
 using Color = System.Drawing.Color;
+// ReSharper disable ConvertToUsingDeclaration
 
 namespace SignumGenerator.Signum
 {
@@ -25,8 +26,10 @@ namespace SignumGenerator.Signum
     public class SignumTincture
     {
         private readonly ETincture _tincture;
-        private static string _imagesPath =
-            Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "Images");
+        private static readonly string _imagesPath =
+            Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)!, "Images");
+
+        public string TinctureName => this._tincture.ToString();
 
         public ETincture Tincture => _tincture;
         public Color Color => GetColor(_tincture);
