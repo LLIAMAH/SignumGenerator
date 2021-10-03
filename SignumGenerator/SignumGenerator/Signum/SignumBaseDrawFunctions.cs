@@ -214,7 +214,7 @@ namespace SignumGenerator.Signum
                 });
         }
 
-        private static void DrawQuarters14(Graphics g, Brush brush, SignumData data)
+        private static void DrawQuarters14Tincture(Graphics g, Brush brush, SignumData data)
         {
             g.FillRectangles(brush,
                 new[]
@@ -224,13 +224,13 @@ namespace SignumGenerator.Signum
                 });
         }
 
-        private static void DrawQuarters14(Graphics g, Image image, SignumData data)
+        private static void DrawQuarters14Fur(Graphics g, Image image, SignumData data)
         {
             DrawFur(g, image, 100, new Rectangle(data.Left, data.Top, data.Width / 2, data.Height / 2));
             DrawFur(g, image, 100, new Rectangle(data.CenterX, data.CenterY, data.Width / 2, data.Height / 2));
         }
 
-        private static void DrawQuarters23(Graphics g, Brush brush, SignumData data)
+        private static void DrawQuarters23Tincture(Graphics g, Brush brush, SignumData data)
         {
             g.FillRectangles(brush,
                 new[]
@@ -240,7 +240,7 @@ namespace SignumGenerator.Signum
                 });
         }
 
-        private static void DrawQuarters23(Graphics g, Image image, SignumData data)
+        private static void DrawQuarters23Fur(Graphics g, Image image, SignumData data)
         {
             DrawFur(g, image, 100, new Rectangle(data.Left, data.Top, data.Width / 2, data.Height / 2));
             DrawFur(g, image, 100, new Rectangle(data.CenterX, data.CenterY, data.Width / 2, data.Height / 2));

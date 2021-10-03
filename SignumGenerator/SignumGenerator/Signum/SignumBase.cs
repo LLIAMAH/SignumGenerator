@@ -23,281 +23,12 @@ namespace SignumGenerator.Signum
             var rect = new Rectangle(0, 0, Width, Height);
             if (tincture.IsFur)
             {
-                var image = tincture.CreateFur();
+                var image = tincture.CreateFur(new SignumTincture(ETincture.Sable));
                 DrawFur(_g, image, 100, rect);
             }
             else
             {
-                var brushSecondary = tincture.CreateBrush();
-                _g.FillRectangle(brushSecondary, rect);
-            }
-        }
-
-        public void ApplyPattern(InputLayerData input)
-        {
-            switch (input.Pattern)
-            {
-                case SignumBasePattern.StripesHorizontal:
-                {
-                    var lineWidth = _data.Height / (input.Param * 2);
-                    using (var pen = tincture.CreatePen(lineWidth))
-                    {
-                        DrawStripesHorizontal(_g, pen, _data, lineWidth, input.Param);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.StripesVertical:
-                {
-                    var lineWidth = _data.Width / (input.Param * 2);
-                    using (var pen = tincture.CreatePen(lineWidth))
-                    {
-                        DrawStripesVertical(_g, pen, _data, lineWidth, input.Param);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.SlingRight:
-                {
-                    using (var pen = tincture.CreatePen(input.Param == 0 ? 1 : input.Param))
-                    {
-                        DrawSlingRight(_g, pen, _data);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.SlingLeft:
-                {
-                    using (var pen = tincture.CreatePen(input.Param == 0 ? 1 : input.Param))
-                    {
-                        DrawSlingLeft(_g, pen, _data);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.Quarters_1_4:
-                {
-                    if (tincture.IsColor || tincture.IsMetal)
-                    {
-                        using (var brush = tincture.CreateBrush())
-                        {
-                            DrawQuarters14(_g, brush, _data);
-                        }
-                    }
-                    else
-                    {
-                        using (var image = tincture.CreateFur())
-                        {
-                            DrawQuarters14(_g, image, _data);
-                        }
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.Quarters_2_3:
-                {
-                    if (tincture.IsColor || tincture.IsMetal)
-                    {
-                        using (var brush = tincture.CreateBrush())
-                        {
-                            DrawQuarters23(_g, brush, _data);
-                        }
-                    }
-                    else
-                    {
-                        using (var image = tincture.CreateFur())
-                        {
-                            DrawQuarters23(_g, image, _data);
-                        }
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.QuartersDiagonalTopBottom:
-                {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawQuartersDiagonalTopBottom(_g, brush, _data);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.QuartersDiagonalLeftRight:
-                {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawQuartersDiagonalLeftRight(_g, brush, _data);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.CheckersNormal:
-                {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawCheckersNormal(_g, brush, _data, input.Param);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.CheckersInverse:
-                {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawCheckersInverse(_g, brush, _data, input.Param);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.CheckersDiagonal:
-                {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawCheckersDiagonal(_g, brush, _data, input.Param);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.Quarter:
-                {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawQuarter(_g, brush, _data);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.ChevronMiddleNormal:
-                {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawChevronMiddleNormal(_g, brush, _data, input.Param);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.ChevronMiddleInvert:
-                {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawChevronMiddleInvert(_g, brush, _data, input.Param);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.ChevronFullNormal:
-                {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawChevronFullNormal(_g, brush, _data, input.Param);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.ChevronFullInvert:
-                {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawChevronFullInvert(_g, brush, _data, input.Param);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.ChevronPointOffsetSizeNormal:
-                {
-                    var point = 100;
-                    var offset = 200;
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawChevronPointOffsetSizeNormal(_g, brush, _data, point, offset, input.Param);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.ChevronPointOffsetSizeInvert:
-                {
-                    var point = 400;
-                    var offset = 200;
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawChevronPointOffsetSizeInvert(_g, brush, _data, point, offset, input.Param);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.SplitHorizontalNormal:
-                {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawSplitHorizontalNormal(_g, brush, _data);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.SplitHorizontalInvert:
-                {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawSplitHorizontalInvert(_g, brush, _data);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.SplitVerticalLeft:
-                {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawSplitVerticalLeft(_g, brush, _data);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.SplitVerticalRight:
-                {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawSplitVerticalRight(_g, brush, _data);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.SliceLeftNormal:
-                {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawSliceLeftNormal(_g, brush, _data);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.SliceLeftInvert:
-                {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawSliceLeftInvert(_g, brush, _data);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.SliceRightNormal:
-                {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawSliceRightNormal(_g, brush, _data);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.SliceRightInvert:
-                {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawSliceRightInvert(_g, brush, _data);
-                    }
-
-                    break;
-                }
-                default: {break;}
+                _g.FillRectangle(tincture.CreateBrush(), rect);
             }
         }
 
@@ -350,14 +81,14 @@ namespace SignumGenerator.Signum
                         {
                             using (var brush = tincture.CreateBrush())
                             {
-                                DrawQuarters14(_g, brush, _data);
+                                DrawQuarters14Tincture(_g, brush, _data);
                             }
                         }
                         else
                         {
-                            using (var image = tincture.CreateFur())
+                            using (var image = tincture.CreateFur(input.TinctureSub))
                             {
-                                DrawQuarters14(_g, image, _data);
+                                DrawQuarters14Fur(_g, image, _data);
                             }
                         }
 
@@ -369,14 +100,14 @@ namespace SignumGenerator.Signum
                         {
                             using (var brush = tincture.CreateBrush())
                             {
-                                DrawQuarters23(_g, brush, _data);
+                                DrawQuarters23Tincture(_g, brush, _data);
                             }
                         }
                         else
                         {
-                            using (var image = tincture.CreateFur())
+                            using (var image = tincture.CreateFur(input.TinctureSub))
                             {
-                                DrawQuarters23(_g, image, _data);
+                                DrawQuarters23Fur(_g, image, _data);
                             }
                         }
 
