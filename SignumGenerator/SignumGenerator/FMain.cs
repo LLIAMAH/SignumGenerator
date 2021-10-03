@@ -19,17 +19,21 @@ namespace SignumGenerator
 
         private void FMain_Load(object sender, EventArgs e)
         {
-            var enumColors = Enum.GetNames<ETincture>().ToList();
-            var list = new List<string>();
-            list.AddRange(enumColors);
+            var enumTinctures = Enum.GetNames<ETincture>().ToList();
+            var tincturesList = new List<SignumTincture>();
+            foreach (var tinctureStr in enumTinctures)
+            {
+                var tincture = (ETincture) Enum.Parse(typeof(ETincture), tinctureStr);
+                tincturesList.Add(new SignumTincture(tincture));
+            }
 
             var enumFigures = Enum.GetNames<SignumBasePattern>().ToList();
             // ReSharper disable once CoVariantArrayConversion
-            cbLayer1Color.Items.AddRange(list.ToArray());
+            cbLayer1Color.Items.AddRange(tincturesList.ToArray());
             // ReSharper disable once CoVariantArrayConversion
-            cbLayer2Color.Items.AddRange(list.ToArray());
+            cbLayer2Color.Items.AddRange(tincturesList.ToArray());
             // ReSharper disable once CoVariantArrayConversion
-            cbLayer3Color.Items.AddRange(list.ToArray());
+            cbLayer3Color.Items.AddRange(tincturesList.ToArray());
             cbLayer1Color.SelectedIndex = 0;
             cbLayer2Color.SelectedIndex = 0;
             cbLayer3Color.SelectedIndex = 0;
@@ -44,8 +48,9 @@ namespace SignumGenerator
             cbLayer2Figure.SelectedIndex = 0;
             cbLayer3Figure.SelectedIndex = 0;
 
-            list.Remove("Default");
-            cbColorBase.Items.AddRange(list.ToArray());
+            var def = tincturesList.SingleOrDefault(o => o.Tincture == ETincture.Default);
+            tincturesList.Remove(def);
+            cbColorBase.Items.AddRange(tincturesList.ToArray());
             cbColorBase.SelectedIndex = 0;
         }
 
