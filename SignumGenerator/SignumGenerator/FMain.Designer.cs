@@ -95,10 +95,10 @@ namespace SignumGenerator
             // layerBase
             // 
             this.layerBase.Location = new System.Drawing.Point(19, 51);
-            this.layerBase.MaximumSize = new System.Drawing.Size(382, 42);
-            this.layerBase.MinimumSize = new System.Drawing.Size(382, 42);
+            this.layerBase.MaximumSize = new System.Drawing.Size(595, 42);
+            this.layerBase.MinimumSize = new System.Drawing.Size(595, 42);
             this.layerBase.Name = "layerBase";
-            this.layerBase.Size = new System.Drawing.Size(382, 42);
+            this.layerBase.Size = new System.Drawing.Size(595, 42);
             this.layerBase.TabIndex = 23;
             // 
             // layer5

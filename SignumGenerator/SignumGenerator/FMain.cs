@@ -28,19 +28,12 @@ namespace SignumGenerator
 
             var enumFigures = Enum.GetNames<SignumBasePattern>().ToList();
 
+            layerBase.SetParams("Base", tincturesList);
             layer1.SetParams("Layer 1", enumFigures, tincturesList);
             layer2.SetParams("Layer 2", enumFigures, tincturesList);
             layer3.SetParams("Layer 3", enumFigures, tincturesList);
             layer4.SetParams("Layer 4", enumFigures, tincturesList);
             layer5.SetParams("Layer 5", enumFigures, tincturesList);
-
-            // Remove furs - base tincture is always solid.
-            var def1 = tincturesList.SingleOrDefault(o => o.Tincture == ETincture.Ermine);
-            var def2 = tincturesList.SingleOrDefault(o => o.Tincture == ETincture.Vair);
-            tincturesList.Remove(def1);
-            tincturesList.Remove(def2);
-
-            layerBase.SetParams("Base", tincturesList);
         }
 
         //private void DrawImage(Graphics graphics)
@@ -101,7 +94,7 @@ namespace SignumGenerator
             var inputBase = layerBase.GetInput();
 
             var signumBase = new SignumBase();
-            signumBase.ApplyBase(inputBase.Tincture);
+            signumBase.ApplyBase(inputBase);
 
             var input1 = layer1.GetInput();
             if(!input1.IsEmpty)

@@ -18,17 +18,26 @@ namespace SignumGenerator.Signum
             _g = Graphics.FromImage(_bmp);
         }
 
-        public void ApplyBase(SignumTincture tincture)
+        public void ApplyBase(InputBaseData input)
         {
             var rect = new Rectangle(0, 0, Width, Height);
-            if (tincture.IsFur)
+            if (input.TinctureMain.IsFur)
             {
-                var image = tincture.CreateFur(new SignumTincture(ETincture.Sable));
-                DrawFur(_g, image, 100, rect);
+                using (var brush = input.TinctureBg.CreateBrush())
+                {
+                    _g.FillRectangle(brush, rect);
+                }
+                using (var image = input.TinctureMain.CreateFur(input.TinctureSub))
+                {
+                    DrawFur(_g, image, 100, rect);
+                }   
             }
             else
             {
-                _g.FillRectangle(tincture.CreateBrush(), rect);
+                using (var brush = input.TinctureMain.CreateBrush())
+                {
+                    _g.FillRectangle(brush, rect);
+                }
             }
         }
 
@@ -86,6 +95,10 @@ namespace SignumGenerator.Signum
                         }
                         else
                         {
+                            using (var brush = input.TinctureBg.CreateBrush())
+                            {
+                                DrawQuarters14Tincture(_g, brush, _data);
+                            }
                             using (var image = tincture.CreateFur(input.TinctureSub))
                             {
                                 DrawQuarters14Fur(_g, image, _data);
@@ -105,6 +118,10 @@ namespace SignumGenerator.Signum
                         }
                         else
                         {
+                            using (var brush = input.TinctureBg.CreateBrush())
+                            {
+                                DrawQuarters23Tincture(_g, brush, _data);
+                            }
                             using (var image = tincture.CreateFur(input.TinctureSub))
                             {
                                 DrawQuarters23Fur(_g, image, _data);
