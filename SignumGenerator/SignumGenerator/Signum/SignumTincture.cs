@@ -47,9 +47,9 @@ namespace SignumGenerator.Signum
             return new SolidBrush(this.Color);
         }
 
-        public Image CreateFur()
+        public Image CreateFur(SignumTincture tinctureSub)
         {
-            return GetColorFur(this._tincture);
+            return GetColorFur(this._tincture, tinctureSub);
         }
 
         public Pen CreatePen(int size = 1)
@@ -75,7 +75,7 @@ namespace SignumGenerator.Signum
             };
         }
 
-        private static System.Drawing.Image GetColorFur(ETincture fur, ETincture color = ETincture.Sable)
+        private static Image GetColorFur(ETincture fur, SignumTincture signumTincture)
         {
             var bmp = fur switch
             {
@@ -84,7 +84,7 @@ namespace SignumGenerator.Signum
                 _ => GetErmine()
             };
 
-            return ImageChangeColor(bmp, color);
+            return ImageChangeColor(bmp, signumTincture.Tincture);
         }
 
         private static System.Drawing.Image ImageChangeColor(Bitmap bmp, ETincture color)
