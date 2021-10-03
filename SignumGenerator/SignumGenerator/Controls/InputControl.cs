@@ -42,20 +42,26 @@ namespace SignumGenerator.Controls
             {
                 case SignumBasePattern.StripesHorizontal:
                 case SignumBasePattern.StripesVertical:
+                    SetParamsAvailable(1, "Count");
+                    break;
                 case SignumBasePattern.SlingLeft:
                 case SignumBasePattern.SlingRight:
+                    SetParamsAvailable(1, "Width");
+                    break;
                 case SignumBasePattern.CheckersNormal:
                 case SignumBasePattern.CheckersInverse:
                 case SignumBasePattern.CheckersDiagonal:
+                    SetParamsAvailable(1, "Size");
+                    break;
                 case SignumBasePattern.ChevronMiddleNormal:
                 case SignumBasePattern.ChevronMiddleInvert:
                 case SignumBasePattern.ChevronFullNormal:
                 case SignumBasePattern.ChevronFullInvert:
-                    SetParamsAvailable(1);
+                    SetParamsAvailable(1, "Width");
                     break;
                 case SignumBasePattern.ChevronPointOffsetSizeNormal:
                 case SignumBasePattern.ChevronPointOffsetSizeInvert:
-                    SetParamsAvailable(3);
+                    SetParamsAvailable(3, "Width", "Position", "Offset");
                     break;
                 case SignumBasePattern.Default:
                 case SignumBasePattern.Quarter:
@@ -88,20 +94,29 @@ namespace SignumGenerator.Controls
             this.ColorSub.Enabled = val.Tincture is ETincture.Ermine or ETincture.Vair;
         }
 
-        private void SetParamsAvailable(int availableParamsCount)
+        private void SetParamsAvailable(int availableParamsCount, string title1 = "", string title2 = "", string title3 = "")
         {
             this.Param1.Enabled = false;
             this.Param2.Enabled = false;
             this.Param3.Enabled = false;
+            this.Param1Title.Text = string.Empty;
+            this.Param2Title.Text = string.Empty;
+            this.Param3Title.Text = string.Empty;
 
             switch (availableParamsCount)
             {
                 case 1:
-                    this.Param1.Enabled = true; break;
+                    this.Param1.Enabled = true;
+                    this.Param1Title.Text = title1;
+                    break;
                 case 2:
-                    this.Param1.Enabled = true; this.Param2.Enabled = true; break;
+                    this.Param1.Enabled = true; this.Param2.Enabled = true;
+                    this.Param1Title.Text = title1; this.Param2Title.Text = title2;
+                    break;
                 case 3:
-                    this.Param1.Enabled = true; this.Param2.Enabled = true; this.Param3.Enabled = true; break;
+                    this.Param1.Enabled = true; this.Param2.Enabled = true; this.Param3.Enabled = true;
+                    this.Param1Title.Text = title1; this.Param2Title.Text = title2; this.Param3Title.Text = title3;
+                    break;
                 default:
                     break;
             }

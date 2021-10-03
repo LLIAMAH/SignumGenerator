@@ -36,11 +36,14 @@ namespace SignumGenerator.Controls
             this.Param2 = new System.Windows.Forms.TextBox();
             this.Param3 = new System.Windows.Forms.TextBox();
             this.ColorSub = new System.Windows.Forms.ComboBox();
+            this.Param1Title = new System.Windows.Forms.Label();
+            this.Param2Title = new System.Windows.Forms.Label();
+            this.Param3Title = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Param1
             // 
-            this.Param1.Location = new System.Drawing.Point(607, 3);
+            this.Param1.Location = new System.Drawing.Point(606, 38);
             this.Param1.Name = "Param1";
             this.Param1.Size = new System.Drawing.Size(76, 31);
             this.Param1.TabIndex = 19;
@@ -78,7 +81,7 @@ namespace SignumGenerator.Controls
             // 
             // Param2
             // 
-            this.Param2.Location = new System.Drawing.Point(689, 3);
+            this.Param2.Location = new System.Drawing.Point(688, 38);
             this.Param2.Name = "Param2";
             this.Param2.Size = new System.Drawing.Size(76, 31);
             this.Param2.TabIndex = 20;
@@ -87,7 +90,7 @@ namespace SignumGenerator.Controls
             // 
             // Param3
             // 
-            this.Param3.Location = new System.Drawing.Point(771, 3);
+            this.Param3.Location = new System.Drawing.Point(770, 38);
             this.Param3.Name = "Param3";
             this.Param3.Size = new System.Drawing.Size(76, 31);
             this.Param3.TabIndex = 21;
@@ -103,10 +106,40 @@ namespace SignumGenerator.Controls
             this.ColorSub.Size = new System.Drawing.Size(146, 33);
             this.ColorSub.TabIndex = 22;
             // 
+            // Param1Title
+            // 
+            this.Param1Title.AutoSize = true;
+            this.Param1Title.Location = new System.Drawing.Point(607, 10);
+            this.Param1Title.Name = "Param1Title";
+            this.Param1Title.Size = new System.Drawing.Size(59, 25);
+            this.Param1Title.TabIndex = 23;
+            this.Param1Title.Text = "label1";
+            // 
+            // Param2Title
+            // 
+            this.Param2Title.AutoSize = true;
+            this.Param2Title.Location = new System.Drawing.Point(688, 10);
+            this.Param2Title.Name = "Param2Title";
+            this.Param2Title.Size = new System.Drawing.Size(59, 25);
+            this.Param2Title.TabIndex = 24;
+            this.Param2Title.Text = "label2";
+            // 
+            // Param3Title
+            // 
+            this.Param3Title.AutoSize = true;
+            this.Param3Title.Location = new System.Drawing.Point(770, 10);
+            this.Param3Title.Name = "Param3Title";
+            this.Param3Title.Size = new System.Drawing.Size(59, 25);
+            this.Param3Title.TabIndex = 25;
+            this.Param3Title.Text = "label3";
+            // 
             // InputControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.Param3Title);
+            this.Controls.Add(this.Param2Title);
+            this.Controls.Add(this.Param1Title);
             this.Controls.Add(this.ColorSub);
             this.Controls.Add(this.Param3);
             this.Controls.Add(this.Param2);
@@ -132,5 +165,8 @@ namespace SignumGenerator.Controls
         private System.Windows.Forms.TextBox Param2;
         private System.Windows.Forms.TextBox Param3;
         private System.Windows.Forms.ComboBox ColorSub;
+        private System.Windows.Forms.Label Param1Title;
+        private System.Windows.Forms.Label Param2Title;
+        private System.Windows.Forms.Label Param3Title;
     }
 }

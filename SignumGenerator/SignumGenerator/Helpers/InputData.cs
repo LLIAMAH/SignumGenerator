@@ -14,9 +14,9 @@ namespace SignumGenerator.Helpers
 
         public bool IsEmpty => _tincture.Tincture == ETincture.Default || _pattern == SignumBasePattern.Default;
 
-        public InputData(ETincture tincture, SignumBasePattern pattern, int param)
+        public InputData(SignumTincture tincture, SignumBasePattern pattern, int param)
         {
-            this._tincture = new SignumTincture(tincture);
+            this._tincture = tincture;
             this._pattern = pattern;
             this._param = param;
         }
