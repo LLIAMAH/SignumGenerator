@@ -29,6 +29,8 @@ namespace SignumGenerator.Signum
         private static readonly string _imagesPath =
             Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)!, "Images");
 
+        public string TinctureName => this._tincture.ToString();
+
         public ETincture Tincture => _tincture;
         public Color Color => GetColor(_tincture);
         public bool IsFur => _tincture is ETincture.Ermine or ETincture.Vair;

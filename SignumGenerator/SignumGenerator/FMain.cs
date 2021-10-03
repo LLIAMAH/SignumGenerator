@@ -48,6 +48,14 @@ namespace SignumGenerator
             cbLayer2Figure.SelectedIndex = 0;
             cbLayer3Figure.SelectedIndex = 0;
 
+
+            layer1.SetParams("Layer 1", enumFigures, tincturesList);
+            layer2.SetParams("Layer 2", enumFigures, tincturesList);
+            layer3.SetParams("Layer 3", enumFigures, tincturesList);
+            layer4.SetParams("Layer 4", enumFigures, tincturesList);
+            layer5.SetParams("Layer 5", enumFigures, tincturesList);
+
+
             var def = tincturesList.SingleOrDefault(o => o.Tincture == ETincture.Default);
             tincturesList.Remove(def);
             cbColorBase.Items.AddRange(tincturesList.ToArray());
