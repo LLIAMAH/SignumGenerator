@@ -61,9 +61,14 @@ namespace SignumGenerator
             layer4.SetParams("Layer 4", enumFigures, tincturesList);
             layer5.SetParams("Layer 5", enumFigures, tincturesList);
 
+            // Remove furs - base tincture is always solid.
+            var def1 = tincturesList.SingleOrDefault(o => o.Tincture == ETincture.Ermine);
+            var def2 = tincturesList.SingleOrDefault(o => o.Tincture == ETincture.Vair);
+            tincturesList.Remove(def1);
+            tincturesList.Remove(def2);
 
-            var def = tincturesList.SingleOrDefault(o => o.Tincture == ETincture.Default);
-            tincturesList.Remove(def);
+            layerBase.SetParams("Base", tincturesList);
+
             cbColorBase.Items.AddRange(tincturesList.ToArray());
             cbColorBase.SelectedIndex = 0;
             this.cbColorBase.DisplayMember = "TinctureName";

@@ -32,6 +32,12 @@ namespace SignumGenerator
             this.gbSignum = new System.Windows.Forms.GroupBox();
             this.pbResult = new System.Windows.Forms.PictureBox();
             this.gbControls = new System.Windows.Forms.GroupBox();
+            this.layerBase = new SignumGenerator.Controls.InputControlBase();
+            this.layer5 = new SignumGenerator.Controls.InputControlLayer();
+            this.layer4 = new SignumGenerator.Controls.InputControlLayer();
+            this.layer3 = new SignumGenerator.Controls.InputControlLayer();
+            this.layer2 = new SignumGenerator.Controls.InputControlLayer();
+            this.layer1 = new SignumGenerator.Controls.InputControlLayer();
             this.tbLayer3Param = new System.Windows.Forms.TextBox();
             this.tbLayer2Param = new System.Windows.Forms.TextBox();
             this.tbLayer1Param = new System.Windows.Forms.TextBox();
@@ -47,11 +53,6 @@ namespace SignumGenerator
             this.lBaseColor = new System.Windows.Forms.Label();
             this.cbColorBase = new System.Windows.Forms.ComboBox();
             this.bnCreateMain = new System.Windows.Forms.Button();
-            this.layer1 = new SignumGenerator.Controls.InputControl();
-            this.layer2 = new SignumGenerator.Controls.InputControl();
-            this.layer3 = new SignumGenerator.Controls.InputControl();
-            this.layer4 = new SignumGenerator.Controls.InputControl();
-            this.layer5 = new SignumGenerator.Controls.InputControl();
             this.gbSignum.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbResult)).BeginInit();
             this.gbControls.SuspendLayout();
@@ -80,6 +81,7 @@ namespace SignumGenerator
             // 
             // gbControls
             // 
+            this.gbControls.Controls.Add(this.layerBase);
             this.gbControls.Controls.Add(this.layer5);
             this.gbControls.Controls.Add(this.layer4);
             this.gbControls.Controls.Add(this.layer3);
@@ -107,6 +109,60 @@ namespace SignumGenerator
             this.gbControls.TabIndex = 1;
             this.gbControls.TabStop = false;
             this.gbControls.Text = "Controls";
+            // 
+            // layerBase
+            // 
+            this.layerBase.Location = new System.Drawing.Point(21, 355);
+            this.layerBase.MaximumSize = new System.Drawing.Size(382, 42);
+            this.layerBase.MinimumSize = new System.Drawing.Size(382, 42);
+            this.layerBase.Name = "layerBase";
+            this.layerBase.Size = new System.Drawing.Size(382, 42);
+            this.layerBase.TabIndex = 23;
+            // 
+            // layer5
+            // 
+            this.layer5.Location = new System.Drawing.Point(21, 763);
+            this.layer5.MaximumSize = new System.Drawing.Size(860, 84);
+            this.layer5.MinimumSize = new System.Drawing.Size(860, 84);
+            this.layer5.Name = "layer5";
+            this.layer5.Size = new System.Drawing.Size(860, 84);
+            this.layer5.TabIndex = 22;
+            // 
+            // layer4
+            // 
+            this.layer4.Location = new System.Drawing.Point(22, 673);
+            this.layer4.MaximumSize = new System.Drawing.Size(860, 84);
+            this.layer4.MinimumSize = new System.Drawing.Size(860, 84);
+            this.layer4.Name = "layer4";
+            this.layer4.Size = new System.Drawing.Size(860, 84);
+            this.layer4.TabIndex = 21;
+            // 
+            // layer3
+            // 
+            this.layer3.Location = new System.Drawing.Point(21, 583);
+            this.layer3.MaximumSize = new System.Drawing.Size(860, 84);
+            this.layer3.MinimumSize = new System.Drawing.Size(860, 84);
+            this.layer3.Name = "layer3";
+            this.layer3.Size = new System.Drawing.Size(860, 84);
+            this.layer3.TabIndex = 20;
+            // 
+            // layer2
+            // 
+            this.layer2.Location = new System.Drawing.Point(21, 493);
+            this.layer2.MaximumSize = new System.Drawing.Size(860, 84);
+            this.layer2.MinimumSize = new System.Drawing.Size(860, 84);
+            this.layer2.Name = "layer2";
+            this.layer2.Size = new System.Drawing.Size(860, 84);
+            this.layer2.TabIndex = 19;
+            // 
+            // layer1
+            // 
+            this.layer1.Location = new System.Drawing.Point(21, 403);
+            this.layer1.MaximumSize = new System.Drawing.Size(860, 84);
+            this.layer1.MinimumSize = new System.Drawing.Size(860, 84);
+            this.layer1.Name = "layer1";
+            this.layer1.Size = new System.Drawing.Size(860, 84);
+            this.layer1.TabIndex = 18;
             // 
             // tbLayer3Param
             // 
@@ -244,51 +300,6 @@ namespace SignumGenerator
             this.bnCreateMain.UseVisualStyleBackColor = true;
             this.bnCreateMain.Click += new System.EventHandler(this.bnCreateMain_Click);
             // 
-            // layer1
-            // 
-            this.layer1.Location = new System.Drawing.Point(21, 403);
-            this.layer1.MaximumSize = new System.Drawing.Size(860, 84);
-            this.layer1.MinimumSize = new System.Drawing.Size(860, 84);
-            this.layer1.Name = "layer1";
-            this.layer1.Size = new System.Drawing.Size(860, 84);
-            this.layer1.TabIndex = 18;
-            // 
-            // layer2
-            // 
-            this.layer2.Location = new System.Drawing.Point(21, 493);
-            this.layer2.MaximumSize = new System.Drawing.Size(860, 84);
-            this.layer2.MinimumSize = new System.Drawing.Size(860, 84);
-            this.layer2.Name = "layer2";
-            this.layer2.Size = new System.Drawing.Size(860, 84);
-            this.layer2.TabIndex = 19;
-            // 
-            // layer3
-            // 
-            this.layer3.Location = new System.Drawing.Point(21, 583);
-            this.layer3.MaximumSize = new System.Drawing.Size(860, 84);
-            this.layer3.MinimumSize = new System.Drawing.Size(860, 84);
-            this.layer3.Name = "layer3";
-            this.layer3.Size = new System.Drawing.Size(860, 84);
-            this.layer3.TabIndex = 20;
-            // 
-            // layer4
-            // 
-            this.layer4.Location = new System.Drawing.Point(22, 673);
-            this.layer4.MaximumSize = new System.Drawing.Size(860, 84);
-            this.layer4.MinimumSize = new System.Drawing.Size(860, 84);
-            this.layer4.Name = "layer4";
-            this.layer4.Size = new System.Drawing.Size(860, 84);
-            this.layer4.TabIndex = 21;
-            // 
-            // layer5
-            // 
-            this.layer5.Location = new System.Drawing.Point(21, 763);
-            this.layer5.MaximumSize = new System.Drawing.Size(860, 84);
-            this.layer5.MinimumSize = new System.Drawing.Size(860, 84);
-            this.layer5.Name = "layer5";
-            this.layer5.Size = new System.Drawing.Size(860, 84);
-            this.layer5.TabIndex = 22;
-            // 
             // FMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -330,11 +341,12 @@ namespace SignumGenerator
         private System.Windows.Forms.TextBox tbLayer3Param;
         private System.Windows.Forms.TextBox tbLayer2Param;
         private System.Windows.Forms.TextBox tbLayer1Param;
-        private Controls.InputControl layer5;
-        private Controls.InputControl layer4;
-        private Controls.InputControl layer3;
-        private Controls.InputControl layer2;
-        private Controls.InputControl layer1;
+        private Controls.InputControlLayer layer5;
+        private Controls.InputControlLayer layer4;
+        private Controls.InputControlLayer layer3;
+        private Controls.InputControlLayer layer2;
+        private Controls.InputControlLayer layer1;
+        private Controls.InputControlBase layerBase;
     }
 }
 

@@ -5,9 +5,9 @@ using SignumGenerator.Signum;
 
 namespace SignumGenerator.Controls
 {
-    public partial class InputControl : UserControl
+    public partial class InputControlLayer : UserControl
     {
-        public InputControl()
+        public InputControlLayer()
         {
             InitializeComponent();
         }

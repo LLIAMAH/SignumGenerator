@@ -1,7 +1,7 @@
 ﻿
 namespace SignumGenerator.Controls
 {
-    partial class InputControl
+    partial class InputControlLayer
     {
         /// <summary> 
         /// Required designer variable.
