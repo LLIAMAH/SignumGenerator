@@ -14,23 +14,18 @@ namespace SignumGenerator.Controls
             InitializeComponent();
         }
 
-        public void SetParams(string title, List<string> figuresList, List<SignumTincture> tincturesList)
+        public void SetParams(string title, List<string> figuresList, List<SignumTincture> tincturesListFull, List<SignumTincture> tincturesListShort)
         {
             this.Title.Text = title;
             foreach (var figure in figuresList)
                 this.Figure.Items.Add(figure);
 
-            foreach (var tincture in tincturesList)
+            foreach (var tincture in tincturesListFull)
             {
                 this.ColorMain.Items.Add(tincture);
             }
 
-            var def1 = tincturesList.SingleOrDefault(o => o.Tincture == ETincture.Ermine);
-            var def2 = tincturesList.SingleOrDefault(o => o.Tincture == ETincture.Vair);
-            tincturesList.Remove(def1);
-            tincturesList.Remove(def2);
-
-            foreach (var tincture in tincturesList)
+            foreach (var tincture in tincturesListShort)
             {
                 this.ColorSub.Items.Add(tincture);
                 this.ColorBG.Items.Add(tincture);

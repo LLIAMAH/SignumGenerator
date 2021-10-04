@@ -86,7 +86,7 @@ namespace SignumGenerator.Signum
                     }
                 case SignumBasePattern.Quarters_1_4:
                     {
-                        if (tincture.IsColor || tincture.IsMetal)
+                        if (tincture.IsEnamel || tincture.IsMetal)
                         {
                             using (var brush = tincture.CreateBrush())
                             {
@@ -109,7 +109,7 @@ namespace SignumGenerator.Signum
                     }
                 case SignumBasePattern.Quarters_2_3:
                     {
-                        if (tincture.IsColor || tincture.IsMetal)
+                        if (tincture.IsEnamel || tincture.IsMetal)
                         {
                             using (var brush = tincture.CreateBrush())
                             {
@@ -132,9 +132,25 @@ namespace SignumGenerator.Signum
                     }
                 case SignumBasePattern.QuartersDiagonalTopBottom:
                     {
-                        using (var brush = tincture.CreateBrush())
+                        if (tincture.IsEnamel || tincture.IsMetal)
                         {
-                            DrawQuartersDiagonalTopBottom(_g, brush, _data);
+                            using (var brush = tincture.CreateBrush())
+                            {
+                                DrawQuartersDiagonalTopBottom(_g, brush, _data);
+                            }
+                        }
+                        else
+                        {
+                            using (var image = tincture.CreateFur(input.TinctureSub))
+                            {
+                                var rect = new Rectangle(0, 0, Width, Height);
+                                DrawFur(_g, image, 100, rect);
+                            }
+
+                            using (var brush = tincture.CreateBrush())
+                            {
+                                DrawQuartersDiagonalLeftRight(_g, brush, _data);
+                            }
                         }
 
                         break;

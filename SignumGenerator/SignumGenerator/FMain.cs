@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Windows.Forms;
 using SignumGenerator.Signum;
@@ -19,21 +20,25 @@ namespace SignumGenerator
         private void FMain_Load(object sender, EventArgs e)
         {
             var enumTinctures = Enum.GetNames<ETincture>().ToList();
-            var tincturesList = new List<SignumTincture>();
+            var tincturesListFull = new List<SignumTincture>();
+            var tincturesListShort = new List<SignumTincture>();
             foreach (var tinctureStr in enumTinctures)
             {
                 var tincture = (ETincture) Enum.Parse(typeof(ETincture), tinctureStr);
-                tincturesList.Add(new SignumTincture(tincture));
+                tincturesListFull.Add(new SignumTincture(tincture));
+
+                if (tincture != ETincture.Ermine && tincture != ETincture.Vair)
+                    tincturesListShort.Add(new SignumTincture(tincture));
             }
 
             var enumFigures = Enum.GetNames<SignumBasePattern>().ToList();
 
-            layerBase.SetParams("Base", tincturesList);
-            layer1.SetParams("Layer 1", enumFigures, tincturesList);
-            layer2.SetParams("Layer 2", enumFigures, tincturesList);
-            layer3.SetParams("Layer 3", enumFigures, tincturesList);
-            layer4.SetParams("Layer 4", enumFigures, tincturesList);
-            layer5.SetParams("Layer 5", enumFigures, tincturesList);
+            layerBase.SetParams("Base", tincturesListFull, tincturesListShort);
+            layer1.SetParams("Layer 1", enumFigures, tincturesListFull, tincturesListShort);
+            layer2.SetParams("Layer 2", enumFigures, tincturesListFull, tincturesListShort);
+            layer3.SetParams("Layer 3", enumFigures, tincturesListFull, tincturesListShort);
+            layer4.SetParams("Layer 4", enumFigures, tincturesListFull, tincturesListShort);
+            layer5.SetParams("Layer 5", enumFigures, tincturesListFull, tincturesListShort);
         }
 
         //private void DrawImage(Graphics graphics)
@@ -118,6 +123,14 @@ namespace SignumGenerator
 
             signumBase.Draw(g);
             pbResult.Image = this._bmp;
+        }
+
+        private void bnSaveToFile_Click(object sender, EventArgs e)
+        {
+            if (dlgSaveFile.ShowDialog() == DialogResult.OK)
+            {
+                pbResult.Image.Save(dlgSaveFile.FileName, ImageFormat.Png);
+            }
         }
     }
 }

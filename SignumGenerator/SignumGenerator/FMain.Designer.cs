@@ -32,6 +32,7 @@ namespace SignumGenerator
             this.gbSignum = new System.Windows.Forms.GroupBox();
             this.pbResult = new System.Windows.Forms.PictureBox();
             this.gbControls = new System.Windows.Forms.GroupBox();
+            this.bnSaveToFile = new System.Windows.Forms.Button();
             this.bnDraw = new System.Windows.Forms.Button();
             this.layerBase = new SignumGenerator.Controls.InputControlBase();
             this.layer5 = new SignumGenerator.Controls.InputControlLayer();
@@ -39,6 +40,7 @@ namespace SignumGenerator
             this.layer3 = new SignumGenerator.Controls.InputControlLayer();
             this.layer2 = new SignumGenerator.Controls.InputControlLayer();
             this.layer1 = new SignumGenerator.Controls.InputControlLayer();
+            this.dlgSaveFile = new System.Windows.Forms.SaveFileDialog();
             this.gbSignum.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbResult)).BeginInit();
             this.gbControls.SuspendLayout();
@@ -67,6 +69,7 @@ namespace SignumGenerator
             // 
             // gbControls
             // 
+            this.gbControls.Controls.Add(this.bnSaveToFile);
             this.gbControls.Controls.Add(this.bnDraw);
             this.gbControls.Controls.Add(this.layerBase);
             this.gbControls.Controls.Add(this.layer5);
@@ -81,6 +84,16 @@ namespace SignumGenerator
             this.gbControls.TabIndex = 1;
             this.gbControls.TabStop = false;
             this.gbControls.Text = "Controls";
+            // 
+            // bnSaveToFile
+            // 
+            this.bnSaveToFile.Location = new System.Drawing.Point(20, 549);
+            this.bnSaveToFile.Name = "bnSaveToFile";
+            this.bnSaveToFile.Size = new System.Drawing.Size(194, 78);
+            this.bnSaveToFile.TabIndex = 25;
+            this.bnSaveToFile.Text = "Save...";
+            this.bnSaveToFile.UseVisualStyleBackColor = true;
+            this.bnSaveToFile.Click += new System.EventHandler(this.bnSaveToFile_Click);
             // 
             // bnDraw
             // 
@@ -146,6 +159,11 @@ namespace SignumGenerator
             this.layer1.Size = new System.Drawing.Size(860, 84);
             this.layer1.TabIndex = 18;
             // 
+            // dlgSaveFile
+            // 
+            this.dlgSaveFile.DefaultExt = "*.png";
+            this.dlgSaveFile.Filter = "Images|*.png";
+            // 
             // FMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -178,6 +196,8 @@ namespace SignumGenerator
         private Controls.InputControlLayer layer1;
         private Controls.InputControlBase layerBase;
         private System.Windows.Forms.Button bnDraw;
+        private System.Windows.Forms.Button bnSaveToFile;
+        private System.Windows.Forms.SaveFileDialog dlgSaveFile;
     }
 }
 
