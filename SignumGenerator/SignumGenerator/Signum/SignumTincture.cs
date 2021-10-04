@@ -2,13 +2,13 @@
 using System.IO;
 using SignumGenerator.Helpers;
 using Color = System.Drawing.Color;
-// ReSharper disable ConvertToUsingDeclaration
 
+// ReSharper disable ConvertToUsingDeclaration
 namespace SignumGenerator.Signum
 {
     public enum ETincture
     {
-        Default,
+        Default, // Black
         Gules, // Scarlet
         Azure, // Blue
         Vert, // Green
@@ -16,11 +16,11 @@ namespace SignumGenerator.Signum
         Sable, // Black
         Or, // 255, 215, 0
         Argent, // 192, 192, 192 left as White? 
-        Ermine,
-        Vair,
-        Sanguine,
-        Murrey,
-        Tenne
+        Ermine, // Fur tincture 
+        Vair, // Furt tincture
+        Sanguine, // Blood
+        Murrey, // Dark red
+        Tenne // Orange
     }
 
     public class SignumTincture
@@ -35,7 +35,7 @@ namespace SignumGenerator.Signum
         public Color Color => GetColor(_tincture);
         public bool IsFur => _tincture is ETincture.Ermine or ETincture.Vair;
         public bool IsMetal => _tincture is ETincture.Or or ETincture.Argent;
-        public bool IsColor => !(IsFur || IsMetal);
+        public bool IsEnamel => !(IsFur || IsMetal);
 
         public SignumTincture(ETincture eTincture)
         {
