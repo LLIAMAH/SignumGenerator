@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using SignumGenerator.Helpers;
 using SignumGenerator.Signum;
@@ -13,16 +14,21 @@ namespace SignumGenerator.Controls
             InitializeComponent();
         }
 
-        public void SetParams(string title, List<string> figuresList, List<SignumTincture> tincturesList)
+        public void SetParams(string title, List<string> figuresList, List<SignumTincture> tincturesListFull, List<SignumTincture> tincturesListShort)
         {
             this.Title.Text = title;
             foreach (var figure in figuresList)
                 this.Figure.Items.Add(figure);
 
-            foreach (var tincture in tincturesList)
+            foreach (var tincture in tincturesListFull)
             {
                 this.ColorMain.Items.Add(tincture);
+            }
+
+            foreach (var tincture in tincturesListShort)
+            {
                 this.ColorSub.Items.Add(tincture);
+                this.ColorBG.Items.Add(tincture);
             }
 
             this.Figure.SelectedIndex = 0;
@@ -32,6 +38,9 @@ namespace SignumGenerator.Controls
             this.ColorSub.SelectedIndex = 0;
             this.ColorSub.DisplayMember = "TinctureName";
             this.ColorSub.ValueMember = "Tincture";
+            this.ColorBG.SelectedIndex = 0;
+            this.ColorBG.DisplayMember = "TinctureName";
+            this.ColorBG.ValueMember = "Tincture";
         }
 
         private void Figure_SelectedIndexChanged(object sender, EventArgs e)
@@ -92,7 +101,7 @@ namespace SignumGenerator.Controls
             if (val == null)
                 return;
 
-            this.ColorSub.Enabled = val.Tincture is ETincture.Ermine or ETincture.Vair;
+            this.ColorBG.Enabled = this.ColorSub.Enabled = val.Tincture is ETincture.Ermine or ETincture.Vair;
         }
 
         private void SetParamsAvailable(int availableParamsCount, string title1 = "", string title2 = "", string title3 = "")
@@ -128,6 +137,7 @@ namespace SignumGenerator.Controls
             var pattern = Enum.Parse<SignumBasePattern>(Figure.SelectedItem?.ToString()!);
             var colorMain = ColorMain.SelectedItem as SignumTincture;
             var colorSub = ColorSub.SelectedItem as SignumTincture;
+            var colorBg = ColorBG.SelectedItem as SignumTincture;
 
             int? param1 = Param1.Enabled && !string.IsNullOrEmpty(Param1.Text)
                 ? Convert.ToInt32(Param1.Text)
@@ -139,7 +149,8 @@ namespace SignumGenerator.Controls
                 ? Convert.ToInt32(Param3.Text)
                 : null;
 
-            return new InputLayerData(pattern, colorMain, colorSub,
+            return new InputLayerData(pattern,
+                colorMain, colorSub, colorBg,
                 param1, param2, param3);
         }
     }
