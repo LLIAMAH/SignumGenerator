@@ -242,8 +242,8 @@ namespace SignumGenerator.Signum
 
         private static void DrawQuarters23Fur(Graphics g, Image image, SignumData data)
         {
-            DrawFur(g, image, 100, new Rectangle(data.Left, data.Top, data.Width / 2, data.Height / 2));
-            DrawFur(g, image, 100, new Rectangle(data.CenterX, data.CenterY, data.Width / 2, data.Height / 2));
+            DrawFur(g, image, 100, new Rectangle(data.CenterX, data.Top, data.Width / 2, data.Height / 2));
+            DrawFur(g, image, 100, new Rectangle(data.Left, data.CenterY, data.Width / 2, data.Height / 2));
         }
 
         private static void DrawSlingLeft(Graphics g, Pen pen, SignumData data)
