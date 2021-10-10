@@ -384,8 +384,8 @@ namespace SignumGenerator.Signum
                         : (tincture.IsShifted
                             ? new Rectangle(i, j, step, step)
                             : new Rectangle(i - step / 2, j, step, step));
-                    localG.DrawImage(image, tempRect);
 
+                    localG.DrawImage(image, tempRect);
                     i += step;
                 }
 
