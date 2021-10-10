@@ -224,10 +224,10 @@ namespace SignumGenerator.Signum
                 });
         }
 
-        private static void DrawQuarters14Fur(Graphics g, Image image, SignumData data)
+        private static void DrawQuarters14Fur(Graphics g, Image image, SignumData data, SignumTincture tincture)
         {
-            DrawFur(g, image, 100, new Rectangle(data.Left, data.Top, data.Width / 2, data.Height / 2));
-            DrawFur(g, image, 100, new Rectangle(data.CenterX, data.CenterY, data.Width / 2, data.Height / 2));
+            DrawFur(g, image, 100, new Rectangle(data.Left, data.Top, data.Width / 2, data.Height / 2), tincture);
+            DrawFur(g, image, 100, new Rectangle(data.CenterX, data.CenterY, data.Width / 2, data.Height / 2), tincture);
         }
 
         private static void DrawQuarters23Tincture(Graphics g, Brush brush, SignumData data)
@@ -240,10 +240,10 @@ namespace SignumGenerator.Signum
                 });
         }
 
-        private static void DrawQuarters23Fur(Graphics g, Image image, SignumData data)
+        private static void DrawQuarters23Fur(Graphics g, Image image, SignumData data, SignumTincture tincture)
         {
-            DrawFur(g, image, 100, new Rectangle(data.CenterX, data.Top, data.Width / 2, data.Height / 2));
-            DrawFur(g, image, 100, new Rectangle(data.Left, data.CenterY, data.Width / 2, data.Height / 2));
+            DrawFur(g, image, 100, new Rectangle(data.CenterX, data.Top, data.Width / 2, data.Height / 2), tincture);
+            DrawFur(g, image, 100, new Rectangle(data.Left, data.CenterY, data.Width / 2, data.Height / 2), tincture);
         }
 
         private static void DrawSlingLeft(Graphics g, Pen pen, SignumData data)
@@ -366,7 +366,7 @@ namespace SignumGenerator.Signum
             }
         }
 
-        private static void DrawFur(Graphics g, Image image, int step, Rectangle rect)
+        private static void DrawFur(Graphics g, Image image, int step, Rectangle rect, SignumTincture tincture)
         {
             var localBmp = new Bitmap(rect.Width, rect.Height);
             var localG = Graphics.FromImage(localBmp);
@@ -378,13 +378,19 @@ namespace SignumGenerator.Signum
             {
                 while (i - step < localRect.Right)
                 {
-                    var tempRect = (j / step) % 2 == 0 
-                        ? new Rectangle(i, j, step, step) 
-                        : new Rectangle(i - step / 2, j, step, step);
+                    var isEven = (j / step) % 2 == 0;
+                    var tempRect = isEven
+                        ? new Rectangle(i, j, step, step)
+                        : (tincture.IsShifted
+                            ? new Rectangle(i, j, step, step)
+                            : new Rectangle(i - step / 2, j, step, step));
                     localG.DrawImage(image, tempRect);
 
                     i += step;
                 }
+
+                if(tincture.IsCounter)
+                    image.RotateFlip(RotateFlipType.Rotate180FlipNone);
 
                 i = 0;
                 j += step;

@@ -51,7 +51,7 @@ namespace SignumGenerator.Controls
             if (val == null)
                 return;
 
-            this.ColorBG.Enabled = this.ColorSub.Enabled = val.Tincture is ETincture.Ermine or ETincture.Vair;
+            this.ColorBG.Enabled = this.ColorSub.Enabled = val.IsFur;
         }
     }
 }

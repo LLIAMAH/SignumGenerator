@@ -29,7 +29,7 @@ namespace SignumGenerator.Signum
                 }
                 using (var image = input.TinctureMain.CreateFur(input.TinctureSub))
                 {
-                    DrawFur(_g, image, 100, rect);
+                    DrawFur(_g, image, 100, rect, input.TinctureMain);
                 }   
             }
             else
@@ -101,7 +101,7 @@ namespace SignumGenerator.Signum
                             }
                             using (var image = tincture.CreateFur(input.TinctureSub))
                             {
-                                DrawQuarters14Fur(_g, image, _data);
+                                DrawQuarters14Fur(_g, image, _data, tincture);
                             }
                         }
 
@@ -124,7 +124,7 @@ namespace SignumGenerator.Signum
                             }
                             using (var image = tincture.CreateFur(input.TinctureSub))
                             {
-                                DrawQuarters23Fur(_g, image, _data);
+                                DrawQuarters23Fur(_g, image, _data, input.TinctureMain);
                             }
                         }
 
@@ -144,7 +144,7 @@ namespace SignumGenerator.Signum
                             using (var image = tincture.CreateFur(input.TinctureSub))
                             {
                                 var rect = new Rectangle(0, 0, Width, Height);
-                                DrawFur(_g, image, 100, rect);
+                                DrawFur(_g, image, 100, rect, input.TinctureMain);
                             }
 
                             using (var brush = tincture.CreateBrush())

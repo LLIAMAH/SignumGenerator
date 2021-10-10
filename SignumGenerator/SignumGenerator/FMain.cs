@@ -24,11 +24,12 @@ namespace SignumGenerator
             var tincturesListShort = new List<SignumTincture>();
             foreach (var tinctureStr in enumTinctures)
             {
-                var tincture = (ETincture) Enum.Parse(typeof(ETincture), tinctureStr);
-                tincturesListFull.Add(new SignumTincture(tincture));
+                var tincture = (ETincture)Enum.Parse(typeof(ETincture), tinctureStr);
+                var signumTincture = new SignumTincture(tincture);
+                tincturesListFull.Add(signumTincture);
 
-                if (tincture != ETincture.Ermine && tincture != ETincture.Vair)
-                    tincturesListShort.Add(new SignumTincture(tincture));
+                if (!signumTincture.IsFur)
+                    tincturesListShort.Add(signumTincture);
             }
 
             var enumFigures = Enum.GetNames<SignumBasePattern>().ToList();
