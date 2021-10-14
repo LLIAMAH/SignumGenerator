@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using SignumGenerator.Helpers;
 using SignumGenerator.Signum;
@@ -21,9 +20,7 @@ namespace SignumGenerator.Controls
                 this.Figure.Items.Add(figure);
 
             foreach (var tincture in tincturesListFull)
-            {
                 this.ColorMain.Items.Add(tincture);
-            }
 
             foreach (var tincture in tincturesListShort)
             {
@@ -52,6 +49,8 @@ namespace SignumGenerator.Controls
             {
                 case SignumBasePattern.StripesHorizontal:
                 case SignumBasePattern.StripesVertical:
+                case SignumBasePattern.StripesPal:
+                case SignumBasePattern.StripesBar:
                     SetParamsAvailable(1, "Count");
                     break;
                 case SignumBasePattern.SlingLeft:
@@ -97,8 +96,7 @@ namespace SignumGenerator.Controls
 
         private void ColorMain_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            var val = (sender as ComboBox)?.SelectedItem as SignumTincture;
-            if (val == null)
+            if ((sender as ComboBox)?.SelectedItem is not SignumTincture val)
                 return;
 
             this.ColorBG.Enabled = this.ColorSub.Enabled = val.IsFur;

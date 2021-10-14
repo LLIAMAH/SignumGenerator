@@ -226,8 +226,8 @@ namespace SignumGenerator.Signum
 
         private static void DrawQuarters14Fur(Graphics g, Image image, SignumData data, SignumTincture tincture)
         {
-            DrawFur(g, image, 100, new Rectangle(data.Left, data.Top, data.Width / 2, data.Height / 2), tincture);
-            DrawFur(g, image, 100, new Rectangle(data.CenterX, data.CenterY, data.Width / 2, data.Height / 2), tincture);
+            DrawFur(g, image, _furStep, new Rectangle(data.Left, data.Top, data.Width / 2, data.Height / 2), tincture);
+            DrawFur(g, image, _furStep, new Rectangle(data.CenterX, data.CenterY, data.Width / 2, data.Height / 2), tincture);
         }
 
         private static void DrawQuarters23Tincture(Graphics g, Brush brush, SignumData data)
@@ -242,8 +242,8 @@ namespace SignumGenerator.Signum
 
         private static void DrawQuarters23Fur(Graphics g, Image image, SignumData data, SignumTincture tincture)
         {
-            DrawFur(g, image, 100, new Rectangle(data.CenterX, data.Top, data.Width / 2, data.Height / 2), tincture);
-            DrawFur(g, image, 100, new Rectangle(data.Left, data.CenterY, data.Width / 2, data.Height / 2), tincture);
+            DrawFur(g, image, _furStep, new Rectangle(data.CenterX, data.Top, data.Width / 2, data.Height / 2), tincture);
+            DrawFur(g, image, _furStep, new Rectangle(data.Left, data.CenterY, data.Width / 2, data.Height / 2), tincture);
         }
 
         private static void DrawSlingLeft(Graphics g, Pen pen, SignumData data)
@@ -366,6 +366,32 @@ namespace SignumGenerator.Signum
             }
         }
 
+        private static void DrawStripesPal(Graphics g, Pen pen, SignumData data, int lineWidth, int count)
+        {
+            if(count == 0)
+                return;
+
+            var i = 1;
+            while (i < data.Width)
+            {
+                var lineCenter = i * lineWidth + lineWidth / 2;
+                //if (i % 2 == 1 && lineCenter <= data.Right)
+                if (i % 2 == 1)
+                    g.DrawLine(pen, new Point(lineCenter, data.Top), new Point(lineCenter, data.Bottom));
+                i++;
+            }
+        }
+
+        private static void DrawPalNormal(Graphics g, Pen pen, SignumData data)
+        {
+            g.DrawLine(pen, new Point(data.CenterX, data.Top), new Point(data.CenterX, data.Bottom));
+        }
+
+        private static void DrawFur(Graphics g, Image image, int step, Region region, SignumTincture tincture)
+        {
+            var rect = region.GetBounds(g);
+        }
+
         private static void DrawFur(Graphics g, Image image, int step, Rectangle rect, SignumTincture tincture)
         {
             var localBmp = new Bitmap(rect.Width, rect.Height);
@@ -398,5 +424,7 @@ namespace SignumGenerator.Signum
 
             g.DrawImage(localBmp, rect);
         }
+
+        
     }
 }
