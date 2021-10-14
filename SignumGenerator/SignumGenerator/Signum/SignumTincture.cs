@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using System.IO;
-using System.Windows.Media.Animation;
 using SignumGenerator.Helpers;
 using Color = System.Drawing.Color;
 
@@ -29,6 +28,7 @@ namespace SignumGenerator.Signum
     public class SignumTincture
     {
         private readonly ETincture _tincture;
+        // ReSharper disable once InconsistentNaming
         private static readonly string _imagesPath =
             Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)!, "Images");
 

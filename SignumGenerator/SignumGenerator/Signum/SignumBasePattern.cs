@@ -7,8 +7,12 @@
         StripesVertical,
         StripesPal,
         StripesBar,
-        PalNormal,
-        PalTight,
+        SimpleHeadNormal,
+        SimpleHeadTight,
+        SimplePalNormal,
+        SimplePalTight,
+        SimpleBeltNormal,
+        SimpleBeltTight,
         Chef, // Сверху щита — глава (фр. chef) шириной в 2/7 щита
         Champagne, //Линия, соединяющая боковые кромки щита на высоте, равной 2/7 ширины щита — оконечность (фр. champagne).
         /*

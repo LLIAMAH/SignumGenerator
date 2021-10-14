@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
-using System.Globalization;
-using Svg;
+using System.Drawing.Drawing2D;
 
 namespace SignumGenerator.Signum
 {
@@ -371,25 +370,37 @@ namespace SignumGenerator.Signum
             if(count == 0)
                 return;
 
-            var i = 1;
-            while (i < data.Width)
+            var pileZone  = data.Width / count;
+            var pileZoneCenter = pileZone / 2;
+            var i = 0;
+            while (i < count)
             {
-                var lineCenter = i * lineWidth + lineWidth / 2;
-                //if (i % 2 == 1 && lineCenter <= data.Right)
-                if (i % 2 == 1)
-                    g.DrawLine(pen, new Point(lineCenter, data.Top), new Point(lineCenter, data.Bottom));
+                g.DrawLine(pen, new Point(pileZoneCenter, data.Top), new Point(pileZoneCenter, data.Bottom));
+                pileZoneCenter += pileZone;
                 i++;
             }
         }
 
-        private static void DrawPalNormal(Graphics g, Pen pen, SignumData data)
+        private static void DrawStripesBar(Graphics g, Pen pen, SignumData data, int lineWidth, int count)
         {
-            g.DrawLine(pen, new Point(data.CenterX, data.Top), new Point(data.CenterX, data.Bottom));
+            if (count == 0)
+                return;
+
+            var pileZone = data.Height / count;
+            var pileZoneCenter = pileZone / 2;
+            var i = 0;
+            while (i < count)
+            {
+                g.DrawLine(pen, new Point(data.Left, pileZoneCenter), new Point(data.Right, pileZoneCenter));
+                pileZoneCenter += pileZone;
+                i++;
+            }
         }
 
         private static void DrawFur(Graphics g, Image image, int step, Region region, SignumTincture tincture)
         {
             var rect = region.GetBounds(g);
+            g.SetClip(region, CombineMode.Union);
         }
 
         private static void DrawFur(Graphics g, Image image, int step, Rectangle rect, SignumTincture tincture)
@@ -424,7 +435,5 @@ namespace SignumGenerator.Signum
 
             g.DrawImage(localBmp, rect);
         }
-
-        
     }
 }

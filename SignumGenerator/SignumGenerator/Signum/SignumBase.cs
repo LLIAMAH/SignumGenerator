@@ -82,27 +82,42 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.StripesBar:
                 {
-
-                    break;
-                }
-                case SignumBasePattern.PalNormal:
-                {
-                    var lineWidth = _data.Width / 3; // defined heraldic value for pal
+                    var lineWidth = _data.Height/ (input.Param1.Value * 2 + 1);
                     using (var pen = tincture.CreatePen(lineWidth))
                     {
-                        DrawPalNormal(_g, pen, _data);
+                        DrawStripesBar(_g, pen, _data, lineWidth, input.Param1.Value);
                     }
 
                     break;
                 }
-                case SignumBasePattern.PalTight:
+                case SignumBasePattern.SimpleHeadNormal:
                 {
-                    var lineWidth = _data.Width * 2 / 7; // defined heraldic value for pal
-                    using (var pen = tincture.CreatePen(lineWidth))
-                    {
-                        DrawPalNormal(_g, pen, _data);
-                    }
-
+                    DrawHeadNormal(_g, _data, tincture);
+                    break;
+                }
+                case SignumBasePattern.SimpleHeadTight:
+                {
+                    DrawHeadTight(_g, _data, tincture);
+                    break;
+                }
+                case SignumBasePattern.SimplePalNormal:
+                {
+                    DrawPalNormal(_g, _data, tincture);
+                    break;
+                }
+                case SignumBasePattern.SimplePalTight:
+                {
+                    DrawPalTight(_g, _data, tincture);
+                    break;
+                }
+                case SignumBasePattern.SimpleBeltNormal:
+                {
+                    DrawBeltNormal(_g, _data, tincture);
+                    break;
+                }
+                case SignumBasePattern.SimpleBeltTight:
+                {
+                    DrawBeltTight(_g, _data, tincture);
                     break;
                 }
                 case SignumBasePattern.SlingRight:
