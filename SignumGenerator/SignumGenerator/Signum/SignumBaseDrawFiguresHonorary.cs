@@ -23,72 +23,53 @@ namespace SignumGenerator.Signum
      */
     public partial class SignumBase
     {
-        private static void DrawPal(Graphics g, Pen pen, SignumData data)
+        private static void DrawHonoraryPal(Graphics g, Pen pen, SignumData data)
         {
             g.DrawLine(pen, new Point(data.CenterX, data.Top), new Point(data.CenterX, data.Bottom));
         }
 
-        private static void DrawPalNormal(Graphics g, SignumData data, SignumTincture tincture)
+        private static void DrawHonoraryPalNormal(Graphics g, SignumData data, SignumTincture tincture)
         {
             var lineWidth = data.Width / 3; // defined heraldic value
             using (var pen = tincture.CreatePen(lineWidth))
             {
-                DrawPal(g, pen, data);
+                DrawHonoraryPal(g, pen, data);
             }
         }
 
-        private static void DrawPalTight(Graphics g, SignumData data, SignumTincture tincture)
+        private static void DrawHonoraryPalTight(Graphics g, SignumData data, SignumTincture tincture)
         {
             var lineWidth = data.Width * 2 / 7; // defined heraldic value 
             using (var pen = tincture.CreatePen(lineWidth))
             {
-                DrawPal(g, pen, data);
+                DrawHonoraryPal(g, pen, data);
             }
         }
 
-        private static void DrawHead(Graphics g, Pen pen, SignumData data)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        private static void DrawHeadNormal(Graphics g, SignumData data, SignumTincture tincture)
-        {
-            var lineWidth = data.Width / 3; // defined heraldic value
-            using (var pen = tincture.CreatePen(lineWidth))
-            {
-                DrawHead(g, pen, data);
-            }
-        }
-
-        private static void DrawHeadTight(Graphics g, SignumData data, SignumTincture tincture)
+        private static void DrawHonoraryHead(Graphics g, SignumData data, SignumTincture tincture)
         {
             var lineWidth = data.Width * 2 / 7; // defined heraldic value
-            using (var pen = tincture.CreatePen(lineWidth))
+            using (var brush = tincture.CreateBrush())
             {
-                DrawHead(g, pen, data);
+                g.FillRectangle(brush, new Rectangle(new Point(data.Left, data.Top), new Size(data.Width, lineWidth)));
             }
         }
 
-        private static void DrawBelt(Graphics g, Pen pen, SignumData data)
-        {
-            g.DrawLine(pen, new Point(data.Left, data.CenterY), new Point(data.Right, data.CenterY));
-        }
-
-        private static void DrawBeltNormal(Graphics g, SignumData data, SignumTincture tincture)
-        {
-            var lineWidth = data.Width * 3; // defined heraldic value
-            using (var pen = tincture.CreatePen(lineWidth))
-            {
-                DrawBelt(g, pen, data);
-            }
-        }
-
-        private static void DrawBeltTight(Graphics g, SignumData data, SignumTincture tincture)
+        private static void DrawHonoraryBelt(Graphics g, SignumData data, SignumTincture tincture)
         {
             var lineWidth = data.Width * 2 / 7; // defined heraldic value
-            using (var pen = tincture.CreatePen(lineWidth))
+            using (var brush = tincture.CreateBrush())
             {
-                DrawBelt(g, pen, data);
+                g.FillRectangle(brush, new Rectangle(new Point(data.Left, data.CenterY - lineWidth / 2), new Size(data.Width, lineWidth)));
+            }
+        }
+
+        private static void DrawHonoraryEnd(Graphics g, SignumData data, SignumTincture tincture)
+        {
+            var lineWidth = data.Width * 2 / 7; // defined heraldic value
+            using (var brush = tincture.CreateBrush())
+            {
+                g.FillRectangle(brush, new Rectangle(new Point(data.Left, data.Bottom - lineWidth), new Size(data.Width, lineWidth)));
             }
         }
 

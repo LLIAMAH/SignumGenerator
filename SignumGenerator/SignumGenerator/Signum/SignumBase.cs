@@ -90,34 +90,29 @@ namespace SignumGenerator.Signum
 
                     break;
                 }
-                case SignumBasePattern.SimpleHeadNormal:
+                case SignumBasePattern.HonoraryHead:
                 {
-                    DrawHeadNormal(_g, _data, tincture);
+                    DrawHonoraryHead(_g, _data, tincture);
                     break;
                 }
-                case SignumBasePattern.SimpleHeadTight:
+                case SignumBasePattern.HonoraryPalNormal:
                 {
-                    DrawHeadTight(_g, _data, tincture);
+                    DrawHonoraryPalNormal(_g, _data, tincture);
                     break;
                 }
-                case SignumBasePattern.SimplePalNormal:
+                case SignumBasePattern.HonoraryPalTight:
                 {
-                    DrawPalNormal(_g, _data, tincture);
+                    DrawHonoraryPalTight(_g, _data, tincture);
                     break;
                 }
-                case SignumBasePattern.SimplePalTight:
+                case SignumBasePattern.HonoraryBelt:
                 {
-                    DrawPalTight(_g, _data, tincture);
+                    DrawHonoraryBelt(_g, _data, tincture);
                     break;
                 }
-                case SignumBasePattern.SimpleBeltNormal:
+                case SignumBasePattern.HonoraryEnd:
                 {
-                    DrawBeltNormal(_g, _data, tincture);
-                    break;
-                }
-                case SignumBasePattern.SimpleBeltTight:
-                {
-                    DrawBeltTight(_g, _data, tincture);
+                    DrawHonoraryEnd(_g, _data, tincture);
                     break;
                 }
                 case SignumBasePattern.SlingRight:
