@@ -95,6 +95,16 @@ namespace SignumGenerator.Signum
                     DrawHonoraryHead(_g, _data, tincture);
                     break;
                 }
+                case SignumBasePattern.HonoraryBelt:
+                {
+                    DrawHonoraryBelt(_g, _data, tincture);
+                    break;
+                }
+                case SignumBasePattern.HonoraryEnd:
+                {
+                    DrawHonoraryEnd(_g, _data, tincture);
+                    break;
+                }
                 case SignumBasePattern.HonoraryPalNormal:
                 {
                     DrawHonoraryPalNormal(_g, _data, tincture);
@@ -105,14 +115,15 @@ namespace SignumGenerator.Signum
                     DrawHonoraryPalTight(_g, _data, tincture);
                     break;
                 }
-                case SignumBasePattern.HonoraryBelt:
+
+                case SignumBasePattern.HonoraryFlancLeft:
                 {
-                    DrawHonoraryBelt(_g, _data, tincture);
+                    DrawHonoraryFlankLeft(_g, _data, tincture);
                     break;
                 }
-                case SignumBasePattern.HonoraryEnd:
+                case SignumBasePattern.HonoraryFlancRight:
                 {
-                    DrawHonoraryEnd(_g, _data, tincture);
+                    DrawHonoraryFlankRight(_g, _data, tincture);
                     break;
                 }
                 case SignumBasePattern.SlingRight:

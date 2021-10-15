@@ -73,5 +73,22 @@ namespace SignumGenerator.Signum
             }
         }
 
+        private static void DrawHonoraryFlankLeft(Graphics g, SignumData data, SignumTincture tincture)
+        {
+            var lineWidth = data.Width * 2 / 7; // defined heraldic value
+            using (var brush = tincture.CreateBrush())
+            {
+                g.FillRectangle(brush, new Rectangle(new Point(data.Left, data.Top), new Size(lineWidth, data.Height)));
+            }
+        }
+
+        private static void DrawHonoraryFlankRight(Graphics g, SignumData data, SignumTincture tincture)
+        {
+            var lineWidth = data.Width * 2 / 7; // defined heraldic value
+            using (var brush = tincture.CreateBrush())
+            {
+                g.FillRectangle(brush, new Rectangle(new Point(data.Right - lineWidth, data.Top), new Size(lineWidth, data.Height)));
+            }
+        }
     }
 }
