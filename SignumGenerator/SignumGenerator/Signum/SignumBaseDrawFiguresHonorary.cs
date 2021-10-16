@@ -35,6 +35,13 @@ namespace SignumGenerator.Signum
             return data.Width * 2 / 7; // defined heraldic value 
         }
 
+        private static int GetHeraldicWidthSling()
+        {
+            // value taken empirically
+            // TODO: calculate correct data by required size and diagonal angle.
+            return 228; 
+        }
+
         private static void DrawHonoraryPalNormal(Graphics g, SignumData data, InputLayerData input)
         {
             var lineWidth = GetHeraldicWidthFull(data);
@@ -105,7 +112,7 @@ namespace SignumGenerator.Signum
 
         private static void DrawHonorarySlingLeft(Graphics g, SignumData data, InputLayerData input)
         {
-            const int lineHalfSizeForSling = 228; // value taken empirically
+            var lineHalfSizeForSling = GetHeraldicWidthSling();
             var points = new Point[]
             {
                 new(data.Left, data.Top - lineHalfSizeForSling),
@@ -120,7 +127,7 @@ namespace SignumGenerator.Signum
 
         private static void DrawHonorarySlingRight(Graphics g, SignumData data, InputLayerData input)
         {
-            const int lineHalfSizeForSling = 228; // value taken empirically
+            var lineHalfSizeForSling = GetHeraldicWidthSling();
             var points = new Point[]
             {
                 new(data.Left, data.Bottom - lineHalfSizeForSling),
@@ -131,6 +138,28 @@ namespace SignumGenerator.Signum
 
             var region = CreateRegion(points);
             DrawRegion(g, region, input);
+        }
+
+        private static void DrawHonoraryChevron(Graphics g, SignumData data, InputLayerData input)
+        {
+            DrawChevronPointOffsetSizeNormal(g, data, input);
+        }
+
+        private static void DrawHonoraryChevronInverse(Graphics g, SignumData data, InputLayerData input)
+        {
+            DrawChevronPointOffsetSizeInvert(g, data, input);
+        }
+
+        
+
+        private static void DrawHonoraryCroix(Graphics g, SignumData data, InputLayerData input)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private static void DrawHonoraryCroixDiagonal(Graphics g, SignumData data, InputLayerData input)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
