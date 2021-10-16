@@ -92,40 +92,50 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.HonoraryHead:
                 {
-                    DrawHonoraryHead(_g, _data, tincture);
+                    DrawHonoraryHead(_g, _data, input);
                     break;
                 }
                 case SignumBasePattern.HonoraryBelt:
                 {
-                    DrawHonoraryBelt(_g, _data, tincture);
+                    DrawHonoraryBelt(_g, _data, input);
                     break;
                 }
                 case SignumBasePattern.HonoraryEnd:
                 {
-                    DrawHonoraryEnd(_g, _data, tincture);
+                    DrawHonoraryEnd(_g, _data, input);
                     break;
                 }
                 case SignumBasePattern.HonoraryPalNormal:
                 {
-                    DrawHonoraryPalNormal(_g, _data, tincture);
+                    DrawHonoraryPalNormal(_g, _data, input);
                     break;
                 }
                 case SignumBasePattern.HonoraryPalTight:
                 {
-                    DrawHonoraryPalTight(_g, _data, tincture);
+                    DrawHonoraryPalTight(_g, _data, input);
                     break;
                 }
-
                 case SignumBasePattern.HonoraryFlancLeft:
                 {
-                    DrawHonoraryFlankLeft(_g, _data, tincture);
+                    DrawHonoraryFlankLeft(_g, _data, input);
                     break;
                 }
                 case SignumBasePattern.HonoraryFlancRight:
                 {
-                    DrawHonoraryFlankRight(_g, _data, tincture);
+                    DrawHonoraryFlankRight(_g, _data, input);
                     break;
                 }
+                case SignumBasePattern.HonorarySlingLeft:
+                {
+                    DrawHonorarySlingLeft(_g, _data, input);
+                    break;
+                }
+                case SignumBasePattern.HonorarySlingRight:
+                {
+                    DrawHonorarySlingRight(_g, _data, input);
+                    break;
+                }
+
                 case SignumBasePattern.SlingRight:
                 {
                     using (var pen = tincture.CreatePen(input.Param1.Value == 0 ? 1 : input.Param1.Value))
@@ -402,19 +412,6 @@ namespace SignumGenerator.Signum
             g.DrawImage(this._bmp, 0, 0);
         }
 
-        private void ApplyShield(Graphics g)
-        {
-            var paramOffset = 200;
-            var path = new GraphicsPath();
-            path.AddLine(new Point(_data.Left, _data.Bottom - paramOffset), new Point(_data.Left, _data.Top));
-            path.AddLine(new Point(_data.Left, _data.Top), new Point(_data.Right, _data.Top));
-            path.AddLine(new Point(_data.Right, _data.Top), new Point(_data.Right, _data.Bottom - paramOffset));
-            path.AddLine(new Point(_data.Right, _data.Bottom - paramOffset), new Point(_data.CenterX, _data.Bottom));
-            path.AddLine(new Point(_data.CenterX, _data.Bottom), new Point(_data.Left, _data.Bottom - paramOffset));
-
-            var region = new Region(path);
-            g.DrawImage(this._bmp, new Point(0, 0));
-            g.SetClip(region, CombineMode.Replace);
-        }
+        
     }
 }

@@ -400,7 +400,8 @@ namespace SignumGenerator.Signum
         private static void DrawFur(Graphics g, Image image, int step, Region region, SignumTincture tincture)
         {
             var rect = region.GetBounds(g);
-            g.SetClip(region, CombineMode.Union);
+            g.SetClip(region, CombineMode.Replace);
+            DrawFur(g, image, step, new Rectangle((int)rect.X, (int)rect.Y, (int)rect.Width, (int)rect.Height), tincture);
         }
 
         private static void DrawFur(Graphics g, Image image, int step, Rectangle rect, SignumTincture tincture)

@@ -1,4 +1,6 @@
 ﻿using System.Drawing;
+using System.Drawing.Drawing2D;
+using SignumGenerator.Helpers;
 
 namespace SignumGenerator.Signum
 {
@@ -23,72 +25,112 @@ namespace SignumGenerator.Signum
      */
     public partial class SignumBase
     {
-        private static void DrawHonoraryPal(Graphics g, Pen pen, SignumData data)
+        private static int GetHeraldicWidthFull(SignumData data)
         {
-            g.DrawLine(pen, new Point(data.CenterX, data.Top), new Point(data.CenterX, data.Bottom));
+            return data.Width / 3;
         }
 
-        private static void DrawHonoraryPalNormal(Graphics g, SignumData data, SignumTincture tincture)
+        private static int GetHeraldicWidthNormal(SignumData data)
         {
-            var lineWidth = data.Width / 3; // defined heraldic value
-            using (var pen = tincture.CreatePen(lineWidth))
-            {
-                DrawHonoraryPal(g, pen, data);
-            }
+            return data.Width * 2 / 7; // defined heraldic value 
         }
 
-        private static void DrawHonoraryPalTight(Graphics g, SignumData data, SignumTincture tincture)
+        private static void DrawHonoraryPalNormal(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineWidth = data.Width * 2 / 7; // defined heraldic value 
-            using (var pen = tincture.CreatePen(lineWidth))
+            var lineWidth = GetHeraldicWidthFull(data);
+            var lineHalf = lineWidth / 2;
+            var points = new Point[]
             {
-                DrawHonoraryPal(g, pen, data);
-            }
+                new(data.CenterX - lineHalf, data.Top),
+                new(data.CenterX + lineHalf, data.Top),
+                new(data.CenterX + lineHalf, data.Bottom),
+                new(data.CenterX - lineHalf, data.Bottom),
+            };
+
+            var region = CreateRegion(points);
+            DrawRegion(g, region, input);
         }
 
-        private static void DrawHonoraryHead(Graphics g, SignumData data, SignumTincture tincture)
+        private static void DrawHonoraryPalTight(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineWidth = data.Width * 2 / 7; // defined heraldic value
-            using (var brush = tincture.CreateBrush())
-            {
-                g.FillRectangle(brush, new Rectangle(new Point(data.Left, data.Top), new Size(data.Width, lineWidth)));
-            }
+            var lineWidth = GetHeraldicWidthNormal(data);
+
+            var rect = new Rectangle(new Point(data.CenterX - lineWidth / 2, data.Top),
+                new Size(lineWidth, data.Bottom));
+            var region = CreateRegion(rect.ToPoints());
+
+            DrawRegion(g, region, input);
         }
 
-        private static void DrawHonoraryBelt(Graphics g, SignumData data, SignumTincture tincture)
+        private static void DrawHonoraryHead(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineWidth = data.Width * 2 / 7; // defined heraldic value
-            using (var brush = tincture.CreateBrush())
-            {
-                g.FillRectangle(brush, new Rectangle(new Point(data.Left, data.CenterY - lineWidth / 2), new Size(data.Width, lineWidth)));
-            }
+            var lineWidth = GetHeraldicWidthNormal(data);
+
+            var rect = new Rectangle(new Point(data.Left, data.Top), new Size(data.Width, lineWidth));
+            var region = CreateRegion(rect.ToPoints());
+            DrawRegion(g, region, input);
         }
 
-        private static void DrawHonoraryEnd(Graphics g, SignumData data, SignumTincture tincture)
+        private static void DrawHonoraryBelt(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineWidth = data.Width * 2 / 7; // defined heraldic value
-            using (var brush = tincture.CreateBrush())
-            {
-                g.FillRectangle(brush, new Rectangle(new Point(data.Left, data.Bottom - lineWidth), new Size(data.Width, lineWidth)));
-            }
+            var lineWidth = GetHeraldicWidthNormal(data);
+            var rect = new Rectangle(new Point(data.Left, data.CenterY - lineWidth / 2), new Size(data.Width, lineWidth));
+            var region = CreateRegion(rect.ToPoints());
+            DrawRegion(g, region, input);
         }
 
-        private static void DrawHonoraryFlankLeft(Graphics g, SignumData data, SignumTincture tincture)
+        private static void DrawHonoraryEnd(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineWidth = data.Width * 2 / 7; // defined heraldic value
-            using (var brush = tincture.CreateBrush())
-            {
-                g.FillRectangle(brush, new Rectangle(new Point(data.Left, data.Top), new Size(lineWidth, data.Height)));
-            }
+            var lineWidth = GetHeraldicWidthNormal(data);
+            var rect = new Rectangle(new Point(data.Left, data.Bottom - lineWidth), new Size(data.Width, lineWidth));
+            var region = CreateRegion(rect.ToPoints());
+            DrawRegion(g, region, input);
         }
 
-        private static void DrawHonoraryFlankRight(Graphics g, SignumData data, SignumTincture tincture)
+        private static void DrawHonoraryFlankLeft(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineWidth = data.Width * 2 / 7; // defined heraldic value
-            using (var brush = tincture.CreateBrush())
+            var lineWidth = GetHeraldicWidthNormal(data);
+            var rect = new Rectangle(new Point(data.Left, data.Top), new Size(lineWidth, data.Height));
+            var region = CreateRegion(rect.ToPoints());
+            DrawRegion(g, region, input);
+        }
+
+        private static void DrawHonoraryFlankRight(Graphics g, SignumData data, InputLayerData input)
+        {
+            var lineWidth = GetHeraldicWidthNormal(data);
+            var rect = new Rectangle(new Point(data.Right - lineWidth, data.Top), new Size(lineWidth, data.Height));
+            var region = CreateRegion(rect.ToPoints());
+            DrawRegion(g, region, input);
+        }
+
+        private static void DrawHonorarySlingLeft(Graphics g, SignumData data, InputLayerData input)
+        {
+            const int lineHalfSizeForSling = 228; // value taken empirically
+            var points = new Point[]
             {
-                g.FillRectangle(brush, new Rectangle(new Point(data.Right - lineWidth, data.Top), new Size(lineWidth, data.Height)));
-            }
+                new(data.Left, data.Top - lineHalfSizeForSling),
+                new(data.Right, data.Bottom - lineHalfSizeForSling),
+                new(data.Right, data.Bottom + lineHalfSizeForSling),
+                new(data.Left, data.Top + lineHalfSizeForSling)
+            };
+
+            var region = CreateRegion(points);
+            DrawRegion(g, region, input);
+        }
+
+        private static void DrawHonorarySlingRight(Graphics g, SignumData data, InputLayerData input)
+        {
+            const int lineHalfSizeForSling = 228; // value taken empirically
+            var points = new Point[]
+            {
+                new(data.Left, data.Bottom - lineHalfSizeForSling),
+                new(data.Right, data.Top - lineHalfSizeForSling),
+                new(data.Right, data.Top + lineHalfSizeForSling),
+                new(data.Left, data.Bottom + lineHalfSizeForSling)
+            };
+
+            var region = CreateRegion(points);
+            DrawRegion(g, region, input);
         }
     }
 }
