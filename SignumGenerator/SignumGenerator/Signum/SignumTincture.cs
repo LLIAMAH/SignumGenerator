@@ -28,6 +28,7 @@ namespace SignumGenerator.Signum
     public class SignumTincture
     {
         private readonly ETincture _tincture;
+
         // ReSharper disable once InconsistentNaming
         private static readonly string _imagesPath =
             Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)!, "Images");
@@ -36,7 +37,10 @@ namespace SignumGenerator.Signum
 
         public ETincture Tincture => _tincture;
         public Color Color => GetColor(_tincture);
-        public bool IsFur => _tincture is ETincture.Ermine or ETincture.Vair or ETincture.VairVs or ETincture.VairVsShifted;
+
+        public bool IsFur =>
+            _tincture is ETincture.Ermine or ETincture.Vair or ETincture.VairVs or ETincture.VairVsShifted;
+
         public bool IsMetal => _tincture is ETincture.Or or ETincture.Argent;
         public bool IsEnamel => !(IsFur || IsMetal);
         public bool IsCounter => _tincture is ETincture.VairVs or ETincture.VairVsShifted;

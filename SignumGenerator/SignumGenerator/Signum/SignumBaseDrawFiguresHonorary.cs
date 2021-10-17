@@ -39,12 +39,15 @@ namespace SignumGenerator.Signum
         {
             // value taken empirically
             // TODO: calculate correct data by required size and diagonal angle.
-            return 228; 
+            return 228;
         }
 
         private static void DrawHonoraryPalNormal(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineWidth = input.Param1 is null or 0 ? GetHeraldicWidthFull(data) : input.Param1.Value;
+            var lineWidth = input.Param1 is null or 0
+                ? GetHeraldicWidthFull(data)
+                : input.Param1.Value;
+
             var lineHalf = lineWidth / 2;
             var points = new Point[]
             {
@@ -60,7 +63,9 @@ namespace SignumGenerator.Signum
 
         private static void DrawHonoraryPalTight(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineWidth = input.Param1 is null or 0 ? GetHeraldicWidthNormal(data) : input.Param1.Value;
+            var lineWidth = input.Param1 is null or 0 
+                ? GetHeraldicWidthNormal(data) 
+                : input.Param1.Value;
 
             var rect = new Rectangle(new Point(data.CenterX - lineWidth / 2, data.Top),
                 new Size(lineWidth, data.Bottom));
@@ -71,7 +76,10 @@ namespace SignumGenerator.Signum
 
         private static void DrawHonoraryHead(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineWidth = input.Param1 is null or 0 ? GetHeraldicWidthNormal(data) : input.Param1.Value;
+            var lineWidth = input.Param1 is null or 0 
+                ? GetHeraldicWidthNormal(data) 
+                : input.Param1.Value;
+
             var rect = new Rectangle(new Point(data.Left, data.Top), new Size(data.Width, lineWidth));
             var region = CreateRegion(rect.ToPoints());
             DrawRegion(g, region, input);
@@ -79,15 +87,22 @@ namespace SignumGenerator.Signum
 
         private static void DrawHonoraryBelt(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineWidth = input.Param1 is null or 0 ? GetHeraldicWidthNormal(data) : input.Param1.Value;
-            var rect = new Rectangle(new Point(data.Left, data.CenterY - lineWidth / 2), new Size(data.Width, lineWidth));
+            var lineWidth = input.Param1 is null or 0 
+                ? GetHeraldicWidthNormal(data)
+                : input.Param1.Value;
+
+            var rect = new Rectangle(new Point(data.Left, data.CenterY - lineWidth / 2),
+                new Size(data.Width, lineWidth));
             var region = CreateRegion(rect.ToPoints());
             DrawRegion(g, region, input);
         }
 
         private static void DrawHonoraryEnd(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineWidth = input.Param1 is null or 0 ? GetHeraldicWidthNormal(data) : input.Param1.Value;
+            var lineWidth = input.Param1 is null or 0 
+                ? GetHeraldicWidthNormal(data) 
+                : input.Param1.Value;
+
             var rect = new Rectangle(new Point(data.Left, data.Bottom - lineWidth), new Size(data.Width, lineWidth));
             var region = CreateRegion(rect.ToPoints());
             DrawRegion(g, region, input);
@@ -95,7 +110,10 @@ namespace SignumGenerator.Signum
 
         private static void DrawHonoraryFlankLeft(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineWidth = input.Param1 is null or 0 ? GetHeraldicWidthNormal(data) : input.Param1.Value;
+            var lineWidth = input.Param1 is null or 0 
+                ? GetHeraldicWidthNormal(data) 
+                : input.Param1.Value;
+
             var rect = new Rectangle(new Point(data.Left, data.Top), new Size(lineWidth, data.Height));
             var region = CreateRegion(rect.ToPoints());
             DrawRegion(g, region, input);
@@ -103,7 +121,10 @@ namespace SignumGenerator.Signum
 
         private static void DrawHonoraryFlankRight(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineWidth = input.Param1 is null or 0 ? GetHeraldicWidthNormal(data) : input.Param1.Value;
+            var lineWidth = input.Param1 is null or 0 
+                ? GetHeraldicWidthNormal(data) 
+                : input.Param1.Value;
+
             var rect = new Rectangle(new Point(data.Right - lineWidth, data.Top), new Size(lineWidth, data.Height));
             var region = CreateRegion(rect.ToPoints());
             DrawRegion(g, region, input);
@@ -111,7 +132,10 @@ namespace SignumGenerator.Signum
 
         private static void DrawHonorarySlingLeft(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineHalfSizeForSling = input.Param1 is null or 0 ? GetHeraldicWidthSling(): input.Param1.Value / 2;
+            var lineHalfSizeForSling = input.Param1 is null or 0 
+                ? GetHeraldicWidthSling() / 2 
+                : input.Param1.Value / 2;
+
             var points = new Point[]
             {
                 new(data.Left, data.Top - lineHalfSizeForSling),
@@ -126,7 +150,10 @@ namespace SignumGenerator.Signum
 
         private static void DrawHonorarySlingRight(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineHalfSizeForSling = input.Param1 is null or 0 ? GetHeraldicWidthSling() : input.Param1.Value / 2;
+            var lineHalfSizeForSling = input.Param1 is null or 0 
+                ? GetHeraldicWidthSling() / 2 
+                : input.Param1.Value / 2;
+
             var points = new Point[]
             {
                 new(data.Left, data.Bottom - lineHalfSizeForSling),
@@ -149,16 +176,51 @@ namespace SignumGenerator.Signum
             DrawChevronPointOffsetSizeInvert(g, data, input);
         }
 
-        
-
         private static void DrawHonoraryCroix(Graphics g, SignumData data, InputLayerData input)
         {
-            throw new System.NotImplementedException();
+            var lineWidth = input.Param1 is null or 0 
+                ? GetHeraldicWidthNormal(data) 
+                : input.Param1.Value;
+
+            var lineWidthHalf = lineWidth / 2;
+            var rect = new Rectangle(
+                new Point(data.CenterX - lineWidthHalf, data.Top),
+                new Size(lineWidth, data.Height));
+            var region = rect
+                .ToRegion(
+                    new Rectangle(
+                            new Point(data.Left, data.CenterY - lineWidthHalf),
+                            new Size(data.Width, lineWidth))
+                        .ToRegion());
+            DrawRegion(g, region, input);
         }
 
         private static void DrawHonoraryCroixDiagonal(Graphics g, SignumData data, InputLayerData input)
         {
-            throw new System.NotImplementedException();
+            var lineHalfSizeForSling = input.Param1 is null or 0 
+                ? GetHeraldicWidthSling() / 2 
+                : input.Param1.Value / 2;
+
+            var points1 = new Point[]
+            {
+                new(data.Left, data.Top - lineHalfSizeForSling),
+                new(data.Right, data.Bottom - lineHalfSizeForSling),
+                new(data.Right, data.Bottom + lineHalfSizeForSling),
+                new(data.Left, data.Top + lineHalfSizeForSling)
+            };
+            var points2 = new Point[]
+            {
+                new(data.Left, data.Bottom - lineHalfSizeForSling),
+                new(data.Right, data.Top - lineHalfSizeForSling),
+                new(data.Right, data.Top + lineHalfSizeForSling),
+                new(data.Left, data.Bottom + lineHalfSizeForSling)
+            };
+
+            var region1 = CreateRegion(points1);
+            var region2 = CreateRegion(points2);
+            region1.Union(region2);
+
+            DrawRegion(g, region1, input);
         }
     }
 }

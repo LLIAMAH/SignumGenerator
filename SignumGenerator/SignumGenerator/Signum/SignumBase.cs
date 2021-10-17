@@ -82,7 +82,7 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.StripesBar:
                 {
-                    var lineWidth = _data.Height/ (input.Param1.Value * 2 + 1);
+                    var lineWidth = _data.Height / (input.Param1.Value * 2 + 1);
                     using (var pen = tincture.CreatePen(lineWidth))
                     {
                         DrawStripesBar(_g, pen, _data, lineWidth, input.Param1.Value);
@@ -288,7 +288,5 @@ namespace SignumGenerator.Signum
         {
             g.DrawImage(this._bmp, 0, 0);
         }
-
-        
     }
 }

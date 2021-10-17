@@ -21,7 +21,9 @@
         HonoraryChevron, //  * В виде буквы Л (перевёрнутой V) — стропило (фр. chevron); три узких стропила
         HonoraryChevronInverse,
 
+        // ReSharper disable once IdentifierTypo
         HonoraryCroix, //* Кресты: прямой крест (фр. croix); прямой узкий крест; косой крест (фр. sautoir); 
+        // ReSharper disable once IdentifierTypo
         HonoraryCroixDiagonal, // узкий косой крест (андреевский); вилообразный крест (фр. pairle); узкий вилообразный крест
 
         /*

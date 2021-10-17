@@ -80,8 +80,7 @@ namespace SignumGenerator.Signum
 
         private static void DrawChevronPointOffsetSizeNormal(Graphics g, SignumData data, InputLayerData input)
         {
-            var size = input?.Param1 is null or 0 ? GetHeraldicWidthSling() : input.Param1.Value / 2;
-            var halfSize = input?.Param1 is null or 0 ? size / 2 : input.Param1.Value / 2;
+            var halfSize = input?.Param1 is null or 0 ? GetHeraldicWidthSling() / 2 : input.Param1.Value / 2;
             var point = input?.Param2 is null or 0 ? data.CenterY : input.Param2.Value;
             var offset = input?.Param3 is null or 0 ? data.Width / 2 : input.Param3.Value;
 
@@ -100,8 +99,7 @@ namespace SignumGenerator.Signum
 
         private static void DrawChevronPointOffsetSizeInvert(Graphics g, SignumData data, InputLayerData input)
         {
-            var size = input?.Param1 is null or 0 ? GetHeraldicWidthSling() : input.Param1.Value / 2;
-            var halfSize = input?.Param1 is null or 0 ? size / 2 : input.Param1.Value / 2;
+            var halfSize = input?.Param1 is null or 0 ? GetHeraldicWidthSling() / 2 : input.Param1.Value / 2;
             var point = input?.Param2 is null or 0 ? data.CenterY : input.Param2.Value;
             var offset = input?.Param3 is null or 0 ? data.Width / 2 : input.Param3.Value;
 
@@ -123,12 +121,12 @@ namespace SignumGenerator.Signum
             var size = input.Param1 is null or 0 ? GetHeraldicWidthSling() : input.Param1.Value;
             var points = new Point[]
             {
-                new (data.Left, data.Bottom - size),
-                new (data.CenterX, data.Top),
-                new (data.Right, data.Bottom - size),
-                new (data.Right, data.Bottom),
-                new (data.CenterX, data.Top + size),
-                new (data.Left, data.Bottom)
+                new(data.Left, data.Bottom - size),
+                new(data.CenterX, data.Top),
+                new(data.Right, data.Bottom - size),
+                new(data.Right, data.Bottom),
+                new(data.CenterX, data.Top + size),
+                new(data.Left, data.Bottom)
             };
             var region = CreateRegion(points);
             DrawRegion(g, region, input);
@@ -139,12 +137,12 @@ namespace SignumGenerator.Signum
             var size = input.Param1 is null or 0 ? GetHeraldicWidthSling() : input.Param1.Value;
             var points = new Point[]
             {
-                new (data.Left, data.Top),
-                new (data.CenterX, data.Bottom - size),
-                new (data.Right, data.Top),
-                new (data.Right, data.Top + size),
-                new (data.CenterX, data.Bottom),
-                new (data.Left, data.Top + size)
+                new(data.Left, data.Top),
+                new(data.CenterX, data.Bottom - size),
+                new(data.Right, data.Top),
+                new(data.Right, data.Top + size),
+                new(data.CenterX, data.Bottom),
+                new(data.Left, data.Top + size)
             };
             var region = CreateRegion(points);
             DrawRegion(g, region, input);
@@ -156,12 +154,12 @@ namespace SignumGenerator.Signum
             var halfSize = size / 2;
             var points = new Point[]
             {
-                new (data.Left, data.CenterY - halfSize + data.Width / 2),
-                new (data.CenterX, data.CenterY - halfSize),
-                new (data.Right, data.CenterY - halfSize + data.Width / 2),
-                new (data.Right, data.CenterY + halfSize + data.Width / 2),
-                new (data.CenterX, data.CenterY + halfSize),
-                new (data.Left, data.CenterY + halfSize + data.Width / 2)
+                new(data.Left, data.CenterY - halfSize + data.Width / 2),
+                new(data.CenterX, data.CenterY - halfSize),
+                new(data.Right, data.CenterY - halfSize + data.Width / 2),
+                new(data.Right, data.CenterY + halfSize + data.Width / 2),
+                new(data.CenterX, data.CenterY + halfSize),
+                new(data.Left, data.CenterY + halfSize + data.Width / 2)
             };
             var region = CreateRegion(points);
             DrawRegion(g, region, input);
@@ -173,12 +171,12 @@ namespace SignumGenerator.Signum
             var halfSize = size / 2;
             var points = new Point[]
             {
-                new (data.Left, data.CenterY - halfSize - data.Width / 2),
-                new (data.CenterX, data.CenterY - halfSize),
-                new (data.Right, data.CenterY - halfSize - data.Width / 2),
-                new (data.Right, data.CenterY + halfSize - data.Width / 2),
-                new (data.CenterX, data.CenterY + halfSize),
-                new (data.Left, data.CenterY + halfSize - data.Width / 2)
+                new(data.Left, data.CenterY - halfSize - data.Width / 2),
+                new(data.CenterX, data.CenterY - halfSize),
+                new(data.Right, data.CenterY - halfSize - data.Width / 2),
+                new(data.Right, data.CenterY + halfSize - data.Width / 2),
+                new(data.CenterX, data.CenterY + halfSize),
+                new(data.Left, data.CenterY + halfSize - data.Width / 2)
             };
             var region = CreateRegion(points);
             DrawRegion(g, region, input);
@@ -195,9 +193,9 @@ namespace SignumGenerator.Signum
         {
             var region = CreateRegion(new Point[]
             {
-                new (data.Left, data.Top),
-                new (data.CenterX, data.CenterY),
-                new (data.Left, data.Bottom)
+                new(data.Left, data.Top),
+                new(data.CenterX, data.CenterY),
+                new(data.Left, data.Bottom)
             });
             region.Union(CreateRegion(new Point[]
             {
@@ -213,15 +211,15 @@ namespace SignumGenerator.Signum
         {
             var region = CreateRegion(new Point[]
             {
-                new (data.Left, data.Top),
-                new (data.Right, data.Top),
-                new (data.CenterX, data.CenterY)
+                new(data.Left, data.Top),
+                new(data.Right, data.Top),
+                new(data.CenterX, data.CenterY)
             });
             region.Union(CreateRegion(new Point[]
             {
-                new (data.Left, data.Bottom),
-                new (data.CenterX, data.CenterY),
-                new (data.Right, data.Bottom)
+                new(data.Left, data.Bottom),
+                new(data.CenterX, data.CenterY),
+                new(data.Right, data.Bottom)
             }));
 
             DrawRegion(g, region, input);
@@ -301,10 +299,10 @@ namespace SignumGenerator.Signum
                 {
                     var points = new Point[]
                     {
-                        new (i + size / 2, j),
-                        new (i + size, j + size / 2),
-                        new (i + size / 2, j + size),
-                        new (i, j + size / 2)
+                        new(i + size / 2, j),
+                        new(i + size, j + size / 2),
+                        new(i + size / 2, j + size),
+                        new(i, j + size / 2)
                     };
 
                     g.FillPolygon(brush, points);
@@ -355,10 +353,10 @@ namespace SignumGenerator.Signum
 
         private static void DrawStripesPal(Graphics g, Pen pen, SignumData data, int lineWidth, int count)
         {
-            if(count == 0)
+            if (count == 0)
                 return;
 
-            var pileZone  = data.Width / count;
+            var pileZone = data.Width / count;
             var pileZoneCenter = pileZone / 2;
             var i = 0;
             while (i < count)
@@ -389,7 +387,8 @@ namespace SignumGenerator.Signum
         {
             var rect = region.GetBounds(g);
             g.SetClip(region, CombineMode.Replace);
-            DrawFur(g, image, step, new Rectangle((int)rect.X, (int)rect.Y, (int)rect.Width, (int)rect.Height), tincture);
+            DrawFur(g, image, step, new Rectangle((int)rect.X, (int)rect.Y, (int)rect.Width, (int)rect.Height),
+                tincture);
         }
 
         private static void DrawFur(Graphics g, Image image, int step, Rectangle rect, SignumTincture tincture)
@@ -415,7 +414,7 @@ namespace SignumGenerator.Signum
                     i += step;
                 }
 
-                if(tincture.IsCounter)
+                if (tincture.IsCounter)
                     image.RotateFlip(RotateFlipType.Rotate180FlipNone);
 
                 i = 0;
