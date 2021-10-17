@@ -6,75 +6,84 @@ namespace SignumGenerator.Signum
 {
     public partial class SignumBase
     {
-        private static void DrawSliceLeftNormal(Graphics g, Brush brush, SignumData data)
+        private static void DrawSliceLeftNormal(Graphics g, SignumData data, InputLayerData input)
         {
-            g.FillPolygon(brush, new Point[]
+            var points = new Point[]
             {
-                new (data.Left, data.Top),
-                new (data.Right, data.Top),
-                new (data.Left, data.Bottom)
-            });
+                new(data.Left, data.Top),
+                new(data.Right, data.Top),
+                new(data.Left, data.Bottom)
+            };
+            var region = CreateRegion(points);
+            DrawRegion(g, region, input);
         }
 
-        private static void DrawSliceLeftInvert(Graphics g, Brush brush, SignumData data)
+        private static void DrawSliceLeftInvert(Graphics g, SignumData data, InputLayerData input)
         {
-            g.FillPolygon(brush, new Point[]
+            var points = new Point[]
             {
-                new (data.Left, data.Bottom),
-                new (data.Right, data.Top),
-                new (data.Right, data.Bottom)
-            });
+                new(data.Left, data.Bottom),
+                new(data.Right, data.Top),
+                new(data.Right, data.Bottom)
+            };
+            var region = CreateRegion(points);
+            DrawRegion(g, region, input);
         }
 
-        private static void DrawSliceRightNormal(Graphics g, Brush brush, SignumData data)
+        private static void DrawSliceRightNormal(Graphics g, SignumData data, InputLayerData input)
         {
-            g.FillPolygon(brush, new Point[]
+            var points = new Point[]
             {
-                new (data.Left, data.Top),
-                new (data.Right, data.Top),
-                new (data.Right, data.Bottom)
-            });
+                new(data.Left, data.Top),
+                new(data.Right, data.Top),
+                new(data.Right, data.Bottom)
+            };
+            var region = CreateRegion(points);
+            DrawRegion(g, region, input);
         }
 
-        private static void DrawSliceRightInvert(Graphics g, Brush brush, SignumData data)
+        private static void DrawSliceRightInvert(Graphics g, SignumData data, InputLayerData input)
         {
-            g.FillPolygon(brush, new Point[]
+            var points = new Point[]
             {
-                new (data.Left, data.Top),
-                new (data.Right, data.Bottom),
-                new (data.Left, data.Bottom)
-            });
+                new(data.Left, data.Top),
+                new(data.Right, data.Bottom),
+                new(data.Left, data.Bottom)
+            };
+            var region = CreateRegion(points);
+            DrawRegion(g, region, input);
         }
 
-        private static void DrawSplitVerticalRight(Graphics g, Brush brush, SignumData data)
+        private static void DrawSplitVerticalRight(Graphics g, SignumData data, InputLayerData input)
         {
-            g.FillRectangle(brush, new Rectangle(data.Width / 2, data.Top, data.Width / 2, data.Height));
+            var rect = new Rectangle(data.Width / 2, data.Top, data.Width / 2, data.Height);
+            DrawRegion(g, rect.ToRegion(), input);
         }
 
-        private static void DrawSplitVerticalLeft(Graphics g, Brush brush, SignumData data)
+        private static void DrawSplitVerticalLeft(Graphics g, SignumData data, InputLayerData input)
         {
-            g.FillRectangle(brush, new Rectangle(data.Left, data.Top, data.Width / 2, data.Height));
+            var rect = new Rectangle(data.Left, data.Top, data.Width / 2, data.Height);
+            DrawRegion(g, rect.ToRegion(), input);
         }
 
-        private static void DrawSplitHorizontalNormal(Graphics g, Brush brush, SignumData data)
+        private static void DrawSplitHorizontalNormal(Graphics g, SignumData data, InputLayerData input)
         {
-            g.FillRectangle(brush, new Rectangle(data.Left, data.Top, data.Width, data.Height / 2));
+            var rect = new Rectangle(data.Left, data.Top, data.Width, data.Height / 2);
+            DrawRegion(g, rect.ToRegion(), input);
         }
 
-        private static void DrawSplitHorizontalInvert(Graphics g, Brush brush, SignumData data)
+        private static void DrawSplitHorizontalInvert(Graphics g, SignumData data, InputLayerData input)
         {
-            g.FillRectangle(brush, new Rectangle(data.Left, data.Height / 2, data.Width, data.Height / 2));
+            var rect = new Rectangle(data.Left, data.Height / 2, data.Width, data.Height / 2);
+            DrawRegion(g, rect.ToRegion(), input);
         }
 
         private static void DrawChevronPointOffsetSizeNormal(Graphics g, SignumData data, InputLayerData input)
         {
-            if (input == null)
-                return;
-
-            var size = GetHeraldicWidthSling();
-            var halfSize = input.Param1 is null or 0 ? size / 2 : input.Param1.Value / 2;
-            var point = input.Param2 is null or 0 ? data.CenterY : input.Param2.Value;
-            var offset = input.Param3 is null or 0 ? data.Width / 2 : input.Param3.Value;
+            var size = input?.Param1 is null or 0 ? GetHeraldicWidthSling() : input.Param1.Value / 2;
+            var halfSize = input?.Param1 is null or 0 ? size / 2 : input.Param1.Value / 2;
+            var point = input?.Param2 is null or 0 ? data.CenterY : input.Param2.Value;
+            var offset = input?.Param3 is null or 0 ? data.Width / 2 : input.Param3.Value;
 
             var points = new Point[]
             {
@@ -91,13 +100,10 @@ namespace SignumGenerator.Signum
 
         private static void DrawChevronPointOffsetSizeInvert(Graphics g, SignumData data, InputLayerData input)
         {
-            if (input == null)
-                return;
-
-            var size = GetHeraldicWidthSling();
-            var halfSize = input.Param1 is null or 0 ? size / 2 : input.Param1.Value / 2;
-            var point = input.Param2 is null or 0 ? data.CenterY : input.Param2.Value;
-            var offset = input.Param3 is null or 0 ? data.Width / 2 : input.Param3.Value;
+            var size = input?.Param1 is null or 0 ? GetHeraldicWidthSling() : input.Param1.Value / 2;
+            var halfSize = input?.Param1 is null or 0 ? size / 2 : input.Param1.Value / 2;
+            var point = input?.Param2 is null or 0 ? data.CenterY : input.Param2.Value;
+            var offset = input?.Param3 is null or 0 ? data.Width / 2 : input.Param3.Value;
 
             var points = new Point[]
             {
@@ -235,16 +241,6 @@ namespace SignumGenerator.Signum
             var rect2 = new Rectangle(data.Left, data.CenterY, data.Width / 2, data.Height / 2);
             var region = rect1.ToRegion(rect2.ToRegion());
             DrawRegion(g, region, input);
-        }
-
-        private static void DrawSlingLeft(Graphics g, Pen pen, SignumData data)
-        {
-            g.DrawLine(pen, data.PointTopRight, data.PointBottomLeft);
-        }
-
-        private static void DrawSlingRight(Graphics g, Pen pen, SignumData data)
-        {
-            g.DrawLine(pen, data.PointTopLeft, data.PointBottomRight);
         }
 
         private static void DrawCheckersNormal(Graphics g, Brush brush, SignumData data, int size)

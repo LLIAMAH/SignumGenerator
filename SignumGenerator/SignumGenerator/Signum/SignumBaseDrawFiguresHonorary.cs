@@ -44,7 +44,7 @@ namespace SignumGenerator.Signum
 
         private static void DrawHonoraryPalNormal(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineWidth = GetHeraldicWidthFull(data);
+            var lineWidth = input.Param1 is null or 0 ? GetHeraldicWidthFull(data) : input.Param1.Value;
             var lineHalf = lineWidth / 2;
             var points = new Point[]
             {
@@ -60,7 +60,7 @@ namespace SignumGenerator.Signum
 
         private static void DrawHonoraryPalTight(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineWidth = GetHeraldicWidthNormal(data);
+            var lineWidth = input.Param1 is null or 0 ? GetHeraldicWidthNormal(data) : input.Param1.Value;
 
             var rect = new Rectangle(new Point(data.CenterX - lineWidth / 2, data.Top),
                 new Size(lineWidth, data.Bottom));
@@ -71,8 +71,7 @@ namespace SignumGenerator.Signum
 
         private static void DrawHonoraryHead(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineWidth = GetHeraldicWidthNormal(data);
-
+            var lineWidth = input.Param1 is null or 0 ? GetHeraldicWidthNormal(data) : input.Param1.Value;
             var rect = new Rectangle(new Point(data.Left, data.Top), new Size(data.Width, lineWidth));
             var region = CreateRegion(rect.ToPoints());
             DrawRegion(g, region, input);
@@ -80,7 +79,7 @@ namespace SignumGenerator.Signum
 
         private static void DrawHonoraryBelt(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineWidth = GetHeraldicWidthNormal(data);
+            var lineWidth = input.Param1 is null or 0 ? GetHeraldicWidthNormal(data) : input.Param1.Value;
             var rect = new Rectangle(new Point(data.Left, data.CenterY - lineWidth / 2), new Size(data.Width, lineWidth));
             var region = CreateRegion(rect.ToPoints());
             DrawRegion(g, region, input);
@@ -88,7 +87,7 @@ namespace SignumGenerator.Signum
 
         private static void DrawHonoraryEnd(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineWidth = GetHeraldicWidthNormal(data);
+            var lineWidth = input.Param1 is null or 0 ? GetHeraldicWidthNormal(data) : input.Param1.Value;
             var rect = new Rectangle(new Point(data.Left, data.Bottom - lineWidth), new Size(data.Width, lineWidth));
             var region = CreateRegion(rect.ToPoints());
             DrawRegion(g, region, input);
@@ -96,7 +95,7 @@ namespace SignumGenerator.Signum
 
         private static void DrawHonoraryFlankLeft(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineWidth = GetHeraldicWidthNormal(data);
+            var lineWidth = input.Param1 is null or 0 ? GetHeraldicWidthNormal(data) : input.Param1.Value;
             var rect = new Rectangle(new Point(data.Left, data.Top), new Size(lineWidth, data.Height));
             var region = CreateRegion(rect.ToPoints());
             DrawRegion(g, region, input);
@@ -104,7 +103,7 @@ namespace SignumGenerator.Signum
 
         private static void DrawHonoraryFlankRight(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineWidth = GetHeraldicWidthNormal(data);
+            var lineWidth = input.Param1 is null or 0 ? GetHeraldicWidthNormal(data) : input.Param1.Value;
             var rect = new Rectangle(new Point(data.Right - lineWidth, data.Top), new Size(lineWidth, data.Height));
             var region = CreateRegion(rect.ToPoints());
             DrawRegion(g, region, input);
@@ -112,7 +111,7 @@ namespace SignumGenerator.Signum
 
         private static void DrawHonorarySlingLeft(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineHalfSizeForSling = GetHeraldicWidthSling();
+            var lineHalfSizeForSling = input.Param1 is null or 0 ? GetHeraldicWidthSling(): input.Param1.Value / 2;
             var points = new Point[]
             {
                 new(data.Left, data.Top - lineHalfSizeForSling),
@@ -127,7 +126,7 @@ namespace SignumGenerator.Signum
 
         private static void DrawHonorarySlingRight(Graphics g, SignumData data, InputLayerData input)
         {
-            var lineHalfSizeForSling = GetHeraldicWidthSling();
+            var lineHalfSizeForSling = input.Param1 is null or 0 ? GetHeraldicWidthSling() : input.Param1.Value / 2;
             var points = new Point[]
             {
                 new(data.Left, data.Bottom - lineHalfSizeForSling),

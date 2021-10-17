@@ -155,24 +155,6 @@ namespace SignumGenerator.Signum
                     DrawHonoraryCroixDiagonal(_g, _data, input);
                     break;
                 }
-                case SignumBasePattern.SlingRight:
-                {
-                    using (var pen = tincture.CreatePen(input.Param1.Value == 0 ? 1 : input.Param1.Value))
-                    {
-                        DrawSlingRight(_g, pen, _data);
-                    }
-
-                    break;
-                }
-                case SignumBasePattern.SlingLeft:
-                {
-                    using (var pen = tincture.CreatePen(input.Param1.Value == 0 ? 1 : input.Param1.Value))
-                    {
-                        DrawSlingLeft(_g, pen, _data);
-                    }
-
-                    break;
-                }
                 case SignumBasePattern.Quarters_1_4:
                 {
                     DrawQuarters14(_g, _data, input);
@@ -257,74 +239,42 @@ namespace SignumGenerator.Signum
                 }
                 case SignumBasePattern.SplitHorizontalNormal:
                 {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawSplitHorizontalNormal(_g, brush, _data);
-                    }
-
+                    DrawSplitHorizontalNormal(_g, _data, input);
                     break;
                 }
                 case SignumBasePattern.SplitHorizontalInvert:
                 {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawSplitHorizontalInvert(_g, brush, _data);
-                    }
-
+                    DrawSplitHorizontalInvert(_g, _data, input);
                     break;
                 }
                 case SignumBasePattern.SplitVerticalLeft:
                 {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawSplitVerticalLeft(_g, brush, _data);
-                    }
-
+                    DrawSplitVerticalLeft(_g, _data, input);
                     break;
                 }
                 case SignumBasePattern.SplitVerticalRight:
                 {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawSplitVerticalRight(_g, brush, _data);
-                    }
-
+                    DrawSplitVerticalRight(_g, _data, input);
                     break;
                 }
                 case SignumBasePattern.SliceLeftNormal:
                 {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawSliceLeftNormal(_g, brush, _data);
-                    }
-
+                    DrawSliceLeftNormal(_g, _data, input);
                     break;
                 }
                 case SignumBasePattern.SliceLeftInvert:
                 {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawSliceLeftInvert(_g, brush, _data);
-                    }
-
+                    DrawSliceLeftInvert(_g, _data, input);
                     break;
                 }
                 case SignumBasePattern.SliceRightNormal:
                 {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawSliceRightNormal(_g, brush, _data);
-                    }
-
+                    DrawSliceRightNormal(_g, _data, input);
                     break;
                 }
                 case SignumBasePattern.SliceRightInvert:
                 {
-                    using (var brush = tincture.CreateBrush())
-                    {
-                        DrawSliceRightInvert(_g, brush, _data);
-                    }
-
+                    DrawSliceRightInvert(_g, _data, input);
                     break;
                 }
                 default:

@@ -44,7 +44,6 @@ namespace SignumGenerator.Controls
         {
             var cb = sender as ComboBox;
             var val = Enum.Parse<SignumBasePattern>(cb?.SelectedItem?.ToString()!);
-
             switch (val)
             {
                 case SignumBasePattern.StripesHorizontal:
@@ -53,8 +52,17 @@ namespace SignumGenerator.Controls
                 case SignumBasePattern.StripesBar:
                     SetParamsAvailable(1, "Count");
                     break;
-                case SignumBasePattern.SlingLeft:
-                case SignumBasePattern.SlingRight:
+                case SignumBasePattern.HonoraryHead: 
+                case SignumBasePattern.HonoraryBelt:
+                case SignumBasePattern.HonoraryEnd:
+                case SignumBasePattern.HonoraryPalNormal:
+                case SignumBasePattern.HonoraryPalTight:
+                // ReSharper disable once IdentifierTypo
+                case SignumBasePattern.HonoraryFlancLeft:
+                // ReSharper disable once IdentifierTypo
+                case SignumBasePattern.HonoraryFlancRight:
+                case SignumBasePattern.HonorarySlingLeft:
+                case SignumBasePattern.HonorarySlingRight:
                     SetParamsAvailable(1, "Width");
                     break;
                 case SignumBasePattern.CheckersNormal:

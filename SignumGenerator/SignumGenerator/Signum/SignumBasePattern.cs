@@ -33,8 +33,6 @@
         Quarters_2_3,
         QuartersDiagonalTopBottom,
         QuartersDiagonalLeftRight,
-        SlingLeft,
-        SlingRight,
         CheckersNormal,
         CheckersInverse,
         CheckersDiagonal,
