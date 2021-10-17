@@ -1,6 +1,6 @@
-﻿using SignumGenerator.Signum;
+﻿using SignumLib.Tincture;
 
-namespace SignumGenerator.Helpers
+namespace SignumLib.Helpers
 {
     public class InputBaseData
     {

@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignumGenerator", "SignumGenerator\SignumGenerator.csproj", "{EF2C0AAB-99FD-481B-A1A4-2EC60ACEE3FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignumGenerator", "SignumGenerator\SignumGenerator.csproj", "{EF2C0AAB-99FD-481B-A1A4-2EC60ACEE3FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignumLib", "SignumLib\SignumLib.csproj", "{085BD040-67EB-4BD6-8315-D8CB9AA095FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{EF2C0AAB-99FD-481B-A1A4-2EC60ACEE3FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF2C0AAB-99FD-481B-A1A4-2EC60ACEE3FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF2C0AAB-99FD-481B-A1A4-2EC60ACEE3FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{085BD040-67EB-4BD6-8315-D8CB9AA095FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{085BD040-67EB-4BD6-8315-D8CB9AA095FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{085BD040-67EB-4BD6-8315-D8CB9AA095FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{085BD040-67EB-4BD6-8315-D8CB9AA095FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

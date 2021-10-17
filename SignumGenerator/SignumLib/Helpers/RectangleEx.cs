@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Drawing.Drawing2D;
 
-namespace SignumGenerator.Helpers
+namespace SignumLib.Helpers
 {
     public static class RectangleEx
     {

@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
 using System.Drawing.Drawing2D;
-using SignumGenerator.Helpers;
+using SignumLib.Helpers;
 
-namespace SignumGenerator.Signum
+namespace SignumLib.Drawing
 {
     public partial class SignumBase
     {

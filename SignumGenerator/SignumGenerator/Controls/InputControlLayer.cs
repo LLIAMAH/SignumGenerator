@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using SignumGenerator.Helpers;
-using SignumGenerator.Signum;
+using SignumLib.Helpers;
+using SignumLib.Tincture;
 
 namespace SignumGenerator.Controls
 {

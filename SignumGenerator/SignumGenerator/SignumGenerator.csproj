@@ -32,6 +32,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SignumLib\SignumLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Images\Furs\Fur_Ermine.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

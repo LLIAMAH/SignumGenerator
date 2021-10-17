@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
+using SignumLib.Base;
 
-namespace SignumGenerator.Signum
+namespace SignumLib.Drawing
 {
     /*
      * Drawing Simple heraldic figures
