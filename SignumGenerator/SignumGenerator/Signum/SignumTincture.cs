@@ -17,7 +17,9 @@ namespace SignumGenerator.Signum
         Or, // 255, 215, 0
         Argent, // 192, 192, 192 left as White? 
         Ermine, // Fur tincture 
-        Vair, // Furt tincture
+        Vair, // Fur tincture
+        VairVs, // Fur tincture
+        VairVsShifted, // Fur tincture
         Sanguine, // Blood
         Murrey, // Dark red
         Tenne // Orange
@@ -26,6 +28,8 @@ namespace SignumGenerator.Signum
     public class SignumTincture
     {
         private readonly ETincture _tincture;
+
+        // ReSharper disable once InconsistentNaming
         private static readonly string _imagesPath =
             Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)!, "Images");
 
@@ -33,9 +37,14 @@ namespace SignumGenerator.Signum
 
         public ETincture Tincture => _tincture;
         public Color Color => GetColor(_tincture);
-        public bool IsFur => _tincture is ETincture.Ermine or ETincture.Vair;
+
+        public bool IsFur =>
+            _tincture is ETincture.Ermine or ETincture.Vair or ETincture.VairVs or ETincture.VairVsShifted;
+
         public bool IsMetal => _tincture is ETincture.Or or ETincture.Argent;
         public bool IsEnamel => !(IsFur || IsMetal);
+        public bool IsCounter => _tincture is ETincture.VairVs or ETincture.VairVsShifted;
+        public bool IsShifted => _tincture is ETincture.VairVsShifted;
 
         public SignumTincture(ETincture eTincture)
         {
@@ -81,13 +90,15 @@ namespace SignumGenerator.Signum
             {
                 ETincture.Ermine => GetErmine(),
                 ETincture.Vair => GetVair(),
+                ETincture.VairVs => GetVair(),
+                ETincture.VairVsShifted => GetVair(),
                 _ => GetErmine()
             };
 
             return ImageChangeColor(bmp, signumTincture.Tincture);
         }
 
-        private static System.Drawing.Image ImageChangeColor(Bitmap bmp, ETincture color)
+        private static Image ImageChangeColor(Bitmap bmp, ETincture color)
         {
             const int colorMark = 0;
             var tincture = new SignumTincture(color);

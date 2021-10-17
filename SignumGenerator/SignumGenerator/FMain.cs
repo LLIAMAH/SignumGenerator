@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Windows.Forms;
@@ -10,6 +11,9 @@ namespace SignumGenerator
 {
     public partial class FMain : Form
     {
+        private const int CanvasWidth = 800;
+        private const int CanvasHeight = 1000;
+
         private Bitmap _bmp;
 
         public FMain()
@@ -24,11 +28,12 @@ namespace SignumGenerator
             var tincturesListShort = new List<SignumTincture>();
             foreach (var tinctureStr in enumTinctures)
             {
-                var tincture = (ETincture) Enum.Parse(typeof(ETincture), tinctureStr);
-                tincturesListFull.Add(new SignumTincture(tincture));
+                var tincture = (ETincture)Enum.Parse(typeof(ETincture), tinctureStr);
+                var signumTincture = new SignumTincture(tincture);
+                tincturesListFull.Add(signumTincture);
 
-                if (tincture != ETincture.Ermine && tincture != ETincture.Vair)
-                    tincturesListShort.Add(new SignumTincture(tincture));
+                if (!signumTincture.IsFur)
+                    tincturesListShort.Add(signumTincture);
             }
 
             var enumFigures = Enum.GetNames<SignumBasePattern>().ToList();
@@ -93,12 +98,11 @@ namespace SignumGenerator
         private void bnDraw_Click(object sender, EventArgs e)
         {
             pbResult.Image?.Dispose();
-            this._bmp = new Bitmap(800, 1000);
+            this._bmp = new Bitmap(CanvasWidth, CanvasHeight);
             var g = Graphics.FromImage(this._bmp);
 
+            var signumBase = new SignumBase(CanvasWidth, CanvasHeight);
             var inputBase = layerBase.GetInput();
-
-            var signumBase = new SignumBase();
             signumBase.ApplyBase(inputBase);
 
             var input1 = layer1.GetInput();
@@ -121,16 +125,41 @@ namespace SignumGenerator
             if (!input5.IsEmpty)
                 signumBase.ApplyPattern(input5);
 
+            g.SetClip(CreateShieldRegion(new SignumData(CanvasWidth, CanvasHeight)), CombineMode.Replace);
             signumBase.Draw(g);
             pbResult.Image = this._bmp;
+        }
+
+        // ToDo: to rework region more visible as shield.
+        private static Region CreateShieldRegion(SignumData data)
+        {
+            var points = new Point[]
+            {
+                new(data.Left, data.Top),
+                new(data.Right, data.Top),
+                new(data.Right, data.Bottom - data.Vertical10),
+                new(data.CenterX, data.Bottom),
+                new(data.Left, data.Bottom - data.Vertical10),
+            };
+
+            var types = new byte[]
+            {
+                (byte)PathPointType.Line,
+                (byte)PathPointType.Line,
+                (byte)PathPointType.Line,
+                (byte)PathPointType.Line,
+                (byte)PathPointType.Line
+            };
+
+            var gp = new GraphicsPath(points, types);
+            var region = new Region(gp);
+            return region;
         }
 
         private void bnSaveToFile_Click(object sender, EventArgs e)
         {
             if (dlgSaveFile.ShowDialog() == DialogResult.OK)
-            {
                 pbResult.Image.Save(dlgSaveFile.FileName, ImageFormat.Png);
-            }
         }
     }
 }
