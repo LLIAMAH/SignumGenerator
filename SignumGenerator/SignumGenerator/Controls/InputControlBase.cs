@@ -47,11 +47,10 @@ namespace SignumGenerator.Controls
 
         private void ColorBase_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            var val = (sender as ComboBox)?.SelectedItem as SignumTincture;
-            if (val == null)
+            if ((sender as ComboBox)?.SelectedItem is not SignumTincture val)
                 return;
 
-            this.ColorBG.Enabled = this.ColorSub.Enabled = val.Tincture is ETincture.Ermine or ETincture.Vair;
+            this.ColorBG.Enabled = this.ColorSub.Enabled = val.IsFur;
         }
     }
 }

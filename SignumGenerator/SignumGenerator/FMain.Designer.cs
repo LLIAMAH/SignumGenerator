@@ -162,6 +162,7 @@ namespace SignumGenerator
             // dlgSaveFile
             // 
             this.dlgSaveFile.DefaultExt = "*.png";
+            this.dlgSaveFile.FileName = "Signum";
             this.dlgSaveFile.Filter = "Images|*.png";
             // 
             // FMain
