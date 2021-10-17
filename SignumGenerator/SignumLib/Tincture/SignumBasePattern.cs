@@ -1,4 +1,4 @@
-﻿namespace SignumGenerator.Signum
+﻿namespace SignumLib.Tincture
 {
     public enum SignumBasePattern
     {

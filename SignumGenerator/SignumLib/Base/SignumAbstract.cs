@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace SignumGenerator.Signum
+namespace SignumLib.Base
 {
     public abstract class SignumAbstract
     {

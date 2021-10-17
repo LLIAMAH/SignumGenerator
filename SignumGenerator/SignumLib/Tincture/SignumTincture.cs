@@ -1,10 +1,10 @@
 ﻿using System.Drawing;
 using System.IO;
-using SignumGenerator.Helpers;
+using SignumLib.Helpers;
 using Color = System.Drawing.Color;
 
 // ReSharper disable ConvertToUsingDeclaration
-namespace SignumGenerator.Signum
+namespace SignumLib.Tincture
 {
     public enum ETincture
     {

@@ -1,10 +1,12 @@
 ﻿using System.Drawing;
 using System.Drawing.Drawing2D;
-using SignumGenerator.Helpers;
+using SignumLib.Base;
+using SignumLib.Helpers;
+using SignumLib.Tincture;
 
 // ReSharper disable All
 
-namespace SignumGenerator.Signum
+namespace SignumLib.Drawing
 {
     public partial class SignumBase : SignumAbstract
     {

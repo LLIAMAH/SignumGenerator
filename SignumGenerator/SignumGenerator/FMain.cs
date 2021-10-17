@@ -5,7 +5,9 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Windows.Forms;
-using SignumGenerator.Signum;
+using SignumLib.Base;
+using SignumLib.Drawing;
+using SignumLib.Tincture;
 
 namespace SignumGenerator
 {
