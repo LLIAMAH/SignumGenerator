@@ -219,7 +219,7 @@ namespace SignumLib.Drawing
                     DrawChevronMiddleInvert(_g, _data, input);
                     break;
                 }
-                case SignumBasePattern.ChevronFullNormal:
+                using (var image = input.TinctureMain.CreateFur(input.TinctureSub))
                 {
                     DrawChevronFullNormal(_g, _data, input);
                     break;
