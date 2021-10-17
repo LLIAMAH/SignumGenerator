@@ -26,25 +26,8 @@ namespace SignumLib.Drawing
         public void ApplyBase(InputBaseData input)
         {
             var rect = new Rectangle(0, 0, Width, Height);
-            if (input.TinctureMain.IsFur)
-            {
-                using (var brush = input.TinctureBg.CreateBrush())
-                {
-                    _g.FillRectangle(brush, rect);
-                }
-
-                using (var image = input.TinctureMain.CreateFur(input.TinctureSub))
-                {
-                    DrawFur(_g, image, _furStep, rect, input.TinctureMain);
-                }
-            }
-            else
-            {
-                using (var brush = input.TinctureMain.CreateBrush())
-                {
-                    _g.FillRectangle(brush, rect);
-                }
-            }
+            var region = rect.ToRegion();
+            DrawRegion(_g, region, input);
         }
 
         public void ApplyPattern(InputLayerData input)
@@ -219,7 +202,7 @@ namespace SignumLib.Drawing
                     DrawChevronMiddleInvert(_g, _data, input);
                     break;
                 }
-                using (var image = input.TinctureMain.CreateFur(input.TinctureSub))
+                case SignumBasePattern.ChevronFullNormal:
                 {
                     DrawChevronFullNormal(_g, _data, input);
                     break;
