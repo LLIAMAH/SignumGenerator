@@ -36,10 +36,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Images\Furs\Fur_Ermine.dds">
+    <None Update="Images\Furs\Fur_Ermine.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Images\Furs\Fur_Vair.dds">
+    <None Update="Images\Furs\Fur_Vair.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

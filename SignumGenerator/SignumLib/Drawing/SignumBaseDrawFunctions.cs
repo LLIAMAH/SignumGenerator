@@ -397,7 +397,7 @@ namespace SignumLib.Drawing
         {
             var localBmp = new Bitmap(rect.Width, rect.Height);
             var localG = Graphics.FromImage(localBmp);
-            var localRect = new Rectangle(0, 0, rect.Width, rect.Height);
+            var localRect = new Rectangle(0, 0, Width, Height); // rect.Width, rect.Height);
 
             var i = localRect.Left;
             var j = localRect.Top;
@@ -405,12 +405,16 @@ namespace SignumLib.Drawing
             {
                 while (i - step < localRect.Right)
                 {
-                    var isEven = (j / step) % 2 == 0;
-                    var tempRect = isEven
-                        ? new Rectangle(i, j, step, step)
-                        : (tincture.IsShifted
+                    Rectangle tempRect;
+                    if(tincture.Tincture is ETincture.VairVs)
+                        tempRect = new Rectangle(i, j, step, step);
+                    else
+                    {
+                        var isEven = (j / step) % 2 == 0;
+                        tempRect = isEven
                             ? new Rectangle(i, j, step, step)
-                            : new Rectangle(i - step / 2, j, step, step));
+                            : new Rectangle(i - step / 2, j, step, step);
+                    }
 
                     localG.DrawImage(image, tempRect);
                     i += step;
