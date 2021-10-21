@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using System.IO;
-using SignumLib.Helpers;
 using Color = System.Drawing.Color;
 
 // ReSharper disable ConvertToUsingDeclaration
@@ -34,17 +33,12 @@ namespace SignumLib.Tincture
             Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)!, "Images");
 
         public string TinctureName => this._tincture.ToString();
-
         public ETincture Tincture => _tincture;
         public Color Color => GetColor(_tincture);
 
-        public bool IsFur =>
-            _tincture is ETincture.Ermine or ETincture.Vair or ETincture.VairVs or ETincture.VairVsShifted;
-
+        public bool IsFur => _tincture is ETincture.Ermine or ETincture.Vair or ETincture.VairVs or ETincture.VairVsShifted;
         public bool IsMetal => _tincture is ETincture.Or or ETincture.Argent;
-        public bool IsEnamel => !(IsFur || IsMetal);
         public bool IsCounter => _tincture is ETincture.VairVs or ETincture.VairVsShifted;
-        public bool IsShifted => _tincture is ETincture.VairVsShifted;
 
         public SignumTincture(ETincture eTincture)
         {
@@ -126,46 +120,25 @@ namespace SignumLib.Tincture
              * previewPictureBox.Image = Bitmap;
              */
 
-            using (var fs = new FileStream(Path.Combine(_imagesPath, "Furs", "Fur_Ermine.dds"), FileMode.Open,
-                FileAccess.Read))
+            using (var fs = new FileStream(
+                Path.Combine(_imagesPath, "Furs", "Fur_Ermine.png"), FileMode.Open, FileAccess.Read))
             {
-                var img = new DDSImage(fs);
-                var bmp = img.BitmapImage;
-                return bmp;
+                return new Bitmap(fs);
             }
-
-            //return ImageSourceFromBitmap(bmp);
         }
 
         private static Bitmap GetVair()
         {
-            using (var fs = new FileStream(Path.Combine(_imagesPath, "Furs", "Fur_Vair.dds"), FileMode.Open,
-                FileAccess.Read))
+            using (var fs = new FileStream(
+                Path.Combine(_imagesPath, "Furs", "Fur_Vair.png"), FileMode.Open, FileAccess.Read))
             {
-                var img = new DDSImage(fs);
-                var bmp = img.BitmapImage;
-                return bmp;
+                return new Bitmap(fs);
             }
-            //return ImageSourceFromBitmap(bmp);
         }
 
-        //#region Conversionblock
-
-        ////If you get 'dllimport unknown'-, then add 'using System.Runtime.InteropServices;'
-        //[DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
-        //[return: MarshalAs(UnmanagedType.Bool)]
-        //public static extern bool DeleteObject([In] IntPtr hObject);
-
-        //public static ImageSource ImageSourceFromBitmap(Bitmap bmp)
-        //{
-        //    var handle = bmp.GetHbitmap();
-        //    try
-        //    {
-        //        return Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-        //    }
-        //    finally { DeleteObject(handle); }
-        //}
-
-        //#endregion
+        public override string ToString()
+        {
+            return $"{TinctureName} ({Color})";
+        }
     }
 }
