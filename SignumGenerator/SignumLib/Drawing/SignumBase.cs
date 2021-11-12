@@ -1,5 +1,5 @@
-﻿using System.Drawing;
-using System.Drawing.Drawing2D;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using SignumLib.Base;
 using SignumLib.Helpers;
 using SignumLib.Tincture;
@@ -13,6 +13,8 @@ namespace SignumLib.Drawing
         private readonly Graphics _g;
         private readonly SignumData _data;
         private static int _furStep = 100;
+        private InputBaseData _inputBase;
+        private List<InputLayerData> _inputLayers;
 
         public SignumBase(int width, int height)
         {
@@ -21,16 +23,35 @@ namespace SignumLib.Drawing
             _bmp = new Bitmap(Width, Height);
             _data = new SignumData(Width, Height);
             _g = Graphics.FromImage(_bmp);
+            _inputLayers = new List<InputLayerData>();
         }
 
-        public void ApplyBase(InputBaseData input)
+        public void SetBase(InputBaseData inputBase)
+        {
+            this._inputBase = inputBase;
+        }
+
+        public void Add(InputLayerData inputLayer)
+        {
+            if(inputLayer != null && !inputLayer.IsEmpty)
+                this._inputLayers.Add(inputLayer);
+        }
+
+        public void Apply()
+        {
+            ApplyBase(_inputBase);
+            foreach(var layer in _inputLayers)
+                ApplyPattern(layer);
+        }
+
+        private void ApplyBase(InputBaseData input)
         {
             var rect = new Rectangle(0, 0, Width, Height);
             var region = rect.ToRegion();
             DrawRegion(_g, region, input);
         }
 
-        public void ApplyPattern(InputLayerData input)
+        private void ApplyPattern(InputLayerData input)
         {
             var tincture = input.TinctureMain;
             switch (input.Pattern)
