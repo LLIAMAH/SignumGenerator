@@ -1,4 +1,6 @@
-﻿namespace SignumLib.Tincture
+﻿using System;
+
+namespace SignumLib.Tincture
 {
     public enum SignumBasePattern
     {
@@ -52,5 +54,47 @@
         SliceLeftInvert,
         SliceRightNormal,
         SliceRightInvert
+    }
+
+    public enum PatternDirection
+    {
+        Normal,
+        Inverse
+    }
+
+    public enum PaternSide
+    {
+        Left,
+        Right
+    }
+
+    public enum PatternPosition
+    {
+        Common,
+        Diagonal
+    }
+
+    public enum PatternView
+    {
+        Horizontal,
+        Vertical
+    }
+
+    public enum PatternLinesType
+    {
+        Stripes,
+        Pals
+    }
+
+    [Flags]
+    public enum Quarter
+    {
+        None = 0,
+        One = 1,
+        Two = 2,
+        Three = 4,
+        Four = 8,
+        OneAndFour = One | Four,
+        TwoANdThree = Two | Three
     }
 }
