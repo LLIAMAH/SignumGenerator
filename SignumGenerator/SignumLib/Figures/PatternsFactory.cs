@@ -15,104 +15,19 @@ namespace SignumLib.Figures
         {
             switch (patternValue)
             {
-                case SignumBasePattern.StripesHorizontal:
-                    {
-                        return new PatternLines(PatternLinesType.Stripes, PatternView.Horizontal);
-                        //var lineWidth = _data.Height / (input.Param1.Value * 2);
-                        //using (var pen = tincture.CreatePen(lineWidth))
-                        //{
-                        //    DrawStripesHorizontal(_g, pen, _data, lineWidth, input.Param1.Value);
-                        //}
-
-                        //break;
-                    }
-                case SignumBasePattern.StripesVertical:
-                    {
-                        return new PatternLines(PatternLinesType.Stripes, PatternView.Vertical);
-                        //var lineWidth = _data.Width / (input.Param1.Value * 2);
-                        //using (var pen = tincture.CreatePen(lineWidth))
-                        //{
-                        //    DrawStripesVertical(_g, pen, _data, lineWidth, input.Param1.Value);
-                        //}
-
-                        //break;
-                    }
-                case SignumBasePattern.StripesPal:
-                    {
-                        return new PatternLines(PatternLinesType.Pals, PatternView.Vertical);
-                        //var lineWidth = _data.Width / (input.Param1.Value * 2 + 1);
-                        //using (var pen = tincture.CreatePen(lineWidth))
-                        //{
-                        //    DrawStripesPal(_g, pen, _data, lineWidth, input.Param1.Value);
-                        //}
-
-                        //break;
-                    }
-                case SignumBasePattern.StripesBar:
-                    {
-                        return new PatternLines(PatternLinesType.Pals, PatternView.Horizontal);
-                        //var lineWidth = _data.Height / (input.Param1.Value * 2 + 1);
-                        //using (var pen = tincture.CreatePen(lineWidth))
-                        //{
-                        //    DrawStripesBar(_g, pen, _data, lineWidth, input.Param1.Value);
-                        //}
-
-                        //break;
-                    }
-                case SignumBasePattern.HonoraryHead:
-                    {
-                        return new PatternHead();
-                        //DrawHonoraryHead(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.HonoraryBelt:
-                    {
-                        return new PatternBelt();
-                        //DrawHonoraryBelt(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.HonoraryEnd:
-                    {
-                        return new PatternEnd();
-                        //DrawHonoraryEnd(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.HonoraryPalNormal:
-                    {
-                        return new PatternPal(PatternSize.Normal);
-                        //DrawHonoraryPalNormal(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.HonoraryPalTight:
-                    {
-                        return new PatternPal(PatternSize.Specific);
-                        //DrawHonoraryPalTight(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.HonoraryFlancLeft:
-                    {
-                        return new PatternFlanc(PatternSide.Left);
-                        //DrawHonoraryFlankLeft(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.HonoraryFlancRight:
-                    {
-                        return new PatternFlanc(PatternSide.Right);
-                        //DrawHonoraryFlankRight(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.HonorarySlingLeft:
-                    {
-                        return new PatternSling(PatternSide.Left);
-                        //DrawHonorarySlingLeft(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.HonorarySlingRight:
-                    {
-                        return new PatternSling(PatternSide.Right);
-                        // DrawHonorarySlingRight(_g, _data, input);
-                        //break;
-                    }
+                case SignumBasePattern.StripesHorizontal: return new PatternLines(PatternLinesType.Stripes, PatternView.Horizontal);
+                case SignumBasePattern.StripesVertical: return new PatternLines(PatternLinesType.Stripes, PatternView.Vertical);
+                case SignumBasePattern.StripesPal: return new PatternLines(PatternLinesType.Pals, PatternView.Vertical);
+                case SignumBasePattern.StripesBar: return new PatternLines(PatternLinesType.Pals, PatternView.Horizontal);
+                case SignumBasePattern.HonoraryHead: return new PatternHead();
+                case SignumBasePattern.HonoraryBelt: return new PatternBelt();
+                case SignumBasePattern.HonoraryEnd: return new PatternEnd();
+                case SignumBasePattern.HonoraryPalNormal: return new PatternPal(PatternSize.Normal);
+                case SignumBasePattern.HonoraryPalTight: return new PatternPal(PatternSize.Specific);
+                case SignumBasePattern.HonoraryFlancLeft: return new PatternFlanc(PatternSide.Left);
+                case SignumBasePattern.HonoraryFlancRight: return new PatternFlanc(PatternSide.Right);
+                case SignumBasePattern.HonorarySlingLeft: return new PatternSling(PatternSide.Left);
+                case SignumBasePattern.HonorarySlingRight: return new PatternSling(PatternSide.Right);
                 case SignumBasePattern.HonoraryChevron:
                     {
                         return new PatternChevron(PatternDirection.Normal);
