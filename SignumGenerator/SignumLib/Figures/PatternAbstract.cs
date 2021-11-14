@@ -128,5 +128,11 @@ namespace SignumLib.Figures
 
             g.DrawImage(localBmp, rect);
         }
+
+        protected static void FillRect(Graphics g, Brush brush, int x, int y, int width, int height)
+        {
+            var rect = new Rectangle(x, y, width, height);
+            g.FillRectangle(brush, rect);
+        }
     }
 }
