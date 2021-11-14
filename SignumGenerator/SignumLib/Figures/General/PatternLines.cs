@@ -44,11 +44,13 @@ namespace SignumLib.Figures.General
                         {
                             case PatternView.Horizontal:
                                 {
+                                    DrawBars(g, data, input);
                                     break;
                                 }
 
                             case PatternView.Vertical:
                                 {
+                                    DrawPals(g, data, input);
                                     break;
                                 }
                         }
@@ -107,6 +109,24 @@ namespace SignumLib.Figures.General
                 if (i % 2 == 0)
                     g.DrawLine(pen, new Point(lineCenter, data.Top), new Point(lineCenter, data.Bottom));
                 i++;
+            }
+        }
+
+        private void DrawPals(Graphics g, SignumData data, InputLayerData input)
+        {
+            var lineWidth = data.Width / (input.Param1.Value * 2 + 1);
+            using (var pen = input.TinctureMain.CreatePen(lineWidth))
+            {
+                DrawStripesPal(g, pen, data, lineWidth, input.Param1.Value);
+            }
+        }
+
+        private void DrawBars(Graphics g, SignumData data, InputLayerData input)
+        {
+            var lineWidth = data.Height / (input.Param1.Value * 2 + 1);
+            using (var pen = input.TinctureMain.CreatePen(lineWidth))
+            {
+                DrawStripesBar(g, pen, data, lineWidth, input.Param1.Value);
             }
         }
 
