@@ -18,12 +18,24 @@ namespace SignumLib.Figures.General
         {
             switch (_side)
             {
-                case PatternSide.Left:
+                case PatternSide.TopAndLeft:
                     {
+                        DrawSliceLeftNormal(g, data, input);
                         break;
                     }
-                case PatternSide.Right:
+                case PatternSide.BottomAndRight:
                     {
+                        DrawSliceLeftInvert(g, data, input);
+                        break;
+                    }
+                case PatternSide.TopAndRight:
+                    {
+                        DrawSliceRightNormal(g, data, input);
+                        break;
+                    }
+                case PatternSide.BottomAndLeft:
+                    {
+                        DrawSliceRightInvert(g, data, input);
                         break;
                     }
                 default:

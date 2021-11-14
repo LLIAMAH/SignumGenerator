@@ -30,132 +30,30 @@ namespace SignumLib.Figures
                 case SignumBasePattern.HonorarySlingRight: return new PatternSling(PatternSide.Right);
                 case SignumBasePattern.HonoraryChevron: return new PatternChevron(PatternDirection.Normal, PatternChevronType.Normal);
                 case SignumBasePattern.HonoraryChevronInverse: return new PatternChevron(PatternDirection.Inverse, PatternChevronType.Normal);
-                case SignumBasePattern.HonoraryCroix:
-                    {
-                        return new PatternCroix(PatternPosition.Common);
-                        //DrawHonoraryCroix(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.HonoraryCroixDiagonal:
-                    {
-                        return new PatternCroix(PatternPosition.Diagonal);
-                        //DrawHonoraryCroixDiagonal(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.Quarters_1_4:
-                    {
-                        return new PatternQuarters(PatternPosition.Common, Quarter.OneAndFour);
-                        //DrawQuarters14(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.Quarters_2_3:
-                    {
-                        return new PatternQuarters(PatternPosition.Common, Quarter.TwoANdThree);
-                        //DrawQuarters23(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.QuartersDiagonalTopBottom:
-                    {
-                        return new PatternQuarters(PatternPosition.Common, Quarter.OneAndFour);
-                        //DrawQuartersDiagonalTopBottom(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.QuartersDiagonalLeftRight:
-                    {
-                        return new PatternQuarters(PatternPosition.Common, Quarter.TwoANdThree);
-                        //DrawQuartersDiagonalLeftRight(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.CheckersNormal:
-                    {
-                        return new PatternCheckers(PatternPosition.Common, PatternDirection.Normal);
-                        //using (var brush = tincture.CreateBrush())
-                        //{
-                        //    DrawCheckersNormal(_g, brush, _data, input.Param1.Value);
-                        //}
-
-                        //break;
-                    }
-                case SignumBasePattern.CheckersInverse:
-                    {
-                        return new PatternCheckers(PatternPosition.Common, PatternDirection.Inverse);
-                        //using (var brush = tincture.CreateBrush())
-                        //{
-                        //    DrawCheckersInverse(_g, brush, _data, input.Param1.Value);
-                        //}
-
-                        //break;
-                    }
-                case SignumBasePattern.CheckersDiagonal:
-                    {
-                        return new PatternCheckers(PatternPosition.Diagonal, PatternDirection.Normal);
-                        //using (var brush = tincture.CreateBrush())
-                        //{
-                        //    DrawCheckersDiagonal(_g, brush, _data, input.Param1.Value);
-                        //}
-
-                        //break;
-                    }
-                case SignumBasePattern.Quarter:
-                    {
-                        return new PatternQuarters(PatternPosition.Common, Quarter.One);
-                        //DrawQuarter(_g, _data, input);
-                        //break;
-                    }
+                case SignumBasePattern.HonoraryCroix: return new PatternCroix(PatternPosition.Common);
+                case SignumBasePattern.HonoraryCroixDiagonal: return new PatternCroix(PatternPosition.Diagonal);
+                case SignumBasePattern.Quarter: return new PatternQuarters(PatternPosition.Common, Quarter.One);
+                case SignumBasePattern.Quarters_1_4: return new PatternQuarters(PatternPosition.Common, Quarter.OneAndFour);
+                case SignumBasePattern.Quarters_2_3: return new PatternQuarters(PatternPosition.Common, Quarter.TwoANdThree);
+                case SignumBasePattern.QuartersDiagonalTopBottom: return new PatternQuarters(PatternPosition.Diagonal, Quarter.OneAndFour);
+                case SignumBasePattern.QuartersDiagonalLeftRight: return new PatternQuarters(PatternPosition.Diagonal, Quarter.TwoANdThree);
+                case SignumBasePattern.CheckersNormal:return new PatternCheckers(PatternPosition.Common, PatternDirection.Normal);
+                case SignumBasePattern.CheckersInverse: return new PatternCheckers(PatternPosition.Common, PatternDirection.Inverse);
+                case SignumBasePattern.CheckersDiagonal: return new PatternCheckers(PatternPosition.Diagonal, PatternDirection.Normal);
                 case SignumBasePattern.ChevronMiddleNormal: return new PatternChevron(PatternDirection.Normal, PatternChevronType.Normal);
                 case SignumBasePattern.ChevronMiddleInvert: return new PatternChevron(PatternDirection.Inverse, PatternChevronType.Normal);
                 case SignumBasePattern.ChevronFullNormal: return new PatternChevron(PatternDirection.Normal, PatternChevronType.Full);
                 case SignumBasePattern.ChevronFullInvert: return new PatternChevron(PatternDirection.Inverse, PatternChevronType.Full);
                 case SignumBasePattern.ChevronPointOffsetSizeNormal: return new PatternChevron(PatternDirection.Normal, PatternChevronType.Custom);
                 case SignumBasePattern.ChevronPointOffsetSizeInvert: return new PatternChevron(PatternDirection.Inverse, PatternChevronType.Custom);
-                case SignumBasePattern.SplitHorizontalNormal:
-                    {
-                        return new PatternSplit(PatternView.Horizontal, PatternDirection.Normal);
-                        //DrawSplitHorizontalNormal(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.SplitHorizontalInvert:
-                    {
-                        return new PatternSplit(PatternView.Horizontal, PatternDirection.Inverse);
-                        //DrawSplitHorizontalInvert(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.SplitVerticalLeft:
-                    {
-                        return new PatternSplit(PatternView.Vertical, PatternDirection.Normal);
-                        //DrawSplitVerticalLeft(_g, _data, input);1
-                        //br1eak;
-                    }
-                case SignumBasePattern.SplitVerticalRight:
-                    {
-                        return new PatternSplit(PatternView.Vertical, PatternDirection.Inverse);
-                        //DrawSplitVerticalRight(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.SliceLeftNormal:
-                    {
-                        return new PatternSlice(PatternSide.TopAndLeft);
-                        //DrawSliceLeftNormal(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.SliceLeftInvert:
-                    {
-                        return new PatternSlice(PatternSide.BottomAndRight);
-                        //DrawSliceLeftInvert(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.SliceRightNormal:
-                    {
-                        return new PatternSlice(PatternSide.TopAndRight);
-                        //DrawSliceRightNormal(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.SliceRightInvert:
-                    {
-                        return new PatternSlice(PatternSide.BottomAndLeft);
-                        //DrawSliceRightInvert(_g, _data, input);
-                        //break;
-                    }
+                case SignumBasePattern.SplitHorizontalNormal: return new PatternSplit(PatternView.Horizontal, PatternDirection.Normal);
+                case SignumBasePattern.SplitHorizontalInvert: return new PatternSplit(PatternView.Horizontal, PatternDirection.Inverse);                    
+                case SignumBasePattern.SplitVerticalLeft: return new PatternSplit(PatternView.Vertical, PatternDirection.Normal);
+                case SignumBasePattern.SplitVerticalRight: return new PatternSplit(PatternView.Vertical, PatternDirection.Inverse);
+                case SignumBasePattern.SliceLeftNormal: return new PatternSlice(PatternSide.TopAndLeft);
+                case SignumBasePattern.SliceLeftInvert: return new PatternSlice(PatternSide.BottomAndRight);
+                case SignumBasePattern.SliceRightNormal: return new PatternSlice(PatternSide.TopAndRight);
+                case SignumBasePattern.SliceRightInvert: return new PatternSlice(PatternSide.BottomAndLeft);
                 default: { return new PatternDefault(); }
             }
         }
