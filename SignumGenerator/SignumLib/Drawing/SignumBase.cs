@@ -5,7 +5,6 @@ using SignumLib.Figures;
 using SignumLib.Helpers;
 
 // ReSharper disable All
-
 namespace SignumLib.Drawing
 {
     public partial class SignumBase : SignumAbstract
@@ -45,11 +44,8 @@ namespace SignumLib.Drawing
 
         private void ApplyBase(IPatternsFactory factory, InputBaseData input)
         {
-            var rect = new Rectangle(0, 0, Width, Height);
-            var region = rect.ToRegion();
             var patternBase = factory.CreatePatternBase();
             patternBase.Draw(_g, _data, input);
-            //DrawRegion(_g, region, input);
         }
 
         private void ApplyPatterns(IPatternsFactory factory, List<InputLayerData> inputLayers)

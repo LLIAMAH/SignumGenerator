@@ -28,6 +28,24 @@ namespace SignumLib.Tincture
         // ReSharper disable once IdentifierTypo
         HonoraryCroixDiagonal, // узкий косой крест (андреевский); вилообразный крест (фр. pairle); узкий вилообразный крест
 
+        /* Drawing Simple heraldic figures */
+        /* ==================================== */
+        //SimplePyramid,
+        //SimplePile,
+        //SimpleGiron,
+        //SimpleDelf,
+        //SimpleBar,
+        //SimpleBillet,
+        //SimpleRhombus, // losange
+        //SimpleBetrothed, // Fusee
+        //SimpleArque,
+        //SimpleFlanches,
+        //SimpleOrle,
+        //SimpleCanton,
+        //SimpleFrette,
+        //SimpleEcussion,
+        //SimpleLambel,
+        //SimpleBesant,
         /*
          * Кайма (фр. bordure) — окаймление вокруг края щита. В испанской и португальской геральдике включает в себя уменьшенные щиты близких родственников. Также см. бризуры.
          * Костыль (фр. chef-pal) — комбинация столба и главы
