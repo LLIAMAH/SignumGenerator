@@ -18,7 +18,43 @@ namespace SignumLib.Figures.General
 
         public void Draw(Graphics g, SignumData data, InputLayerData input)
         {
-            throw new System.NotImplementedException();
+            switch (this._view)
+            {
+                case PatternView.Horizontal:
+                    {
+                        switch (this._direction)
+                        {
+                            case PatternDirection.Normal:
+                                {
+                                    DrawSplitHorizontalNormal(g, data, input);
+                                    break;
+                                }
+                            case PatternDirection.Inverse:
+                                {
+                                    DrawSplitHorizontalInvert(g, data, input);
+                                    break;
+                                }
+                        }
+                        break;
+                    }
+                case PatternView.Vertical:
+                    {
+                        switch (this._direction)
+                        {
+                            case PatternDirection.Normal:
+                                {
+                                    DrawSplitVerticalLeft(g, data, input);
+                                    break;
+                                }
+                            case PatternDirection.Inverse:
+                                {
+                                    DrawSplitVerticalRight(g, data, input);
+                                    break;
+                                }
+                        }
+                        break;
+                    }
+            }
         }
 
         private static void DrawSplitVerticalRight(Graphics g, SignumData data, InputLayerData input)
