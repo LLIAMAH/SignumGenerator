@@ -74,37 +74,37 @@ namespace SignumLib.Figures
                     }
                 case SignumBasePattern.HonoraryPalNormal:
                     {
-                        return new PatternPalNormal();
+                        return new PatternPal(PatternSize.Normal);
                         //DrawHonoraryPalNormal(_g, _data, input);
                         //break;
                     }
                 case SignumBasePattern.HonoraryPalTight:
                     {
-                        return new PatternPalTight();
+                        return new PatternPal(PatternSize.Specific);
                         //DrawHonoraryPalTight(_g, _data, input);
                         //break;
                     }
                 case SignumBasePattern.HonoraryFlancLeft:
                     {
-                        return new PatternFlancLeft();
+                        return new PatternFlanc(PatternSide.Left);
                         //DrawHonoraryFlankLeft(_g, _data, input);
                         //break;
                     }
                 case SignumBasePattern.HonoraryFlancRight:
                     {
-                        return new PatternFlancRight();
+                        return new PatternFlanc(PatternSide.Right);
                         //DrawHonoraryFlankRight(_g, _data, input);
                         //break;
                     }
                 case SignumBasePattern.HonorarySlingLeft:
                     {
-                        return new PatternSlingLeft();
+                        return new PatternSling(PatternSide.Left);
                         //DrawHonorarySlingLeft(_g, _data, input);
                         //break;
                     }
                 case SignumBasePattern.HonorarySlingRight:
                     {
-                        return new PatternSlingRight();
+                        return new PatternSling(PatternSide.Right);
                         // DrawHonorarySlingRight(_g, _data, input);
                         //break;
                     }
@@ -230,49 +230,49 @@ namespace SignumLib.Figures
                     }
                 case SignumBasePattern.SplitHorizontalNormal:
                     {
-                        return new PatternSplitHorizontal(PatternDirection.Normal);
+                        return new PatternSplit(PatternView.Horizontal, PatternDirection.Normal);
                         //DrawSplitHorizontalNormal(_g, _data, input);
                         //break;
                     }
                 case SignumBasePattern.SplitHorizontalInvert:
                     {
-                        return new PatternSplitHorizontal(PatternDirection.Inverse);
+                        return new PatternSplit(PatternView.Horizontal, PatternDirection.Inverse);
                         //DrawSplitHorizontalInvert(_g, _data, input);
                         //break;
                     }
                 case SignumBasePattern.SplitVerticalLeft:
                     {
-                        return new PatternSplitVertical(PaternSide.Left);
+                        return new PatternSplit(PatternView.Vertical, PatternDirection.Normal);
                         //DrawSplitVerticalLeft(_g, _data, input);1
                         //br1eak;
                     }
                 case SignumBasePattern.SplitVerticalRight:
                     {
-                        return new PatternSplitVertical(PaternSide.Right);
+                        return new PatternSplit(PatternView.Vertical, PatternDirection.Inverse);
                         //DrawSplitVerticalRight(_g, _data, input);
                         //break;
                     }
                 case SignumBasePattern.SliceLeftNormal:
                     {
-                        return new PatternSlice(PatternDirection.Normal, PaternSide.Left);
+                        return new PatternSlice(PatternSide.TopAndLeft);
                         //DrawSliceLeftNormal(_g, _data, input);
                         //break;
                     }
                 case SignumBasePattern.SliceLeftInvert:
                     {
-                        return new PatternSlice(PatternDirection.Inverse, PaternSide.Left);
+                        return new PatternSlice(PatternSide.BottomAndRight);
                         //DrawSliceLeftInvert(_g, _data, input);
                         //break;
                     }
                 case SignumBasePattern.SliceRightNormal:
                     {
-                        return new PatternSlice(PatternDirection.Normal, PaternSide.Right);
+                        return new PatternSlice(PatternSide.TopAndRight);
                         //DrawSliceRightNormal(_g, _data, input);
                         //break;
                     }
                 case SignumBasePattern.SliceRightInvert:
                     {
-                        return new PatternSlice(PatternDirection.Inverse, PaternSide.Right);
+                        return new PatternSlice(PatternSide.BottomAndLeft);
                         //DrawSliceRightInvert(_g, _data, input);
                         //break;
                     }

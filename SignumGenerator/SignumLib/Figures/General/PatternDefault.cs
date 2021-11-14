@@ -4,11 +4,11 @@ using System.Drawing;
 
 namespace SignumLib.Figures.General
 {
-    internal class PatternDefault : IPattern
+    internal class PatternDefault : PatternAbstract, IPattern
     {
         public void Draw(Graphics g, SignumData data, InputLayerData input)
         {
-            throw new System.NotImplementedException();
+            // Empty pattern work.
         }
     }
 }

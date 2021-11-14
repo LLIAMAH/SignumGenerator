@@ -5,20 +5,80 @@ using System.Drawing;
 
 namespace SignumLib.Figures.General
 {
-    internal class PatternSlice : IPattern
+    internal class PatternSlice : PatternAbstract, IPattern
     {
-        private PatternDirection _direction;
-        private PaternSide _side;
+        private PatternSide _side;
 
-        public PatternSlice(PatternDirection direction, PaternSide side)
+        public PatternSlice(PatternSide side)
         {
-            this._direction = direction;
             this._side = side;
         }
 
         public void Draw(Graphics g, SignumData data, InputLayerData input)
         {
-            throw new System.NotImplementedException();
+            switch (_side)
+            {
+                case PatternSide.Left:
+                    {
+                        break;
+                    }
+                case PatternSide.Right:
+                    {
+                        break;
+                    }
+                default:
+                    {
+                        break;
+                    }
+            }
+        }
+
+        private static void DrawSliceLeftNormal(Graphics g, SignumData data, InputLayerData input)
+        {
+            var points = new Point[]
+            {
+                new(data.Left, data.Top),
+                new(data.Right, data.Top),
+                new(data.Left, data.Bottom)
+            };
+            var region = CreateRegion(points);
+            DrawRegion(g, region, input);
+        }
+
+        private static void DrawSliceLeftInvert(Graphics g, SignumData data, InputLayerData input)
+        {
+            var points = new Point[]
+            {
+                new(data.Left, data.Bottom),
+                new(data.Right, data.Top),
+                new(data.Right, data.Bottom)
+            };
+            var region = CreateRegion(points);
+            DrawRegion(g, region, input);
+        }
+
+        private static void DrawSliceRightNormal(Graphics g, SignumData data, InputLayerData input)
+        {
+            var points = new Point[]
+            {
+                new(data.Left, data.Top),
+                new(data.Right, data.Top),
+                new(data.Right, data.Bottom)
+            };
+            var region = CreateRegion(points);
+            DrawRegion(g, region, input);
+        }
+
+        private static void DrawSliceRightInvert(Graphics g, SignumData data, InputLayerData input)
+        {
+            var points = new Point[]
+            {
+                new(data.Left, data.Top),
+                new(data.Right, data.Bottom),
+                new(data.Left, data.Bottom)
+            };
+            var region = CreateRegion(points);
+            DrawRegion(g, region, input);
         }
     }
 }

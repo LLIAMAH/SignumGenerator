@@ -8,53 +8,7 @@ namespace SignumLib.Drawing
 {
     public partial class SignumBase
     {
-        private static void DrawSliceLeftNormal(Graphics g, SignumData data, InputLayerData input)
-        {
-            var points = new Point[]
-            {
-                new(data.Left, data.Top),
-                new(data.Right, data.Top),
-                new(data.Left, data.Bottom)
-            };
-            var region = CreateRegion(points);
-            DrawRegion(g, region, input);
-        }
-
-        private static void DrawSliceLeftInvert(Graphics g, SignumData data, InputLayerData input)
-        {
-            var points = new Point[]
-            {
-                new(data.Left, data.Bottom),
-                new(data.Right, data.Top),
-                new(data.Right, data.Bottom)
-            };
-            var region = CreateRegion(points);
-            DrawRegion(g, region, input);
-        }
-
-        private static void DrawSliceRightNormal(Graphics g, SignumData data, InputLayerData input)
-        {
-            var points = new Point[]
-            {
-                new(data.Left, data.Top),
-                new(data.Right, data.Top),
-                new(data.Right, data.Bottom)
-            };
-            var region = CreateRegion(points);
-            DrawRegion(g, region, input);
-        }
-
-        private static void DrawSliceRightInvert(Graphics g, SignumData data, InputLayerData input)
-        {
-            var points = new Point[]
-            {
-                new(data.Left, data.Top),
-                new(data.Right, data.Bottom),
-                new(data.Left, data.Bottom)
-            };
-            var region = CreateRegion(points);
-            DrawRegion(g, region, input);
-        }
+        
 
         private static void DrawSplitVerticalRight(Graphics g, SignumData data, InputLayerData input)
         {

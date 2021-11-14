@@ -62,10 +62,24 @@ namespace SignumLib.Tincture
         Inverse
     }
 
-    public enum PaternSide
+    [Flags]
+    public enum PatternSide
     {
-        Left,
-        Right
+        None = 0,
+        Top = 1,
+        Bottom = 2,
+        Left = 4,
+        Right = 8,
+        TopAndLeft = Top | Left,
+        TopAndRight = Top | Right,
+        BottomAndLeft = Bottom | Left,
+        BottomAndRight = Bottom | Right
+    }
+
+    public enum PatternSize
+    {
+        Normal,
+        Specific
     }
 
     public enum PatternPosition

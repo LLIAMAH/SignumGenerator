@@ -5,7 +5,7 @@ using System.Drawing;
 
 namespace SignumLib.Figures.General
 {
-    internal class PatternQuarters : IPattern
+    internal class PatternQuarters : PatternAbstract, IPattern
     {
         private PatternPosition _position;
         private Quarter _quarters;

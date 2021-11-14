@@ -5,13 +5,15 @@ using System.Drawing;
 
 namespace SignumLib.Figures.General
 {
-    internal class PatternSplitVertical : IPattern
+    internal class PatternSplit : PatternAbstract, IPattern
     {
-        private PaternSide _side;
+        private PatternView _view;
+        private PatternDirection _direction;
 
-        public PatternSplitVertical(PaternSide side)
+        public PatternSplit(PatternView view, PatternDirection direction)
         {
-            this._side = side;
+            this._view = view;
+            this._direction = direction;
         }
 
         public void Draw(Graphics g, SignumData data, InputLayerData input)
