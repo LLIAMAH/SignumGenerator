@@ -80,6 +80,14 @@ namespace SignumLib.Tincture
         Inverse
     }
 
+    public enum PatternChevronType
+    {
+        Normal,
+        Middle,
+        Full,
+        Custom
+    }
+
     [Flags]
     public enum PatternSide
     {

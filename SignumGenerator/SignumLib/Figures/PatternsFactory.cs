@@ -28,18 +28,8 @@ namespace SignumLib.Figures
                 case SignumBasePattern.HonoraryFlancRight: return new PatternFlanc(PatternSide.Right);
                 case SignumBasePattern.HonorarySlingLeft: return new PatternSling(PatternSide.Left);
                 case SignumBasePattern.HonorarySlingRight: return new PatternSling(PatternSide.Right);
-                case SignumBasePattern.HonoraryChevron:
-                    {
-                        return new PatternChevron(PatternDirection.Normal);
-                        //DrawHonoraryChevron(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.HonoraryChevronInverse:
-                    {
-                        return new PatternChevron(PatternDirection.Inverse);
-                        //DrawHonoraryChevronInverse(_g, _data, input);
-                        //break;
-                    }
+                case SignumBasePattern.HonoraryChevron: return new PatternChevron(PatternDirection.Normal, PatternChevronType.Normal);
+                case SignumBasePattern.HonoraryChevronInverse: return new PatternChevron(PatternDirection.Inverse, PatternChevronType.Normal);
                 case SignumBasePattern.HonoraryCroix:
                     {
                         return new PatternCroix(PatternPosition.Common);
@@ -112,42 +102,12 @@ namespace SignumLib.Figures
                         //DrawQuarter(_g, _data, input);
                         //break;
                     }
-                case SignumBasePattern.ChevronMiddleNormal:
-                    {
-                        return new PatternChevron(PatternDirection.Normal);
-                        //DrawChevronMiddleNormal(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.ChevronMiddleInvert:
-                    {
-                        return new PatternChevron(PatternDirection.Inverse);
-                        //DrawChevronMiddleInvert(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.ChevronFullNormal:
-                    {
-                        return new PatternChevron(PatternDirection.Normal);
-                        //DrawChevronFullNormal(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.ChevronFullInvert:
-                    {
-                        return new PatternChevron(PatternDirection.Inverse);
-                        //DrawChevronFullInvert(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.ChevronPointOffsetSizeNormal:
-                    {
-                        return new PatternChevron(PatternDirection.Normal);
-                        //DrawChevronPointOffsetSizeNormal(_g, _data, input);
-                        //break;
-                    }
-                case SignumBasePattern.ChevronPointOffsetSizeInvert:
-                    {
-                        return new PatternChevron(PatternDirection.Inverse);
-                        //DrawChevronPointOffsetSizeInvert(_g, _data, input);
-                        //break;
-                    }
+                case SignumBasePattern.ChevronMiddleNormal: return new PatternChevron(PatternDirection.Normal, PatternChevronType.Normal);
+                case SignumBasePattern.ChevronMiddleInvert: return new PatternChevron(PatternDirection.Inverse, PatternChevronType.Normal);
+                case SignumBasePattern.ChevronFullNormal: return new PatternChevron(PatternDirection.Normal, PatternChevronType.Full);
+                case SignumBasePattern.ChevronFullInvert: return new PatternChevron(PatternDirection.Inverse, PatternChevronType.Full);
+                case SignumBasePattern.ChevronPointOffsetSizeNormal: return new PatternChevron(PatternDirection.Normal, PatternChevronType.Custom);
+                case SignumBasePattern.ChevronPointOffsetSizeInvert: return new PatternChevron(PatternDirection.Inverse, PatternChevronType.Custom);
                 case SignumBasePattern.SplitHorizontalNormal:
                     {
                         return new PatternSplit(PatternView.Horizontal, PatternDirection.Normal);
