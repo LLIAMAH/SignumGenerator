@@ -16,7 +16,19 @@ namespace SignumLib.Figures.Honorary
 
         public void Draw(Graphics g, SignumData data, InputLayerData input)
         {
-            throw new System.NotImplementedException();
+            switch (_side)
+            {
+                case PatternSide.Left:
+                    {
+                        DrawHonorarySlingLeft(g, data, input);
+                        break;
+                    }
+                case PatternSide.Right:
+                    {
+                        DrawHonorarySlingRight(g, data, input);
+                        break;
+                    }
+            }
         }
 
         private static void DrawHonorarySlingLeft(Graphics g, SignumData data, InputLayerData input)
