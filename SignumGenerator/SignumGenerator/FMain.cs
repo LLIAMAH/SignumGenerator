@@ -48,50 +48,6 @@ namespace SignumGenerator
             layer5.SetParams("Layer 5", enumFigures, tincturesListFull, tincturesListShort);
         }
 
-        //private void DrawImage(Graphics graphics)
-        //{
-        //    Rectangle cropRect = new Rectangle(...);
-        //    Bitmap src = Image.FromFile(fileName) as Bitmap;
-        //    Bitmap target = new Bitmap(cropRect.Width, cropRect.Height);
-
-        //    using (Graphics g = Graphics.FromImage(target))
-        //    {
-        //        g.DrawImage(src, new Rectangle(0, 0, target.Width, target.Height),
-        //            cropRect,
-        //            GraphicsUnit.Pixel);
-        //    }
-        //}
-
-        //private void bnNok_Click(object sender, EventArgs e)
-        //{
-        //    pbResult.Image?.Dispose();
-        //    this._bmp = new Bitmap(600, 600);
-
-        //    using var g = Graphics.FromImage(this._bmp);
-        //    using var brushBg = new SolidBrush(Tincture.White);
-        //    using var brushBg1 = new SolidBrush(Tincture.Black);
-        //    using var penShield = SignumPen.CreatePen(ETincture.Sable);
-
-        //    /*
-        //     * MemoryStream PCDStream = new MemoryStream(Data, 0, Data.Length);
-        //     * var ResourceStream = ConvertPCD9ToDDSv22 (PCDStream,VersionDRM);
-        //     * ResourceStream.Position = 0;
-        //     * var DDSImage = new DDSImage (ResourceStream);
-        //     * var Bitmap = DDSImage.BitmapImage;
-        //     * previewPictureBox.Image = Bitmap;
-        //     */
-
-        //    using (var fs = new FileStream("C:\\Users\\User\\Source\\Repos\\SignumGenerator\\SignumGenerator\\SignumGenerator\\Images\\ImageFile.dds",
-        //        FileMode.Open, FileAccess.Read))
-        //    {
-        //        var img = new DDSImage(fs);
-        //        var bmp = img.BitmapImage;
-        //        g.DrawImage(bmp, 0, 0, 600, 600);
-        //    }
-
-        //    pbResult.Image = this._bmp;
-        //}
-
         ~FMain()
         {
             this._bmp.Dispose();
@@ -104,28 +60,14 @@ namespace SignumGenerator
             var g = Graphics.FromImage(this._bmp);
 
             var signumBase = new SignumBase(CanvasWidth, CanvasHeight);
-            var inputBase = layerBase.GetInput();
-            signumBase.ApplyBase(inputBase);
+            signumBase.SetBase(layerBase.GetInput());
+            signumBase.Add(layer1.GetInput());
+            signumBase.Add(layer2.GetInput());
+            signumBase.Add(layer3.GetInput());
+            signumBase.Add(layer4.GetInput());
+            signumBase.Add(layer5.GetInput());
 
-            var input1 = layer1.GetInput();
-            if(!input1.IsEmpty)
-                signumBase.ApplyPattern(input1);
-
-            var input2 = layer2.GetInput();
-            if (!input2.IsEmpty)
-                signumBase.ApplyPattern(input2);
-
-            var input3 = layer3.GetInput();
-            if (!input3.IsEmpty)
-                signumBase.ApplyPattern(input3);
-
-            var input4 = layer4.GetInput();
-            if (!input4.IsEmpty)
-                signumBase.ApplyPattern(input4);
-
-            var input5 = layer5.GetInput();
-            if (!input5.IsEmpty)
-                signumBase.ApplyPattern(input5);
+            signumBase.Apply();
 
             g.SetClip(CreateShieldRegion(new SignumData(CanvasWidth, CanvasHeight)), CombineMode.Replace);
             signumBase.Draw(g);

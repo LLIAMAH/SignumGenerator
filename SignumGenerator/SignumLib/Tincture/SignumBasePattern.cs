@@ -1,8 +1,10 @@
-﻿namespace SignumLib.Tincture
+﻿using System;
+
+namespace SignumLib.Tincture
 {
     public enum SignumBasePattern
     {
-        Default,
+        Default, // for main background shield
         StripesHorizontal,
         StripesVertical,
         StripesPal,
@@ -26,6 +28,24 @@
         // ReSharper disable once IdentifierTypo
         HonoraryCroixDiagonal, // узкий косой крест (андреевский); вилообразный крест (фр. pairle); узкий вилообразный крест
 
+        /* Drawing Simple heraldic figures */
+        /* ==================================== */
+        //SimplePyramid,
+        //SimplePile,
+        //SimpleGiron,
+        //SimpleDelf,
+        //SimpleBar,
+        //SimpleBillet,
+        //SimpleRhombus, // losange
+        //SimpleBetrothed, // Fusee
+        //SimpleArque,
+        //SimpleFlanches,
+        //SimpleOrle,
+        //SimpleCanton,
+        //SimpleFrette,
+        //SimpleEcussion,
+        //SimpleLambel,
+        //SimpleBesant,
         /*
          * Кайма (фр. bordure) — окаймление вокруг края щита. В испанской и португальской геральдике включает в себя уменьшенные щиты близких родственников. Также см. бризуры.
          * Костыль (фр. chef-pal) — комбинация столба и главы
@@ -52,5 +72,69 @@
         SliceLeftInvert,
         SliceRightNormal,
         SliceRightInvert
+    }
+
+    public enum PatternDirection
+    {
+        Normal,
+        Inverse
+    }
+
+    public enum PatternChevronType
+    {
+        Normal,
+        Middle,
+        Full,
+        Custom
+    }
+
+    [Flags]
+    public enum PatternSide
+    {
+        None = 0,
+        Top = 1,
+        Bottom = 2,
+        Left = 4,
+        Right = 8,
+        TopAndLeft = Top | Left,
+        TopAndRight = Top | Right,
+        BottomAndLeft = Bottom | Left,
+        BottomAndRight = Bottom | Right
+    }
+
+    public enum PatternSize
+    {
+        Normal,
+        Specific
+    }
+
+    public enum PatternPosition
+    {
+        Common,
+        Diagonal
+    }
+
+    public enum PatternView
+    {
+        Horizontal,
+        Vertical
+    }
+
+    public enum PatternLinesType
+    {
+        Stripes,
+        Pals
+    }
+
+    [Flags]
+    public enum Quarter
+    {
+        None = 0,
+        One = 1,
+        Two = 2,
+        Three = 4,
+        Four = 8,
+        OneAndFour = One | Four,
+        TwoANdThree = Two | Three
     }
 }
