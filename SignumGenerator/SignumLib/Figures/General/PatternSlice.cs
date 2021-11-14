@@ -5,7 +5,7 @@ using System.Drawing;
 
 namespace SignumLib.Figures.General
 {
-    internal class PatternSlice : PatternAbstract, IPattern
+    public class PatternSlice : PatternAbstract, IPatternLayer
     {
         private PatternSide _side;
 

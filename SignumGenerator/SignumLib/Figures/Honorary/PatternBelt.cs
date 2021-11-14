@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace SignumLib.Figures.Honorary
 {
-    internal class PatternBelt : PatternAbstract, IPattern
+    internal class PatternBelt : PatternAbstract, IPatternLayer
     {
         public void Draw(Graphics g, SignumData data, InputLayerData input)
         {

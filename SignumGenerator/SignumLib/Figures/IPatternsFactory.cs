@@ -5,6 +5,7 @@ namespace SignumLib.Figures
     // Abstract factory
     public interface IPatternsFactory
     {
-        public IPattern CreatePattern(SignumBasePattern patternValue);
+        IPatternBase CreatePatternBase();
+        IPatternLayer CreatePattern(SignumBasePattern patternValue);
     }
 }

@@ -6,7 +6,12 @@ namespace SignumLib.Figures
 {
     public class PatternsFactory : IPatternsFactory
     {
-        public IPattern CreatePattern(SignumBasePattern patternValue)
+        public IPatternBase CreatePatternBase()
+        {
+            return new PatternBase();
+        }
+
+        public IPatternLayer CreatePattern(SignumBasePattern patternValue)
         {
             switch (patternValue)
             {

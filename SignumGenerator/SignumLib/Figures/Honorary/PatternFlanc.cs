@@ -5,7 +5,7 @@ using System.Drawing;
 
 namespace SignumLib.Figures.Honorary
 {
-    internal class PatternFlanc : PatternAbstract, IPattern
+    internal class PatternFlanc : PatternAbstract, IPatternLayer
     {
         private readonly PatternSide _side;
 

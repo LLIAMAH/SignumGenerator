@@ -5,7 +5,7 @@ using System.Drawing;
 
 namespace SignumLib.Figures.General
 {
-    internal class PatternCheckers : PatternAbstract, IPattern
+    internal class PatternCheckers : PatternAbstract, IPatternLayer
     {
         private PatternPosition _position;
         private PatternDirection _direction;

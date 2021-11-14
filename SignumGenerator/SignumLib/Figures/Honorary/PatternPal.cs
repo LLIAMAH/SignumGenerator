@@ -5,7 +5,7 @@ using System.Drawing;
 
 namespace SignumLib.Figures.Honorary
 {
-    internal class PatternPal : PatternAbstract, IPattern
+    internal class PatternPal : PatternAbstract, IPatternLayer
     {
         private readonly PatternSize _size;
 

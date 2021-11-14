@@ -5,7 +5,7 @@ using System.Drawing;
 
 namespace SignumLib.Figures.Honorary
 {
-    internal class PatternCroix : PatternAbstract, IPattern
+    internal class PatternCroix : PatternAbstract, IPatternLayer
     {
         private readonly PatternPosition _position;
 

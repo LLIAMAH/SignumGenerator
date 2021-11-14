@@ -5,13 +5,13 @@ using System.Drawing;
 
 namespace SignumLib.Figures.Honorary
 {
-    internal class PatternChevron : PatternAbstract, IPattern
+    internal class PatternChevron : PatternAbstract, IPatternLayer
     {
         private readonly PatternDirection _direction;
 
-        public PatternChevron(PatternDirection normal)
+        public PatternChevron(PatternDirection direction)
         {
-            this._direction = normal;
+            this._direction = direction;
         }
 
         public void Draw(Graphics g, SignumData data, InputLayerData input)
@@ -65,6 +65,72 @@ namespace SignumLib.Figures.Honorary
                 new(data.Left, point - offset + halfSize)
             };
 
+            var region = CreateRegion(points);
+            DrawRegion(g, region, input);
+        }
+
+        private static void DrawChevronFullNormal(Graphics g, SignumData data, InputLayerData input)
+        {
+            var size = input.Param1 is null or 0 ? GetHeraldicWidthSling() : input.Param1.Value;
+            var points = new Point[]
+            {
+                new(data.Left, data.Bottom - size),
+                new(data.CenterX, data.Top),
+                new(data.Right, data.Bottom - size),
+                new(data.Right, data.Bottom),
+                new(data.CenterX, data.Top + size),
+                new(data.Left, data.Bottom)
+            };
+            var region = CreateRegion(points);
+            DrawRegion(g, region, input);
+        }
+
+        private static void DrawChevronFullInvert(Graphics g, SignumData data, InputLayerData input)
+        {
+            var size = input.Param1 is null or 0 ? GetHeraldicWidthSling() : input.Param1.Value;
+            var points = new Point[]
+            {
+                new(data.Left, data.Top),
+                new(data.CenterX, data.Bottom - size),
+                new(data.Right, data.Top),
+                new(data.Right, data.Top + size),
+                new(data.CenterX, data.Bottom),
+                new(data.Left, data.Top + size)
+            };
+            var region = CreateRegion(points);
+            DrawRegion(g, region, input);
+        }
+
+        private static void DrawChevronMiddleNormal(Graphics g, SignumData data, InputLayerData input)
+        {
+            var size = input.Param1 is null or 0 ? GetHeraldicWidthSling() : input.Param1.Value;
+            var halfSize = size / 2;
+            var points = new Point[]
+            {
+                new(data.Left, data.CenterY - halfSize + data.Width / 2),
+                new(data.CenterX, data.CenterY - halfSize),
+                new(data.Right, data.CenterY - halfSize + data.Width / 2),
+                new(data.Right, data.CenterY + halfSize + data.Width / 2),
+                new(data.CenterX, data.CenterY + halfSize),
+                new(data.Left, data.CenterY + halfSize + data.Width / 2)
+            };
+            var region = CreateRegion(points);
+            DrawRegion(g, region, input);
+        }
+
+        private static void DrawChevronMiddleInvert(Graphics g, SignumData data, InputLayerData input)
+        {
+            var size = input.Param1 is null or 0 ? GetHeraldicWidthSling() : input.Param1.Value;
+            var halfSize = size / 2;
+            var points = new Point[]
+            {
+                new(data.Left, data.CenterY - halfSize - data.Width / 2),
+                new(data.CenterX, data.CenterY - halfSize),
+                new(data.Right, data.CenterY - halfSize - data.Width / 2),
+                new(data.Right, data.CenterY + halfSize - data.Width / 2),
+                new(data.CenterX, data.CenterY + halfSize),
+                new(data.Left, data.CenterY + halfSize - data.Width / 2)
+            };
             var region = CreateRegion(points);
             DrawRegion(g, region, input);
         }

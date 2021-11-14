@@ -4,7 +4,7 @@ namespace SignumLib.Tincture
 {
     public enum SignumBasePattern
     {
-        Default,
+        Default, // for main background shield
         StripesHorizontal,
         StripesVertical,
         StripesPal,

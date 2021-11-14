@@ -6,7 +6,7 @@ using System.Drawing.Drawing2D;
 
 namespace SignumLib.Figures
 {
-    internal abstract class PatternAbstract
+    public abstract class PatternAbstract
     {
         protected const int _furStep = 100;
         protected static int Width { get; private set; } = 800;

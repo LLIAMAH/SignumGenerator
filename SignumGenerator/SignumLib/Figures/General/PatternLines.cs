@@ -5,7 +5,7 @@ using System.Drawing;
 
 namespace SignumLib.Figures.General
 {
-    internal class PatternLines : PatternAbstract, IPattern
+    internal class PatternLines : PatternAbstract, IPatternLayer
     {
         private PatternLinesType _linesType;
         private PatternView _view;
@@ -106,6 +106,38 @@ namespace SignumLib.Figures.General
                 var lineCenter = i * lineWidth + lineWidth / 2;
                 if (i % 2 == 0)
                     g.DrawLine(pen, new Point(lineCenter, data.Top), new Point(lineCenter, data.Bottom));
+                i++;
+            }
+        }
+
+        private static void DrawStripesPal(Graphics g, Pen pen, SignumData data, int lineWidth, int count)
+        {
+            if (count == 0)
+                return;
+
+            var pileZone = data.Width / count;
+            var pileZoneCenter = pileZone / 2;
+            var i = 0;
+            while (i < count)
+            {
+                g.DrawLine(pen, new Point(pileZoneCenter, data.Top), new Point(pileZoneCenter, data.Bottom));
+                pileZoneCenter += pileZone;
+                i++;
+            }
+        }
+
+        private static void DrawStripesBar(Graphics g, Pen pen, SignumData data, int lineWidth, int count)
+        {
+            if (count == 0)
+                return;
+
+            var pileZone = data.Height / count;
+            var pileZoneCenter = pileZone / 2;
+            var i = 0;
+            while (i < count)
+            {
+                g.DrawLine(pen, new Point(data.Left, pileZoneCenter), new Point(data.Right, pileZoneCenter));
+                pileZoneCenter += pileZone;
                 i++;
             }
         }
