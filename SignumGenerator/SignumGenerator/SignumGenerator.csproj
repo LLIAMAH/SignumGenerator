@@ -28,20 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Images\Furs\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SignumLib\SignumLib.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Images\Furs\Fur_Ermine.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Images\Furs\Fur_Vair.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
