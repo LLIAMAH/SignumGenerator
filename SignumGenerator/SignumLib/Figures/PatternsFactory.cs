@@ -1,5 +1,6 @@
 ﻿using SignumLib.Figures.General;
 using SignumLib.Figures.Honorary;
+using SignumLib.Figures.Simple;
 using SignumLib.Tincture;
 
 namespace SignumLib.Figures
@@ -54,6 +55,7 @@ namespace SignumLib.Figures
                 case SignumBasePattern.SliceLeftInvert: return new PatternSlice(PatternSide.BottomAndRight);
                 case SignumBasePattern.SliceRightNormal: return new PatternSlice(PatternSide.TopAndRight);
                 case SignumBasePattern.SliceRightInvert: return new PatternSlice(PatternSide.BottomAndLeft);
+                case SignumBasePattern.SimplePyramid: return new PatternPyramid();
                 default: { return new PatternDefault(); }
             }
         }

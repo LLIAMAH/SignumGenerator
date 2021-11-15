@@ -30,7 +30,7 @@ namespace SignumLib.Tincture
 
         /* Drawing Simple heraldic figures */
         /* ==================================== */
-        //SimplePyramid,
+        SimplePyramid,
         //SimplePile,
         //SimpleGiron,
         //SimpleDelf,
