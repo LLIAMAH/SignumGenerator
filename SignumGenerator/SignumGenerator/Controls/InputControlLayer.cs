@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using SignumLib.Helpers;
 using SignumLib.Tincture;
@@ -47,6 +46,10 @@ namespace SignumGenerator.Controls
             var val = Enum.Parse<SignumBasePattern>(cb?.SelectedItem?.ToString()!);
             switch (val)
             {
+                case SignumBasePattern.SimpleBar:
+                case SignumBasePattern.SimpleBillet:
+                    SetParamsAvailable(1, "Percent");
+                    break;
                 case SignumBasePattern.StripesHorizontal:
                 case SignumBasePattern.StripesVertical:
                 case SignumBasePattern.StripesPal:

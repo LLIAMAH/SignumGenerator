@@ -34,8 +34,8 @@ namespace SignumLib.Tincture
         //SimplePile,
         //SimpleGiron,
         //SimpleDelf,
-        //SimpleBar,
-        //SimpleBillet,
+        SimpleBar,
+        SimpleBillet,
         //SimpleRhombus, // losange
         //SimpleBetrothed, // Fusee
         //SimpleArque,
@@ -124,6 +124,12 @@ namespace SignumLib.Tincture
     {
         Stripes,
         Pals
+    }
+
+    public enum PatternBarType
+    {
+        Bar,
+        Billet
     }
 
     [Flags]

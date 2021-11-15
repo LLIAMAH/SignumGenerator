@@ -37,5 +37,12 @@ namespace SignumLib.Helpers
                 result.Union(region);
             return result;
         }
+
+        internal static Region ToRegion(this Point[] points)
+        {
+            var gf = new GraphicsPath();
+            gf.AddPolygon(points);
+            return new Region(gf);
+        }
     }
 }

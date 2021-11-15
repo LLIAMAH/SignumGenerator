@@ -38,7 +38,7 @@ namespace SignumLib.Figures
                 case SignumBasePattern.Quarters_2_3: return new PatternQuarters(PatternPosition.Common, Quarter.TwoANdThree);
                 case SignumBasePattern.QuartersDiagonalTopBottom: return new PatternQuarters(PatternPosition.Diagonal, Quarter.OneAndFour);
                 case SignumBasePattern.QuartersDiagonalLeftRight: return new PatternQuarters(PatternPosition.Diagonal, Quarter.TwoANdThree);
-                case SignumBasePattern.CheckersNormal:return new PatternCheckers(PatternPosition.Common, PatternDirection.Normal);
+                case SignumBasePattern.CheckersNormal: return new PatternCheckers(PatternPosition.Common, PatternDirection.Normal);
                 case SignumBasePattern.CheckersInverse: return new PatternCheckers(PatternPosition.Common, PatternDirection.Inverse);
                 case SignumBasePattern.CheckersDiagonal: return new PatternCheckers(PatternPosition.Diagonal, PatternDirection.Normal);
                 case SignumBasePattern.ChevronMiddleNormal: return new PatternChevron(PatternDirection.Normal, PatternChevronType.Normal);
@@ -48,7 +48,7 @@ namespace SignumLib.Figures
                 case SignumBasePattern.ChevronPointOffsetSizeNormal: return new PatternChevron(PatternDirection.Normal, PatternChevronType.Custom);
                 case SignumBasePattern.ChevronPointOffsetSizeInvert: return new PatternChevron(PatternDirection.Inverse, PatternChevronType.Custom);
                 case SignumBasePattern.SplitHorizontalNormal: return new PatternSplit(PatternView.Horizontal, PatternDirection.Normal);
-                case SignumBasePattern.SplitHorizontalInvert: return new PatternSplit(PatternView.Horizontal, PatternDirection.Inverse);                    
+                case SignumBasePattern.SplitHorizontalInvert: return new PatternSplit(PatternView.Horizontal, PatternDirection.Inverse);
                 case SignumBasePattern.SplitVerticalLeft: return new PatternSplit(PatternView.Vertical, PatternDirection.Normal);
                 case SignumBasePattern.SplitVerticalRight: return new PatternSplit(PatternView.Vertical, PatternDirection.Inverse);
                 case SignumBasePattern.SliceLeftNormal: return new PatternSlice(PatternSide.TopAndLeft);
@@ -56,6 +56,8 @@ namespace SignumLib.Figures
                 case SignumBasePattern.SliceRightNormal: return new PatternSlice(PatternSide.TopAndRight);
                 case SignumBasePattern.SliceRightInvert: return new PatternSlice(PatternSide.BottomAndLeft);
                 case SignumBasePattern.SimplePyramid: return new PatternPyramid();
+                case SignumBasePattern.SimpleBar: return new PatternBar(PatternBarType.Bar);
+                case SignumBasePattern.SimpleBillet: return new PatternBar(PatternBarType.Billet);
                 default: { return new PatternDefault(); }
             }
         }
