@@ -55,7 +55,9 @@ namespace SignumLib.Figures
                 case SignumBasePattern.SliceLeftInvert: return new PatternSlice(PatternSide.BottomAndRight);
                 case SignumBasePattern.SliceRightNormal: return new PatternSlice(PatternSide.TopAndRight);
                 case SignumBasePattern.SliceRightInvert: return new PatternSlice(PatternSide.BottomAndLeft);
-                case SignumBasePattern.SimplePyramid: return new PatternPyramid();
+                case SignumBasePattern.SimplePyramid: return new PatternPile(PatternPileType.Pyramid);
+                case SignumBasePattern.SimplePile: return new PatternPile(PatternPileType.Pile);
+                case SignumBasePattern.SimpleGiron: return new PatternPile(PatternPileType.Giron);
                 case SignumBasePattern.SimpleBar: return new PatternBar(PatternBarType.Bar);
                 case SignumBasePattern.SimpleBillet: return new PatternBar(PatternBarType.Billet);
                 default: { return new PatternDefault(); }
