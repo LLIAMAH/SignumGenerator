@@ -47,7 +47,7 @@ namespace SignumLib.Tincture
         //SimpleFrette,
         //SimpleEcussion,
         //SimpleLambel,
-        //SimpleBesant,
+        SimpleBesant,
         /*
          * Кайма (фр. bordure) — окаймление вокруг края щита. В испанской и португальской геральдике включает в себя уменьшенные щиты близких родственников. Также см. бризуры.
          * Костыль (фр. chef-pal) — комбинация столба и главы

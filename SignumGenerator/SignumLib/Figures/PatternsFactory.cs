@@ -60,6 +60,7 @@ namespace SignumLib.Figures
                 case SignumBasePattern.SimpleGiron: return new PatternPile(PatternPileType.Giron);
                 case SignumBasePattern.SimpleBar: return new PatternBar(PatternBarType.Bar);
                 case SignumBasePattern.SimpleBillet: return new PatternBar(PatternBarType.Billet);
+                case SignumBasePattern.SimpleBesant: return new PatternBesant();
                 default: { return new PatternDefault(); }
             }
         }
