@@ -23,7 +23,8 @@ namespace SignumLib.Tincture
         Murrey, // Dark red
         Tenne, // Orange
         Bar, // Background tincture
-        Billet // Background tincture
+        Billet, // Background tincture
+        Besant // Background tincture
     }
 
     public class SignumTincture
@@ -38,7 +39,8 @@ namespace SignumLib.Tincture
         public ETincture Tincture => _tincture;
         public Color Color => GetColor(_tincture);
 
-        public bool IsFur => _tincture is ETincture.Ermine or ETincture.Vair or ETincture.VairVs or ETincture.VairVsShifted or ETincture.Bar or ETincture.Billet;
+        public bool IsFur => _tincture is ETincture.Ermine or ETincture.Vair or ETincture.VairVs or ETincture.VairVsShifted;
+        public bool IsComplex => _tincture is ETincture.Bar or ETincture.Billet or ETincture.Besant;
         public bool IsMetal => _tincture is ETincture.Or or ETincture.Argent;
         public bool IsCounter => _tincture is ETincture.VairVs or ETincture.VairVsShifted;
 
@@ -90,6 +92,7 @@ namespace SignumLib.Tincture
                 ETincture.VairVsShifted => GetVair(),
                 ETincture.Bar => GetBar(),
                 ETincture.Billet => GetBillet(),
+                ETincture.Besant => GetBesant(),
                 _ => GetErmine()
             };
 
@@ -153,6 +156,15 @@ namespace SignumLib.Tincture
         {
             using (var fs = new FileStream(
                 Path.Combine(_imagesPath, "Backgrounds", "Bg_Billet.png"), FileMode.Open, FileAccess.Read))
+            {
+                return new Bitmap(fs);
+            }
+        }
+
+        private static Bitmap GetBesant()
+        {
+            using (var fs = new FileStream(
+                Path.Combine(_imagesPath, "Backgrounds", "Bg_Besante.png"), FileMode.Open, FileAccess.Read))
             {
                 return new Bitmap(fs);
             }

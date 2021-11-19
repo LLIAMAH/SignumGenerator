@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using SignumLib.Base;
@@ -34,7 +35,7 @@ namespace SignumGenerator
                 var signumTincture = new SignumTincture(tincture);
                 tincturesListFull.Add(signumTincture);
 
-                if (!signumTincture.IsFur)
+                if (!signumTincture.IsFur && !signumTincture.IsComplex)
                     tincturesListShort.Add(signumTincture);
             }
 
@@ -104,6 +105,24 @@ namespace SignumGenerator
         {
             if (dlgSaveFile.ShowDialog() == DialogResult.OK)
                 pbResult.Image.Save(dlgSaveFile.FileName, ImageFormat.Png);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var bmp = new Bitmap(256, 256);
+            var data = new SignumData(bmp);
+            var g = Graphics.FromImage(bmp);
+
+            var rectSize = bmp.Width / 4;
+            var rect = new Rectangle(
+                new(data.CenterX - rectSize, data.CenterY - rectSize),
+                new(rectSize * 2, rectSize * 2));
+
+            g.FillEllipse(new SolidBrush(Color.Black), rect);
+
+            var img = bmp as Image;
+            var defaultPath = "C:\\Temp";
+            img.Save(Path.Combine(defaultPath, "Bg_Besante.png"), ImageFormat.Png);
         }
     }
 }

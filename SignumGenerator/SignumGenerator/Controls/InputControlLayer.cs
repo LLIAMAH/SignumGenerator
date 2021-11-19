@@ -43,6 +43,9 @@ namespace SignumGenerator.Controls
         private void Figure_SelectedIndexChanged(object sender, EventArgs e)
         {
             var cb = sender as ComboBox;
+            if (cb == null)
+                return;
+
             var val = Enum.Parse<SignumBasePattern>(cb?.SelectedItem?.ToString()!);
             switch (val)
             {
@@ -113,7 +116,7 @@ namespace SignumGenerator.Controls
             if ((sender as ComboBox)?.SelectedItem is not SignumTincture val)
                 return;
 
-            this.ColorBG.Enabled = this.ColorSub.Enabled = val.IsFur;
+            this.ColorBG.Enabled = this.ColorSub.Enabled = val.IsFur || val.IsComplex;
         }
 
         private void SetParamsAvailable(int availableParamsCount, string title1 = "", string title2 = "", string title3 = "")

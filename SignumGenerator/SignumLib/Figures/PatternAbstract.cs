@@ -39,7 +39,7 @@ namespace SignumLib.Figures
         protected static void DrawRegion(Graphics g, Region region, InputBaseData input)
         {
             g.SetClip(region, CombineMode.Replace);
-            if (input.TinctureMain.IsFur)
+            if (input.TinctureMain.IsFur || input.TinctureMain.IsComplex)
             {
                 using (var brush = input.TinctureBg.CreateBrush())
                 {
@@ -63,7 +63,7 @@ namespace SignumLib.Figures
         protected static void DrawRegion(Graphics g, Region region, InputLayerData input)
         {
             g.SetClip(region, CombineMode.Replace);
-            if (input.TinctureMain.IsFur)
+            if (input.TinctureMain.IsFur || input.TinctureMain.IsComplex)
             {
                 using (var brush = input.TinctureBg.CreateBrush())
                 {

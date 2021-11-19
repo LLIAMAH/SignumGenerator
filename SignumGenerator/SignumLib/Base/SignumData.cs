@@ -52,5 +52,11 @@ namespace SignumLib.Base
             this._width = width;
             this._height = height;
         }
+
+        public SignumData(Bitmap bmp)
+        {
+            this._width = bmp.Width;
+            this._height = bmp.Height;
+        }
     }
 }
