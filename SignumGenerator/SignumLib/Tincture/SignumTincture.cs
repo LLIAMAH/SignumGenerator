@@ -21,7 +21,9 @@ namespace SignumLib.Tincture
         VairVsShifted, // Fur tincture
         Sanguine, // Blood
         Murrey, // Dark red
-        Tenne // Orange
+        Tenne, // Orange
+        Bar, // Background tincture
+        Billet // Background tincture
     }
 
     public class SignumTincture
@@ -36,7 +38,7 @@ namespace SignumLib.Tincture
         public ETincture Tincture => _tincture;
         public Color Color => GetColor(_tincture);
 
-        public bool IsFur => _tincture is ETincture.Ermine or ETincture.Vair or ETincture.VairVs or ETincture.VairVsShifted;
+        public bool IsFur => _tincture is ETincture.Ermine or ETincture.Vair or ETincture.VairVs or ETincture.VairVsShifted or ETincture.Bar or ETincture.Billet;
         public bool IsMetal => _tincture is ETincture.Or or ETincture.Argent;
         public bool IsCounter => _tincture is ETincture.VairVs or ETincture.VairVsShifted;
 
@@ -86,6 +88,8 @@ namespace SignumLib.Tincture
                 ETincture.Vair => GetVair(),
                 ETincture.VairVs => GetVair(),
                 ETincture.VairVsShifted => GetVair(),
+                ETincture.Bar => GetBar(),
+                ETincture.Billet => GetBillet(),
                 _ => GetErmine()
             };
 
@@ -131,6 +135,24 @@ namespace SignumLib.Tincture
         {
             using (var fs = new FileStream(
                 Path.Combine(_imagesPath, "Furs", "Fur_Vair.png"), FileMode.Open, FileAccess.Read))
+            {
+                return new Bitmap(fs);
+            }
+        }
+
+        private static Bitmap GetBar()
+        {
+            using (var fs = new FileStream(
+                Path.Combine(_imagesPath, "Backgrounds", "Bg_Bar.png"), FileMode.Open, FileAccess.Read))
+            {
+                return new Bitmap(fs);
+            }
+        }
+
+        private static Bitmap GetBillet()
+        {
+            using (var fs = new FileStream(
+                Path.Combine(_imagesPath, "Backgrounds", "Bg_Billet.png"), FileMode.Open, FileAccess.Read))
             {
                 return new Bitmap(fs);
             }
