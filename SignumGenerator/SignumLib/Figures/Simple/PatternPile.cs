@@ -1,7 +1,6 @@
 ﻿using SignumLib.Base;
 using SignumLib.Helpers;
 using SignumLib.Tincture;
-using System;
 using System.Drawing;
 
 namespace SignumLib.Figures.Simple
