@@ -38,8 +38,14 @@ namespace SignumLib.Figures.Simple
 
         private static void DrawPile(Graphics g, SignumData data, InputLayerData input)
         {
-            var baseWidthPerc = input.Param1.Value;
-            var baseWidth = ((double)baseWidthPerc * Width / 100) / 2;
+            var baseWidthPercents = input.Param1.Value;
+            var basePositionPercents = input.Param2.Value;
+
+            if (basePositionPercents == 0)
+                basePositionPercents = 100;
+
+            var baseWidth = ((double)baseWidthPercents * Width / 100) / 2;
+            var pileHeight = (double)basePositionPercents * Height / 100;
 
             var left = (int)(data.CenterX - baseWidth);
             var right = (int)(data.CenterX + baseWidth);
@@ -48,7 +54,7 @@ namespace SignumLib.Figures.Simple
             {
                 new (left, data.Top),
                 new (right, data.Top),
-                new (data.CenterX, data.Bottom)
+                new (data.CenterX, (int)pileHeight)
             };
 
             var region = CreateRegion(points);

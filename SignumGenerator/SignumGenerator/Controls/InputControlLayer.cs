@@ -51,9 +51,11 @@ namespace SignumGenerator.Controls
             {
                 case SignumBasePattern.SimpleBar:
                 case SignumBasePattern.SimpleBillet:
-                case SignumBasePattern.SimplePile:
                 case SignumBasePattern.SimpleBesant:
                     SetParamsAvailable(1, "Percent");
+                    break;
+                case SignumBasePattern.SimplePile:
+                    SetParamsAvailable(2, "% (W)", "% (H)");
                     break;
                 case SignumBasePattern.StripesHorizontal:
                 case SignumBasePattern.StripesVertical:

@@ -96,7 +96,7 @@ namespace SignumLib.Figures
         {
             var localBmp = new Bitmap(rect.Width, rect.Height);
             var localG = Graphics.FromImage(localBmp);
-            var localRect = new Rectangle(0, 0, Width, Height); // rect.Width, rect.Height);
+            var localRect = new Rectangle(0, 0, Width, Height);
 
             var i = localRect.Left;
             var j = localRect.Top;
