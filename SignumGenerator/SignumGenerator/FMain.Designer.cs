@@ -32,16 +32,16 @@ namespace SignumGenerator
             this.gbSignum = new System.Windows.Forms.GroupBox();
             this.pbResult = new System.Windows.Forms.PictureBox();
             this.gbControls = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.bnSaveToFile = new System.Windows.Forms.Button();
             this.bnDraw = new System.Windows.Forms.Button();
-            this.layerBase = new SignumGenerator.Controls.InputControlBase();
             this.layer5 = new SignumGenerator.Controls.InputControlLayer();
             this.layer4 = new SignumGenerator.Controls.InputControlLayer();
             this.layer3 = new SignumGenerator.Controls.InputControlLayer();
             this.layer2 = new SignumGenerator.Controls.InputControlLayer();
             this.layer1 = new SignumGenerator.Controls.InputControlLayer();
             this.dlgSaveFile = new System.Windows.Forms.SaveFileDialog();
-            this.button1 = new System.Windows.Forms.Button();
+            this.layerBase = new SignumGenerator.Controls.InputControlBase();
             this.gbSignum.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbResult)).BeginInit();
             this.gbControls.SuspendLayout();
@@ -70,10 +70,10 @@ namespace SignumGenerator
             // 
             // gbControls
             // 
+            this.gbControls.Controls.Add(this.layerBase);
             this.gbControls.Controls.Add(this.button1);
             this.gbControls.Controls.Add(this.bnSaveToFile);
             this.gbControls.Controls.Add(this.bnDraw);
-            this.gbControls.Controls.Add(this.layerBase);
             this.gbControls.Controls.Add(this.layer5);
             this.gbControls.Controls.Add(this.layer4);
             this.gbControls.Controls.Add(this.layer3);
@@ -86,6 +86,16 @@ namespace SignumGenerator
             this.gbControls.TabIndex = 1;
             this.gbControls.TabStop = false;
             this.gbControls.Text = "Controls";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(642, 789);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(112, 34);
+            this.button1.TabIndex = 26;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // bnSaveToFile
             // 
@@ -106,15 +116,6 @@ namespace SignumGenerator
             this.bnDraw.Text = "Draw";
             this.bnDraw.UseVisualStyleBackColor = true;
             this.bnDraw.Click += new System.EventHandler(this.bnDraw_Click);
-            // 
-            // layerBase
-            // 
-            this.layerBase.Location = new System.Drawing.Point(19, 51);
-            this.layerBase.MaximumSize = new System.Drawing.Size(595, 42);
-            this.layerBase.MinimumSize = new System.Drawing.Size(595, 42);
-            this.layerBase.Name = "layerBase";
-            this.layerBase.Size = new System.Drawing.Size(595, 42);
-            this.layerBase.TabIndex = 23;
             // 
             // layer5
             // 
@@ -167,15 +168,14 @@ namespace SignumGenerator
             this.dlgSaveFile.FileName = "Signum";
             this.dlgSaveFile.Filter = "Images|*.png";
             // 
-            // button1
+            // layerBase
             // 
-            this.button1.Location = new System.Drawing.Point(642, 789);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 34);
-            this.button1.TabIndex = 26;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.layerBase.Location = new System.Drawing.Point(20, 51);
+            this.layerBase.MaximumSize = new System.Drawing.Size(795, 42);
+            this.layerBase.MinimumSize = new System.Drawing.Size(795, 42);
+            this.layerBase.Name = "layerBase";
+            this.layerBase.Size = new System.Drawing.Size(795, 42);
+            this.layerBase.TabIndex = 27;
             // 
             // FMain
             // 
@@ -207,11 +207,11 @@ namespace SignumGenerator
         private Controls.InputControlLayer layer3;
         private Controls.InputControlLayer layer2;
         private Controls.InputControlLayer layer1;
-        private Controls.InputControlBase layerBase;
         private System.Windows.Forms.Button bnDraw;
         private System.Windows.Forms.Button bnSaveToFile;
         private System.Windows.Forms.SaveFileDialog dlgSaveFile;
         private System.Windows.Forms.Button button1;
+        private Controls.InputControlBase layerBase;
     }
 }
 

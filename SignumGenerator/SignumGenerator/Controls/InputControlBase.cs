@@ -49,7 +49,7 @@ namespace SignumGenerator.Controls
             if ((sender as ComboBox)?.SelectedItem is not SignumTincture val)
                 return;
 
-            this.ColorBG.Enabled = this.ColorSub.Enabled = val.IsFur || val.IsComplex;
+            tbBgStepSize.Enabled  = this.ColorBG.Enabled = this.ColorSub.Enabled = val.IsFur || val.IsComplex;
         }
     }
 }

@@ -33,6 +33,8 @@ namespace SignumGenerator.Controls
             this.Title = new System.Windows.Forms.Label();
             this.ColorSub = new System.Windows.Forms.ComboBox();
             this.ColorBG = new System.Windows.Forms.ComboBox();
+            this.lBgStepSize = new System.Windows.Forms.Label();
+            this.tbBgStepSize = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // ColorBase
@@ -72,18 +74,38 @@ namespace SignumGenerator.Controls
             this.ColorBG.Size = new System.Drawing.Size(116, 33);
             this.ColorBG.TabIndex = 22;
             // 
+            // lBgStepSize
+            // 
+            this.lBgStepSize.AutoSize = true;
+            this.lBgStepSize.Location = new System.Drawing.Point(589, 6);
+            this.lBgStepSize.Name = "lBgStepSize";
+            this.lBgStepSize.Size = new System.Drawing.Size(74, 25);
+            this.lBgStepSize.TabIndex = 23;
+            this.lBgStepSize.Text = "BG Step";
+            // 
+            // tbBgStepSize
+            // 
+            this.tbBgStepSize.Location = new System.Drawing.Point(669, 5);
+            this.tbBgStepSize.Name = "tbBgStepSize";
+            this.tbBgStepSize.Size = new System.Drawing.Size(60, 31);
+            this.tbBgStepSize.TabIndex = 24;
+            this.tbBgStepSize.Text = "100";
+            this.tbBgStepSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // InputControlBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.tbBgStepSize);
+            this.Controls.Add(this.lBgStepSize);
             this.Controls.Add(this.ColorBG);
             this.Controls.Add(this.ColorSub);
             this.Controls.Add(this.ColorBase);
             this.Controls.Add(this.Title);
-            this.MaximumSize = new System.Drawing.Size(595, 42);
-            this.MinimumSize = new System.Drawing.Size(595, 42);
+            this.MaximumSize = new System.Drawing.Size(740, 42);
+            this.MinimumSize = new System.Drawing.Size(740, 42);
             this.Name = "InputControlBase";
-            this.Size = new System.Drawing.Size(595, 42);
+            this.Size = new System.Drawing.Size(740, 42);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -95,5 +117,7 @@ namespace SignumGenerator.Controls
         private System.Windows.Forms.Label Title;
         private System.Windows.Forms.ComboBox ColorSub;
         private System.Windows.Forms.ComboBox ColorBG;
+        private System.Windows.Forms.Label lBgStepSize;
+        private System.Windows.Forms.TextBox tbBgStepSize;
     }
 }
