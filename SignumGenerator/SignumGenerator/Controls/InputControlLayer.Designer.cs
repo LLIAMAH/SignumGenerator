@@ -160,7 +160,7 @@ namespace SignumGenerator.Controls
             this.StepBG.Name = "StepBG";
             this.StepBG.Size = new System.Drawing.Size(76, 31);
             this.StepBG.TabIndex = 27;
-            this.StepBG.Text = "0";
+            this.StepBG.Text = "100";
             this.StepBG.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // InputControlLayer
@@ -180,8 +180,8 @@ namespace SignumGenerator.Controls
             this.Controls.Add(this.Figure);
             this.Controls.Add(this.ColorMain);
             this.Controls.Add(this.Title);
-            this.MaximumSize = new System.Drawing.Size(1000, 84);
-            this.MinimumSize = new System.Drawing.Size(860, 84);
+            this.MaximumSize = new System.Drawing.Size(927, 84);
+            this.MinimumSize = new System.Drawing.Size(927, 84);
             this.Name = "InputControlLayer";
             this.Size = new System.Drawing.Size(927, 84);
             this.ResumeLayout(false);
