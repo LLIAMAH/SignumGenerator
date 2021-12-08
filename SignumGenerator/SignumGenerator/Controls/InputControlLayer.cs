@@ -118,7 +118,7 @@ namespace SignumGenerator.Controls
             if ((sender as ComboBox)?.SelectedItem is not SignumTincture val)
                 return;
 
-            this.ColorBG.Enabled = this.ColorSub.Enabled = val.IsFur || val.IsComplex;
+            this.StepBG.Enabled = this.ColorBG.Enabled = this.ColorSub.Enabled = val.IsFur || val.IsComplex;
         }
 
         private void SetParamsAvailable(int availableParamsCount, string title1 = "", string title2 = "", string title3 = "")
@@ -156,6 +156,10 @@ namespace SignumGenerator.Controls
             var colorSub = ColorSub.SelectedItem as SignumTincture;
             var colorBg = ColorBG.SelectedItem as SignumTincture;
 
+            var stepBg = StepBG.Enabled && !string.IsNullOrEmpty(StepBG.Text)
+                ? Convert.ToInt32(StepBG.Text)
+                : 100;
+
             int? param1 = Param1.Enabled && !string.IsNullOrEmpty(Param1.Text)
                 ? Convert.ToInt32(Param1.Text)
                 : null;
@@ -167,7 +171,7 @@ namespace SignumGenerator.Controls
                 : null;
 
             return new InputLayerData(pattern,
-                colorMain, colorSub, colorBg,
+                colorMain, stepBg, colorSub, colorBg,
                 param1, param2, param3);
         }
     }

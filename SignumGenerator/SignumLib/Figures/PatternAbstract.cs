@@ -8,7 +8,6 @@ namespace SignumLib.Figures
 {
     public abstract class PatternAbstract
     {
-        protected const int _furStep = 100;
         protected static int Width { get; private set; } = 800;
         protected static int Height { get; private set; } = 1000;        
 
@@ -48,7 +47,7 @@ namespace SignumLib.Figures
 
                 using (var image = input.TinctureMain.CreateFur(input.TinctureSub))
                 {
-                    DrawFur(g, image, _furStep, region, input.TinctureMain);
+                    DrawFur(g, image, input.StepBG, region, input.TinctureMain);
                 }
             }
             else
@@ -72,7 +71,7 @@ namespace SignumLib.Figures
 
                 using (var image = input.TinctureMain.CreateFur(input.TinctureSub))
                 {
-                    DrawFur(g, image, _furStep, region, input.TinctureMain);
+                    DrawFur(g, image, input.StepBG, region, input.TinctureMain);
                 }
             }
             else

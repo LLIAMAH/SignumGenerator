@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using SignumLib.Helpers;
 using SignumLib.Tincture;
@@ -41,7 +42,11 @@ namespace SignumGenerator.Controls
             var tinctureSub = ColorSub.SelectedItem as SignumTincture;
             var tinctureBg = ColorBG.SelectedItem as SignumTincture;
 
-            return new InputBaseData(tinctureMain, tinctureSub, tinctureBg);
+            var stepBg = StepBG.Enabled && !string.IsNullOrEmpty(StepBG.Text)
+                ? Convert.ToInt32(StepBG.Text)
+                : 100;
+
+            return new InputBaseData(tinctureMain, stepBg, tinctureSub, tinctureBg);
         }
 
         private void ColorBase_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -49,7 +54,7 @@ namespace SignumGenerator.Controls
             if ((sender as ComboBox)?.SelectedItem is not SignumTincture val)
                 return;
 
-            tbBgStepSize.Enabled  = this.ColorBG.Enabled = this.ColorSub.Enabled = val.IsFur || val.IsComplex;
+            this.StepBG.Enabled  = this.ColorBG.Enabled = this.ColorSub.Enabled = val.IsFur || val.IsComplex;
         }
     }
 }

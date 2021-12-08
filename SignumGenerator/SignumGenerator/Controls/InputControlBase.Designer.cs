@@ -34,7 +34,7 @@ namespace SignumGenerator.Controls
             this.ColorSub = new System.Windows.Forms.ComboBox();
             this.ColorBG = new System.Windows.Forms.ComboBox();
             this.lBgStepSize = new System.Windows.Forms.Label();
-            this.tbBgStepSize = new System.Windows.Forms.TextBox();
+            this.StepBG = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // ColorBase
@@ -83,20 +83,20 @@ namespace SignumGenerator.Controls
             this.lBgStepSize.TabIndex = 23;
             this.lBgStepSize.Text = "BG Step";
             // 
-            // tbBgStepSize
+            // StepBG
             // 
-            this.tbBgStepSize.Location = new System.Drawing.Point(669, 5);
-            this.tbBgStepSize.Name = "tbBgStepSize";
-            this.tbBgStepSize.Size = new System.Drawing.Size(60, 31);
-            this.tbBgStepSize.TabIndex = 24;
-            this.tbBgStepSize.Text = "100";
-            this.tbBgStepSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.StepBG.Location = new System.Drawing.Point(669, 5);
+            this.StepBG.Name = "StepBG";
+            this.StepBG.Size = new System.Drawing.Size(60, 31);
+            this.StepBG.TabIndex = 24;
+            this.StepBG.Text = "100";
+            this.StepBG.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // InputControlBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tbBgStepSize);
+            this.Controls.Add(this.StepBG);
             this.Controls.Add(this.lBgStepSize);
             this.Controls.Add(this.ColorBG);
             this.Controls.Add(this.ColorSub);
@@ -118,6 +118,6 @@ namespace SignumGenerator.Controls
         private System.Windows.Forms.ComboBox ColorSub;
         private System.Windows.Forms.ComboBox ColorBG;
         private System.Windows.Forms.Label lBgStepSize;
-        private System.Windows.Forms.TextBox tbBgStepSize;
+        private System.Windows.Forms.TextBox StepBG;
     }
 }

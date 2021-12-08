@@ -40,6 +40,8 @@ namespace SignumGenerator.Controls
             this.Param2Title = new System.Windows.Forms.Label();
             this.Param3Title = new System.Windows.Forms.Label();
             this.ColorBG = new System.Windows.Forms.ComboBox();
+            this.Param4Title = new System.Windows.Forms.Label();
+            this.StepBG = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // Param1
@@ -143,10 +145,30 @@ namespace SignumGenerator.Controls
             this.ColorBG.Size = new System.Drawing.Size(116, 33);
             this.ColorBG.TabIndex = 26;
             // 
+            // Param4Title
+            // 
+            this.Param4Title.AutoSize = true;
+            this.Param4Title.Location = new System.Drawing.Point(841, 13);
+            this.Param4Title.Name = "Param4Title";
+            this.Param4Title.Size = new System.Drawing.Size(68, 25);
+            this.Param4Title.TabIndex = 28;
+            this.Param4Title.Text = "BG size";
+            // 
+            // StepBG
+            // 
+            this.StepBG.Location = new System.Drawing.Point(841, 41);
+            this.StepBG.Name = "StepBG";
+            this.StepBG.Size = new System.Drawing.Size(76, 31);
+            this.StepBG.TabIndex = 27;
+            this.StepBG.Text = "0";
+            this.StepBG.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // InputControlLayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.Param4Title);
+            this.Controls.Add(this.StepBG);
             this.Controls.Add(this.ColorBG);
             this.Controls.Add(this.Param3Title);
             this.Controls.Add(this.Param2Title);
@@ -158,10 +180,10 @@ namespace SignumGenerator.Controls
             this.Controls.Add(this.Figure);
             this.Controls.Add(this.ColorMain);
             this.Controls.Add(this.Title);
-            this.MaximumSize = new System.Drawing.Size(860, 84);
+            this.MaximumSize = new System.Drawing.Size(1000, 84);
             this.MinimumSize = new System.Drawing.Size(860, 84);
             this.Name = "InputControlLayer";
-            this.Size = new System.Drawing.Size(860, 84);
+            this.Size = new System.Drawing.Size(927, 84);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -180,5 +202,7 @@ namespace SignumGenerator.Controls
         private System.Windows.Forms.Label Param2Title;
         private System.Windows.Forms.Label Param3Title;
         private System.Windows.Forms.ComboBox ColorBG;
+        private System.Windows.Forms.Label Param4Title;
+        private System.Windows.Forms.TextBox StepBG;
     }
 }
