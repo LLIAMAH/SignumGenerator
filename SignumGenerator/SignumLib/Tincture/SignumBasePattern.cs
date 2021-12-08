@@ -1,4 +1,5 @@
 ﻿using System;
+// ReSharper disable IdentifierTypo
 
 namespace SignumLib.Tincture
 {
@@ -31,8 +32,6 @@ namespace SignumLib.Tincture
         /* Drawing Simple heraldic figures */
         /* ==================================== */
         SimplePyramid,
-        //SimplePile,
-        //SimpleGiron,
         //SimpleDelf,
         SimpleBar,
         SimpleBillet,
