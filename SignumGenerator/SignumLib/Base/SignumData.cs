@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace SignumLib.Base
 {
@@ -6,6 +7,8 @@ namespace SignumLib.Base
     {
         private readonly int _width;
         private readonly int _height;
+        private readonly double _angleSmall;
+        private readonly double _angleBig;
 
         public int Width => _width;
         public int Height  => _height;
@@ -51,6 +54,9 @@ namespace SignumLib.Base
         {
             this._width = width;
             this._height = height;
+            var ratio = (double)width / height;
+            this._angleSmall = (180 / Math.PI) * Math.Atan(ratio);
+            this._angleBig = 90 - this._angleSmall;
         }
 
         public SignumData(Bitmap bmp)
