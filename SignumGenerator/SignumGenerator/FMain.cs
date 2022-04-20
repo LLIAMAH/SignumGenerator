@@ -113,12 +113,10 @@ namespace SignumGenerator
             var data = new SignumData(bmp);
             var g = Graphics.FromImage(bmp);
 
-            var rectSize = bmp.Width / 4;
-            var rect = new Rectangle(
-                new(data.CenterX - rectSize, data.CenterY - rectSize),
-                new(rectSize * 2, rectSize * 2));
+            var height = SignumData.GetPercents(data.Height, 80);
+            var width = height / 2;
 
-            g.FillEllipse(new SolidBrush(Color.Black), rect);
+            //g.FillEllipse(new SolidBrush(Color.Black), rect);
 
             var img = bmp as Image;
             var defaultPath = "C:\\Temp";

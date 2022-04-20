@@ -58,5 +58,10 @@ namespace SignumLib.Base
             this._width = bmp.Width;
             this._height = bmp.Height;
         }
+
+        public static double GetPercents(int input, double percents)
+        {
+            return input * percents / 100;
+        }
     }
 }
