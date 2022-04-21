@@ -11,7 +11,7 @@ namespace SignumLib.Base
         private readonly double _angleBig;
 
         public int Width => _width;
-        public int Height  => _height;
+        public int Height => _height;
 
         public int Top => 0;
         public int Left => 0;
@@ -41,7 +41,7 @@ namespace SignumLib.Base
 
         public Point PointCenter => new(CenterX, CenterY);
         public Point PointTopCenter => new(CenterX, Top);
-        public Point PointBottomCenter=> new(CenterX, Bottom);
+        public Point PointBottomCenter => new(CenterX, Bottom);
         public Point PointCenterLeft => new(Left, CenterY);
         public Point PointCenterRight => new(Right, CenterY);
 
@@ -54,8 +54,7 @@ namespace SignumLib.Base
         {
             this._width = width;
             this._height = height;
-            var ratio = (double)width / height;
-            this._angleSmall = (180 / Math.PI) * Math.Atan(ratio);
+            this._angleSmall = (180 / Math.PI) * Math.Atan((double)width / height);
             this._angleBig = 90 - this._angleSmall;
         }
 
