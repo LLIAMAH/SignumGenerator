@@ -9,6 +9,7 @@ namespace SignumLib.Base
         private readonly int _height;
         private readonly double _angleSmall;
         private readonly double _angleBig;
+        private readonly Bitmap _bitmap;
 
         public int Width => _width;
         public int Height => _height;
@@ -60,8 +61,9 @@ namespace SignumLib.Base
 
         public SignumData(Bitmap bmp)
         {
-            this._width = bmp.Width;
-            this._height = bmp.Height;
+            this._bitmap = bmp;
+            this._width = this._bitmap.Width;
+            this._height = this._bitmap.Height;
         }
 
         public static double GetPercents(int input, double percents)

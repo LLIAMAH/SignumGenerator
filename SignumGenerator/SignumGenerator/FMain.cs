@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using SignumLib.Base;
 using SignumLib.Drawing;
 using SignumLib.Tincture;
+using Color = System.Drawing.Color;
+using Pen = System.Drawing.Pen;
 
 namespace SignumGenerator
 {
@@ -121,6 +123,115 @@ namespace SignumGenerator
             var img = bmp as Image;
             var defaultPath = "C:\\Temp";
             img.Save(Path.Combine(defaultPath, "Bg_Besante.png"), ImageFormat.Png);
+        }
+
+        private void bnSquaresArray_Click(object sender, EventArgs e)
+        {
+            var division = Convert.ToInt32(string.IsNullOrEmpty(tbDivision.Text) ? "0" : tbDivision.Text);
+            var size = Convert.ToInt32(string.IsNullOrEmpty(tbSize.Text) ? "0" : tbSize.Text );
+            if (division <= 0 || size <= 0)
+            {
+                MessageBox.Show("Division and size values must be more than '0'.");
+                return;
+            }
+
+            pbResult.Image?.Dispose();
+            var bmp = new Bitmap(CanvasWidth, CanvasHeight);
+            var data = new SignumData(bmp);
+            var g = Graphics.FromImage(bmp);
+            using (var brush = new SolidBrush(Color.Black))
+            {
+                g.FillRectangle(brush, 0, 0, CanvasWidth, CanvasHeight);
+            }
+
+            var pointStepX = CanvasWidth / (division + 1);
+            var pointStepY = CanvasHeight / (division + 1);
+            for (var j = pointStepY; j + (size / 2) < CanvasHeight; j += pointStepY)
+            {
+                for (var i = pointStepX; i + (size / 2) < CanvasWidth; i += pointStepX)
+                {
+                    DrawSquare(g, size, i, j, Color.Yellow);
+                }
+            }
+
+            pbResult.Image = bmp;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var division = Convert.ToInt32(string.IsNullOrEmpty(tbDivision.Text) ? "0" : tbDivision.Text);
+            var size = Convert.ToInt32(string.IsNullOrEmpty(tbSize.Text) ? "0" : tbSize.Text);
+            if (division <= 0 || size <= 0)
+            {
+                MessageBox.Show("Division and size values must be more than '0'.");
+                return;
+            }
+
+            pbResult.Image?.Dispose();
+            var bmp = new Bitmap(CanvasWidth, CanvasHeight);
+            var data = new SignumData(bmp);
+            var g = Graphics.FromImage(bmp);
+
+            using (var pen = new Pen(Color.Black, 5))
+            {
+                g.DrawRectangle(pen, new Rectangle(0,0, CanvasWidth, CanvasHeight));
+            }
+
+            var pointStepX = CanvasWidth / division;
+            var pointStepY = CanvasHeight / division;
+
+            var dimension = pointStepX <= pointStepY ? pointStepX : pointStepY;
+            var dimensionHalf = dimension / 2;
+            var centerX = pointStepX / 2;
+            var centerY = pointStepY / 2;
+
+            for (var j = 0; j <= CanvasHeight; j += pointStepY)
+            {
+                for (var i = 0; i <= CanvasWidth; i += pointStepX)
+                {
+                    var x = i + centerX - dimensionHalf;
+                    var y = j + centerY - dimensionHalf;
+                    var rectSize = new Size(dimension, dimension);
+
+                    var rect = new Rectangle(new Point(x,y), rectSize);
+                    DrawBoard(g, rect, Color.Orange);
+                }
+            }
+
+            pbResult.Image = bmp;
+        }
+
+        private static void DrawBoard(Graphics g, int i, int j, int sizeX, int sizeY, Color color)
+        {
+            using (var pen = new Pen(color, 3))
+            {
+                var rect = new Rectangle(i, j, sizeX, sizeY);
+                g.DrawRectangle(pen, rect);
+            }
+        }
+
+        private static void DrawBoard(Graphics g, Rectangle rect, Color color)
+        {
+            using (var pen = new Pen(color, 3))
+            {
+                g.DrawRectangle(pen, rect);
+            }
+        }
+
+        private static void DrawSquare(Graphics g, int size, int i, int j, Color color)
+        {
+            var halfSize = size / 2;
+            using (var brush = new SolidBrush(color))
+            {
+                var rect = new Rectangle(
+                    new Point(i - halfSize, j - halfSize),
+                    new Size(size, size));
+                g.FillRectangle(brush, rect);
+                using (var pen = new Pen(Color.Red))
+                {
+                    g.DrawEllipse(pen, i - 2, j - 2, 2, 2);
+                }
+            }
         }
     }
 }

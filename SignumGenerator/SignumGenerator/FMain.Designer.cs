@@ -32,6 +32,9 @@ namespace SignumGenerator
             this.gbSignum = new System.Windows.Forms.GroupBox();
             this.pbResult = new System.Windows.Forms.PictureBox();
             this.gbControls = new System.Windows.Forms.GroupBox();
+            this.tbSize = new System.Windows.Forms.TextBox();
+            this.bnSquaresArray = new System.Windows.Forms.Button();
+            this.tbDivision = new System.Windows.Forms.TextBox();
             this.layerBase = new SignumGenerator.Controls.InputControlBase();
             this.button1 = new System.Windows.Forms.Button();
             this.bnSaveToFile = new System.Windows.Forms.Button();
@@ -42,6 +45,7 @@ namespace SignumGenerator
             this.layer2 = new SignumGenerator.Controls.InputControlLayer();
             this.layer1 = new SignumGenerator.Controls.InputControlLayer();
             this.dlgSaveFile = new System.Windows.Forms.SaveFileDialog();
+            this.button2 = new System.Windows.Forms.Button();
             this.gbSignum.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbResult)).BeginInit();
             this.gbControls.SuspendLayout();
@@ -70,6 +74,10 @@ namespace SignumGenerator
             // 
             // gbControls
             // 
+            this.gbControls.Controls.Add(this.button2);
+            this.gbControls.Controls.Add(this.tbSize);
+            this.gbControls.Controls.Add(this.bnSquaresArray);
+            this.gbControls.Controls.Add(this.tbDivision);
             this.gbControls.Controls.Add(this.layerBase);
             this.gbControls.Controls.Add(this.button1);
             this.gbControls.Controls.Add(this.bnSaveToFile);
@@ -87,6 +95,30 @@ namespace SignumGenerator
             this.gbControls.TabStop = false;
             this.gbControls.Text = "Controls";
             // 
+            // tbSize
+            // 
+            this.tbSize.Location = new System.Drawing.Point(244, 760);
+            this.tbSize.Name = "tbSize";
+            this.tbSize.Size = new System.Drawing.Size(119, 31);
+            this.tbSize.TabIndex = 30;
+            // 
+            // bnSquaresArray
+            // 
+            this.bnSquaresArray.Location = new System.Drawing.Point(369, 758);
+            this.bnSquaresArray.Name = "bnSquaresArray";
+            this.bnSquaresArray.Size = new System.Drawing.Size(112, 34);
+            this.bnSquaresArray.TabIndex = 29;
+            this.bnSquaresArray.Text = "Objects";
+            this.bnSquaresArray.UseVisualStyleBackColor = true;
+            this.bnSquaresArray.Click += new System.EventHandler(this.bnSquaresArray_Click);
+            // 
+            // tbDivision
+            // 
+            this.tbDivision.Location = new System.Drawing.Point(119, 760);
+            this.tbDivision.Name = "tbDivision";
+            this.tbDivision.Size = new System.Drawing.Size(119, 31);
+            this.tbDivision.TabIndex = 28;
+            // 
             // layerBase
             // 
             this.layerBase.Location = new System.Drawing.Point(20, 51);
@@ -98,7 +130,7 @@ namespace SignumGenerator
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(642, 789);
+            this.button1.Location = new System.Drawing.Point(743, 698);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(112, 34);
             this.button1.TabIndex = 26;
@@ -177,6 +209,16 @@ namespace SignumGenerator
             this.dlgSaveFile.FileName = "Signum";
             this.dlgSaveFile.Filter = "Images|*.png";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(369, 798);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(112, 34);
+            this.button2.TabIndex = 31;
+            this.button2.Text = "Zones";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // FMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -193,6 +235,7 @@ namespace SignumGenerator
             this.gbSignum.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbResult)).EndInit();
             this.gbControls.ResumeLayout(false);
+            this.gbControls.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -212,6 +255,10 @@ namespace SignumGenerator
         private System.Windows.Forms.SaveFileDialog dlgSaveFile;
         private System.Windows.Forms.Button button1;
         private Controls.InputControlBase layerBase;
+        private System.Windows.Forms.TextBox tbSize;
+        private System.Windows.Forms.Button bnSquaresArray;
+        private System.Windows.Forms.TextBox tbDivision;
+        private System.Windows.Forms.Button button2;
     }
 }
 
